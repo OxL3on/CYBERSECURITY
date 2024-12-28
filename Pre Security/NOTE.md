@@ -1,7 +1,4 @@
-#I learned
-
-
-### **Notes on Offensive Security and Ethical Hacking**  
+### **Offensive security intro**  
 #### **Core Concept**  
 - **"Think like a hacker to outsmart one":** The essence of offensive security is understanding and anticipating hacker tactics.  
 
