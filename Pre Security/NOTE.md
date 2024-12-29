@@ -108,7 +108,7 @@ Blue teams are integral to defensive security, tasked with protecting systems, n
 
 
 ---
-
+---
 
 ### Cybersecurity Careers Overview
 
@@ -183,6 +183,64 @@ Cybersecurity careers are in high demand, offering high salaries, exciting work,
   - Provide actionable insights to improve defense mechanisms.
 
 ---
+---
+
+### Networking Essentials in Cybersecurity
+
+#### **What is a Network?**
+- A network is a connection between two or more devices to exchange information or resources.
+- Examples of non-technical networks: 
+  - Public transportation systems.
+  - National power grids.
+  - Postal systems.
+- **In Computing**: Networks connect devices like laptops, phones, security cameras, traffic lights, etc., enabling communication and data sharing.
+
+
+#### **Types of Networks**
+1. **Private Network**: Connects devices within a confined space, e.g., home or office networks.
+2. **Public Network**: Connects multiple private networks to form a larger network, e.g., the Internet.
+
+#### **The Internet**
+- A massive public network made up of smaller private networks.
+- Origin: Started as ARPANET in the 1960s; evolved into the Internet in 1989 with Tim Berners-Lee's World Wide Web.
+
+
+### **Device Identification on Networks**
+Devices must be identifiable, similar to humans having:
+- **Names** (can change) → **IP Address** (temporary and can be reassigned).
+- **Fingerprints** (permanent) → **MAC Address** (unique hardware identifier).
+
+#### **IP Address**
+- **Definition**: A numerical label that identifies a device on a network.
+- **Types**:
+  - **Private IP**: Identifies devices within a private network.
+  - **Public IP**: Identifies a device on the Internet, provided by ISPs.
+- **Versions**:
+  - **IPv4**: Supports ~4.29 billion addresses (shortage of available addresses).
+  - **IPv6**: Supports 2¹²⁸ addresses (~340 trillion trillion trillion), solving IPv4 shortages.
+
+#### **MAC Address**
+- **Definition**: A 12-character hexadecimal address assigned to a device's network interface by the manufacturer.
+- **Structure**:
+  - First six characters: Manufacturer identifier.
+  - Last six characters: Unique device identifier.
+- **Spoofing**: MAC addresses can be faked, bypassing poorly designed security measures.
+
+
+### **Key Networking Tools**
+#### **Ping**
+- **Function**: Checks connection reliability between devices using ICMP (Internet Control Message Protocol).
+- **How it Works**:
+  - Sends an **ICMP echo request** to a target device.
+  - Receives an **ICMP echo reply** to measure connection performance (e.g., latency).
+- **Usage**: `ping <IP address>` or `ping <website URL>`.
+
+
+### **Important Concepts**
+1. **Protocols**: Rules that ensure devices communicate in the same "language" across networks.
+2. **IP Addressing & Subnetting**: Techniques to organize and manage IP addresses (covered in-depth later).
+3. **Network Integration**: Networks support crucial services like data collection, electricity delivery, and traffic management.
+
 
 
 
