@@ -306,7 +306,69 @@ Devices must be identifiable, similar to humans having:
 3. **Subnetting**: Provides better control, security, and efficiency in complex networks.
 4. **ARP and DHCP**: Critical protocols ensuring proper identification and connectivity within networks.
 
+---
+---
 
+### OSI Model - Key Points
+
+The OSI (Open Systems Interconnection) Model is a fundamental framework in networking that defines how devices communicate and interpret data. It consists of **seven layers**, each with specific responsibilities:
+
+#### **Layer 1: Physical Layer**  
+- Focuses on physical hardware and data transmission (binary signals: 0s and 1s).  
+- Includes cables, switches, and network interface cards (NICs).  
+
+#### **Layer 2: Data Link Layer**  
+- Handles **MAC addressing** and physical addressing.  
+- Adds the MAC address of the destination device for accurate delivery.  
+- NICs provide unique MAC addresses (hardware-burned).  
+- Responsible for data formatting for physical transmission.
+
+#### **Layer 3: Network Layer**  
+- Performs **routing** and reassembly of data packets.  
+- Determines the **optimal path** based on factors like speed, reliability, and the number of hops.  
+- Uses **IP addressing** for device identification.  
+- Routers operate at this layer (Layer 3 devices).
+
+#### **Layer 4: Transport Layer**  
+- Responsible for **data transmission protocols**:  
+  - **TCP (Transmission Control Protocol):** Reliable and accurate, uses error checking, slower but ensures data integrity (e.g., file sharing, email).  
+  - **UDP (User Datagram Protocol):** Faster but less reliable, used for streaming, device discovery, etc.  
+
+**TCP Advantages:**  
+- Guarantees accuracy.  
+- Synchronizes devices to prevent flooding.  
+
+**TCP Disadvantages:**  
+- Requires a stable connection.  
+- Slower due to reliability features.  
+
+**UDP Advantages:**  
+- Faster and flexible for developers.  
+- No reserved connection, better for unstable connections.  
+
+**UDP Disadvantages:**  
+- No guarantee of data delivery.  
+- Unstable connections lead to lost data.  
+
+#### **Layer 5: Session Layer**  
+- Manages **session creation, maintenance, and termination**.  
+- Ensures a unique session for data exchange.  
+- Provides "checkpoints" to resend only recent data if lost.  
+
+#### **Layer 6: Presentation Layer**  
+- Acts as a **translator** for data, ensuring uniformity across different systems.  
+- Handles **data encryption** (e.g., HTTPS for secure sites).  
+
+#### **Layer 7: Application Layer**  
+- Closest to the user. Defines protocols for how applications interact with data.  
+- Includes familiar services like email (SMTP), web browsing (HTTP/HTTPS), file sharing, and DNS.
+
+### Additional Concepts
+
+- **Encapsulation:** Process of adding information at each layer as data is transmitted.  
+- **Protocols:**  
+  - Layer 4: TCP, UDP.  
+  - Layer 7: DNS, HTTP, HTTPS, SMTP.  
 
 
 
