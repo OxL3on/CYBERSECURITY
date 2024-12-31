@@ -51,6 +51,108 @@
 - **Exploiting DNS Records**: Analyze A, CNAME, and TXT records for vulnerabilities.  
 - **DNS Cache Poisoning**: Redirect traffic to malicious servers by altering cached DNS responses.
 
+---
+---
+
+### HTTP and HTTPS: Key Notes  
+
+#### **1. HTTP (HyperText Transfer Protocol)**  
+- Developed by Tim Berners-Lee (1989-1991).  
+- A protocol used for communication between a web browser and web server.  
+- Transmits webpage data like HTML, images, videos, etc.  
+
+#### **2. HTTPS (HyperText Transfer Protocol Secure)**  
+- A secure version of HTTP.  
+- Encrypts data, ensuring privacy and verifying the server's authenticity.  
+
+
+### **3. URL (Uniform Resource Locator)**  
+A URL is an instruction to access a resource on the internet. Its components:  
+- **Scheme**: Protocol to use (e.g., HTTP, HTTPS, FTP).  
+- **User**: Username and password (optional, for services requiring authentication).  
+- **Host**: Domain name or IP address of the server.  
+- **Port**: Default ports: 80 (HTTP), 443 (HTTPS). Other ports range from 1-65535.  
+- **Path**: Location of the requested resource.  
+- **Query String**: Additional data sent to the resource, e.g., `/blog?id=1`.  
+- **Fragment**: Points to a specific section of a webpage, e.g., `#task3`.  
+
+
+### **4. Making HTTP Requests**  
+**Example Request**:  
+```plaintext
+GET / HTTP/1.1  
+Host: tryhackme.com  
+User-Agent: Mozilla/5.0 Firefox/87.0  
+Referer: https://tryhackme.com/  
+(blank line indicates end of request)
+```  
+
+- **GET / HTTP/1.1**: Requests the home page using HTTP version 1.1.  
+- **Host**: Specifies the website (e.g., `tryhackme.com`).  
+- **User-Agent**: Identifies the browser and version (e.g., Firefox 87).  
+- **Referer**: Specifies the page that referred the request.  
+
+**Example Response**:  
+```plaintext
+HTTP/1.1 200 OK  
+Server: nginx/1.15.8  
+Date: Fri, 09 Apr 2021 13:34:03 GMT  
+Content-Type: text/html  
+Content-Length: 98  
+
+<html>
+<head>
+    <title>TryHackMe</title>
+</head>
+<body>
+    Welcome To TryHackMe.com
+</body>
+</html>
+```  
+
+- **HTTP/1.1 200 OK**: Protocol version and status code.  
+- **Server**: Web server software and version.  
+- **Date**: Current server time and timezone.  
+- **Content-Type**: Type of data (e.g., `text/html`).  
+- **Content-Length**: Length of the response.  
+- Blank line indicates end of headers.  
+- Body contains the requested webpage content.  
+
+
+### **5. Common HTTP Methods**  
+- **GET**: Retrieve information from the server.  
+- **POST**: Send data to the server (e.g., form submission).  
+- **PUT**: Update existing information on the server.  
+- **DELETE**: Remove information from the server.  
+
+
+### **6. HTTP Status Codes**  
+Status codes inform clients about the outcome of their requests:  
+
+| **Code Range** | **Meaning**                        | **Common Codes**                              |  
+|----------------|------------------------------------|-----------------------------------------------|  
+| 100-199        | Informational (e.g., Continue).    | *Rarely used*.                               |  
+| 200-299        | Success                           | `200 OK`, `201 Created`.                     |  
+| 300-399        | Redirection                       | `301 Moved Permanently`, `302 Found`.        |  
+| 400-499        | Client Errors                    | `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`. |  
+| 500-599        | Server Errors                    | `500 Internal Server Error`, `503 Service Unavailable`. |  
+
+
+### **7. HTTP Headers**  
+#### **Common Request Headers**  
+- **Host**: Specifies which website is being requested.  
+- **User-Agent**: Browser and version information.  
+- **Content-Length**: Length of data sent (e.g., in form submissions).  
+- **Accept-Encoding**: Supported compression methods for data transfer.  
+- **Cookie**: Sends stored data to the server.  
+
+#### **Common Response Headers**  
+- **Set-Cookie**: Stores information in the browser for future requests.  
+- **Cache-Control**: Time for storing the response in the cache.  
+- **Content-Type**: Indicates the type of response data (e.g., HTML, JSON).  
+- **Content-Encoding**: Specifies compression used for data transfer.  
+
+
 
 
 
