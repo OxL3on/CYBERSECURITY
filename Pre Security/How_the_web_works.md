@@ -152,7 +152,63 @@ Status codes inform clients about the outcome of their requests:
 - **Content-Type**: Indicates the type of response data (e.g., HTML, JSON).  
 - **Content-Encoding**: Specifies compression used for data transfer.  
 
+---
+---
 
+### Key Notes on Websites, Frontend, and Backend  
+
+#### **Website Basics**  
+- A website is made up of two major components:  
+  1. **Front End (Client-Side):** How the browser displays the site.  
+  2. **Back End (Server-Side):** Handles requests and sends responses.  
+
+- Browsers send **requests** to a web server, which processes and returns **responses** to render pages.  
+
+#### **Core Web Technologies**  
+- **HTML (HyperText Markup Language):**  
+  - Builds the structure of the website.  
+  - Common elements:  
+    - `<html>`: Root element.  
+    - `<head>`: Contains metadata and the page title.  
+    - `<body>`: Main content displayed in the browser.  
+    - `<h1>`: Headings.  
+    - `<p>`: Paragraphs.  
+  - **Attributes:**  
+    - `class`: Applies styling (can be shared by multiple elements).  
+    - `id`: Unique identifier for an element.  
+    - `src`: Specifies resource location, e.g., for images or scripts.  
+  - View HTML source: Right-click > "View Page Source."
+
+- **CSS (Cascading Style Sheets):** Styles the page to make it visually appealing.  
+
+- **JavaScript (JS):**  
+  - Adds interactivity and dynamic functionality.  
+  - Executes through `<script>` tags, inline or external sources.  
+  - Example:  
+    ```javascript
+    document.getElementById("demo").innerHTML = "Hack the Planet";
+    ```  
+  - HTML **events** like `onclick` and `onhover` can trigger JavaScript functions.  
+
+#### **Common Security Issues in Web Development**  
+
+1. **Sensitive Data Exposure:**  
+   - Developers may accidentally leave sensitive data (e.g., credentials or private links) in the source code.  
+   - **First Step in Security Testing:** Always check page source code for exposed sensitive information.
+
+2. **HTML Injection:**  
+   - Occurs when a website fails to sanitise user input, allowing malicious HTML or JavaScript to be injected into the page.  
+   - **Example Attack:**  
+     - Inputting `<h1>Hacked!</h1>` into an unfiltered field can alter the page appearance.  
+   - **Prevention:**  
+     - Always sanitise user input to remove malicious tags.  
+     - Never trust user-provided data.
+
+#### **Key Takeaways for Security Assessments**  
+- Understand the structure of websites (frontend vs backend).  
+- Review source code for potential sensitive information leaks.  
+- Test input fields for injection vulnerabilities (e.g., HTML Injection).  
+- Ensure robust input sanitisation to mitigate common vulnerabilities.
 
 
 
