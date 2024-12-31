@@ -473,8 +473,6 @@ The OSI (Open Systems Interconnection) Model is a fundamental framework in netwo
   - **IPSec**: Strong encryption, harder to configure.  
 - **Ethical Hacking Application**: Protects identity when interacting with vulnerable machines.  
 
----
-
 #### **4. Routers**  
 - **Role**: Connect networks and determine data paths (Layer 3).  
 - **Routing Decisions**:
