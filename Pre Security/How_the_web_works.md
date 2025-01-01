@@ -211,6 +211,80 @@ Status codes inform clients about the outcome of their requests:
 - Ensure robust input sanitisation to mitigate common vulnerabilities.
 
 
+---
+---
+
+### Key Notes on Web Servers, Load Balancers, CDNs, Databases, and Backend vs Frontend
+
+#### **How Websites Work**  
+1. Your browser requests a webpage by obtaining the server's IP address using **DNS**.  
+2. The browser communicates with the web server using the **HTTP protocol**.  
+3. The server responds with files like **HTML**, **CSS**, **JavaScript**, and **media**.  
+4. The browser uses these files to display the webpage.
+
+#### **Load Balancers**  
+- **Purpose:**  
+  1. Handle high traffic by distributing requests across multiple servers.  
+  2. Provide failover if a server becomes unresponsive.
+
+- **How It Works:**  
+  - Receives requests and forwards them to a server based on algorithms like:  
+    - **Round-robin:** Assigns requests to servers in turn.  
+    - **Weighted:** Sends requests to the least busy server.  
+
+- **Health Checks:** Periodically verifies server responsiveness and stops routing traffic to failed servers.  
+
+#### **Content Delivery Networks (CDNs)**  
+- **Purpose:** Reduce traffic load and improve delivery speed by hosting static files (e.g., images, JS, CSS) on servers worldwide.  
+- **Functionality:**  
+  - Determines the closest server to the user and delivers content from there.  
+
+#### **Databases**  
+- **Purpose:** Store and retrieve website data.  
+- **Types:** Ranges from simple files to complex server clusters.  
+- **Common Databases:** MySQL, PostgreSQL, MongoDB, MSSQL.  
+
+#### **Web Application Firewall (WAF)**  
+- **Purpose:** Protects web servers by filtering web requests.  
+- **Features:**  
+  - Blocks common attacks (e.g., SQL Injection, XSS).  
+  - Enforces **rate limiting** to prevent DoS attacks.  
+  - Drops suspicious requests before they reach the server.
+
+#### **Web Servers**  
+1. **Definition:** Software that listens for connections and delivers content via the **HTTP protocol**.  
+2. **Common Web Servers:** Apache, Nginx, IIS, NodeJS.  
+3. **Root Directory:** The location on the server from which files are served (e.g., `/var/www/html` in Linux).  
+
+#### **Virtual Hosts**  
+- Allow hosting of multiple websites on one web server.  
+- Virtual hosts map requests based on domain names to specific directories.  
+- Example:  
+  - `one.com` → `/var/www/website_one`.  
+  - `two.com` → `/var/www/website_two`.  
+
+#### **Static vs Dynamic Content**  
+1. **Static Content:** Does not change (e.g., images, CSS, JS).  
+   - Served directly without modification.  
+
+2. **Dynamic Content:** Changes based on user interaction or data updates.  
+   - Generated using backend programming languages.  
+
+#### **Backend and Scripting Languages**  
+1. **Backend:** Handles interactive features like user input, database interactions, and external services.  
+2. **Languages:** Examples include PHP, Python, Ruby, NodeJS, and Perl.  
+
+- **Example of Dynamic Content with PHP:**  
+  ```php
+  <html><body>Hello <?php echo $_GET["name"]; ?></body></html>
+  ```
+  - URL: `http://example.com/index.php?name=adam`  
+  - Output: `Hello adam` (the PHP code is processed server-side).  
+
+#### **Key Security Points:**  
+1. Load balancers and CDNs enhance performance and resilience.  
+2. Databases and backends introduce new attack surfaces.  
+3. Always secure web applications against common vulnerabilities like injection attacks, improper input validation, and data leaks.
 
 
 
