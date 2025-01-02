@@ -149,3 +149,58 @@
 ---
 ---
 
+## **Windows Update**  
+- **Purpose**: Provides security updates, feature enhancements, and patches for Windows and other Microsoft products.  
+- **Patch Tuesday**: Updates typically released on the 2nd Tuesday of each month. Critical updates may be pushed anytime.  
+- **Access**: Via *Settings* or command `control /name Microsoft.WindowsUpdate`.  
+- Updates are mandatory in Windows 10 and later; postponement is limited.  
+
+## **Windows Security**  
+- **Protection Areas**:  
+  1. **Virus & Threat Protection**: Scans for malware, handles quarantined threats, and manages real-time protection.  
+  2. **Firewall & Network Protection**: Manages network traffic through firewalls (Domain, Private, and Public).  
+  3. **App & Browser Control**: Protects against phishing, malware websites, and malicious files (via SmartScreen).  
+  4. **Device Security**: Includes **Core Isolation** and **Trusted Platform Module (TPM)** for enhanced security.  
+
+- **Status Indicators**:  
+  - Green: Fully protected.  
+  - Yellow: Review recommended actions.  
+  - Red: Immediate attention needed.  
+
+## **Virus & Threat Protection Details**  
+- **Scan Options**: Quick, Full, Custom scans available.  
+- **Threat History**: Tracks quarantined and allowed threats.  
+- **Settings**:  
+  - **Real-time protection**: Stops malware from installing/running.  
+  - **Cloud-delivered protection**: Provides faster updates.  
+  - **Ransomware protection**: Controlled folder access requires Real-time protection enabled.  
+
+**Tips**:  
+- Right-click files/folders to scan with Microsoft Defender.  
+- Exclude items only if you’re 100% sure they are safe.  
+
+## **Firewall & Network Protection**  
+- **Profiles**:  
+  - Domain: For authenticated domain networks.  
+  - Private: For trusted home/private networks.  
+  - Public: For public networks (e.g., Wi-Fi at coffee shops).  
+- **Advanced Settings**: Use `WF.msc` for detailed configurations (for advanced users).  
+- Allow/block apps as needed through firewall settings.  
+
+**Tip**: Keep firewalls enabled unless confident in configurations.  
+
+## **BitLocker & TPM**  
+- **BitLocker**: Encrypts drives to protect against data theft.  
+  - Best used with TPM for hardware-based security.  
+- **TPM**: Provides cryptographic operations and tamper-resistance.  
+
+## **Volume Shadow Copy Service (VSS)**  
+- **Purpose**: Creates snapshots (restore points) for data recovery.  
+- **Actions**: Create restore points, perform system restores, configure settings, delete restore points.  
+- **Ransomware Risk**: Malware often targets VSS files to prevent recovery.  
+
+**Tip**: Use offline/off-site backups for critical data recovery.  
+
+
+## Acknowledgment  
+The content in this repository is inspired by the 'Pre-Security' room on [TryHackMe](https://tryhackme.com/r/path/outline/presecurity). Full credit to TryHackMe for creating the material used as a learning resource. 
