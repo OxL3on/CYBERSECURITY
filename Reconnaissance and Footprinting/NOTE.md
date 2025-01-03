@@ -178,3 +178,58 @@ Gathers public information like emails, subdomains, and IPs.
 
 
 
+---
+
+## **Shodan**  
+- **Purpose**: Search engine for Internet-connected devices (servers, routers, IoT devices).  
+- **Use Cases**: Identify device types, versions, and geographic distribution (e.g., search for `apache 2.4.1`).  
+- **Additional Resources**:  
+  - Explore **Shodan Search Query Examples** for insights.  
+  - Use **Shodan Trends** (subscription required) for historical data analysis.  
+
+---
+
+## **Censys**  
+- **Purpose**: Search engine for Internet-connected assets (hosts, websites, certificates).  
+- **Focus**: Enumerates domains, audits ports/services, and discovers rogue assets.  
+- **Use Cases**: Investigate domains, monitor certificates, and map Internet-facing infrastructure.  
+- **Resource**: Check **Censys Search Use Cases** for detailed examples.  
+
+---
+
+## **VirusTotal**  
+- **Purpose**: Scans files/URLs with multiple antivirus engines for malware.  
+- **Features**:  
+  - Upload files, URLs, or file hashes for analysis.  
+  - View community comments for contextual insights.  
+  - Detection might occasionally yield false positives.  
+- **Output**: Displays results from multiple antivirus engines in a single operation.  
+
+---
+
+## **Have I Been Pwned (HIBP)**  
+- **Purpose**: Checks if an email address appears in leaked data breaches.  
+- **Significance**: Reveals compromised private information and passwords.  
+- **Concern**: Reused passwords across platforms increase risk if one platform is breached.  
+
+---
+
+## **Vulnerabilities and Exploits**  
+
+### **CVE (Common Vulnerabilities and Exposures)**  
+- **Purpose**: A standardized dictionary of vulnerabilities.  
+- **Format**: Unique identifiers like `CVE-2024-29988`.  
+- **Maintained By**: MITRE Corporation.  
+- **Resources**:  
+  - **CVE Program Website**  
+  - **National Vulnerability Database (NVD)**  
+
+### **Exploit Database**  
+- **Purpose**: Repository of exploit codes for vulnerabilities (e.g., Penetration testing).  
+- **Features**:  
+  - Contains exploit codes from various authors, some verified.  
+  - Exploit use requires permission (e.g., via legally binding agreements).  
+- **Additional Resource**:  
+  - **GitHub**: Hosts PoC, exploit tools, and scripts related to CVEs.  
+
+---  
