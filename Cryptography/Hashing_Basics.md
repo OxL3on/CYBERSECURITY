@@ -43,6 +43,8 @@ A hash collision happens when two different inputs produce the same hash. While 
 Older algorithms like **MD5** and **SHA1** are now insecure because attackers can intentionally create collisions. Use stronger algorithms like **SHA-256** instead.
 
 
+---
+---
 
 ### Password Storage and Data Integrity  
 
@@ -86,6 +88,8 @@ Without salting, attackers can use precomputed hash lists (rainbow tables) to cr
 
 **Takeaway:** Always store passwords using strong hashing algorithms (e.g., SHA-256) combined with salting. This ensures better security and protects users from breaches.
 
+---
+---
 
 
 ### **Using Hashing to Store Passwords**  
@@ -148,13 +152,10 @@ This is why hashing is preferred for authentication systems—it’s a one-way p
 
 **Takeaway:** Use secure hashing algorithms with unique salts to ensure robust password protection. Avoid outdated methods like SHA-1 and MD5, and never store passwords in plaintext or rely on encryption for authentication.  
 
-
+---
+---
 
 ### Offensive Perspective: Recognizing and Cracking Hashes  
-
-From the offensive security perspective, understanding hash types and cracking them is critical for assessing vulnerabilities. Here’s a breakdown:  
-
----
 
 ### **Hash Recognition**  
 
@@ -253,4 +254,98 @@ If a hash is salted, each password must be cracked individually, making rainbow 
 3. **Learn prefixes**: Familiarize yourself with Linux-style password prefixes for faster identification.  
 4. **Understand limitations**: Salting and strong algorithms significantly increase difficulty for attackers.  
 
+---
+---
 
+### **Cracking Passwords with Salt and Tools**  
+
+When dealing with salted hashes, brute-forcing becomes more challenging because the salt makes each password attempt unique.
+
+---
+
+### **Handling Salted Hashes**
+- **Salts Prevent Rainbow Tables**: The salt ensures that identical passwords produce different hashes, rendering precomputed rainbow tables ineffective.
+- **Cracking Process**:
+  1. **Extract the Salt**: Obtain the salt value from the hash format.
+  2. **Use the Salt in Cracking Tools**: Pass the salt as an argument in cracking tools like Hashcat or John the Ripper.
+  3. **Compare Outputs**: Iterate through password guesses combined with the salt until the hash matches.
+
+---
+
+### **Using GPUs for Cracking**
+Modern GPUs are ideal for password cracking due to their ability to perform parallel calculations:
+- **Advantages**:
+  - Thousands of cores accelerate hash computations.
+  - Excellent for unsalted and weaker algorithms like MD5 or NTLM.
+- **Limitations**:
+  - Hashing algorithms like Bcrypt, scrypt, and Argon2 are designed to resist GPU-based cracking by being computationally expensive.
+
+#### **Running Hashcat with GPU**
+To make the most of your GPU:
+1. Use Hashcat on the host OS (not a VM).
+2. Ensure GPU drivers and OpenCL/CUDA libraries are installed.
+3. Example:
+   ```bash
+   hashcat -m 1000 -a 0 hashfile.txt /usr/share/wordlists/rockyou.txt
+   ```
+   - `-m 1000`: NTLM hash type.
+   - `-a 0`: Straight attack mode.
+
+---
+
+### **Virtual Machines and Cracking**
+- **Hashcat on VMs**:
+  - GPUs are often inaccessible in VMs unless explicitly configured.
+  - Performance is degraded due to virtualisation overhead.
+- **John the Ripper**:
+  - CPU-based by default, works well in VMs.
+  - For better performance, run it on the host OS.
+
+---
+
+### **Practical Example: Cracking with Hashcat**
+Let’s say you have the following hash file (`hash.txt`):
+```plaintext
+$6$salt$hashedpassword
+```
+
+Steps to crack:
+1. Identify the hash type. Here, `$6$` indicates **SHA-512**.
+2. Use the appropriate Hashcat mode for SHA-512 crypt (`-m 1800`).
+3. Command:
+   ```bash
+   hashcat -m 1800 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
+   ```
+
+---
+
+### **Hashcat Syntax Breakdown**
+- **`-m <hash_type>`**: Numeric code for hash type (e.g., `1000` for NTLM, `1800` for SHA-512 crypt).
+- **`-a <attack_mode>`**: Attack strategy:
+  - `0`: Straight (wordlist).
+  - `1`: Combination (pairs of passwords).
+  - `3`: Mask (custom rules).
+  - `6`: Hybrid (wordlist + mask).
+- **`hashfile`**: File containing the hash.
+- **`wordlist`**: Path to the wordlist (e.g., `rockyou.txt`).
+
+---
+
+### **Cracking with John the Ripper**
+For hashes like NTLM or MD5:
+1. Identify the hash type.
+2. Use the command:
+   ```bash
+   john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+   ```
+3. To resume a stopped session:
+   ```bash
+   john --restore
+   ```
+
+---
+
+### **Best Practices**
+- **Start with Rockyou**: The `rockyou.txt` wordlist is comprehensive for testing common passwords.
+- **Identify Weak Points**: Look for unsalted hashes or systems using outdated hashing algorithms.
+- **Experiment with Tools**: Familiarize yourself with both Hashcat and John the Ripper for diverse cracking scenarios.
