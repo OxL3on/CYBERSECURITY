@@ -85,3 +85,65 @@ Without salting, attackers can use precomputed hash lists (rainbow tables) to cr
 ---
 
 **Takeaway:** Always store passwords using strong hashing algorithms (e.g., SHA-256) combined with salting. This ensures better security and protects users from breaches.
+
+
+
+### **Using Hashing to Store Passwords**  
+
+Instead of storing passwords directly, we store their **hash values** using a secure hashing function. This way, even if the database is leaked, attackers must crack each password individually.  
+
+However, there's a problem:  
+- **Same Passwords, Same Hash**: If two users have the same password, their hashes will be identical, making it easier for attackers to exploit the data.  
+- **Rainbow Tables**: Attackers can use precomputed lookup tables of hashes to quickly reverse common passwords.  
+
+#### **What is a Rainbow Table?**  
+A rainbow table is a collection of password-hash pairs, making it faster to find a password from its hash. Here's an example:  
+
+| **Hash**                           | **Password**      |  
+|------------------------------------|------------------|  
+| `02c75fb22c75b23dc963c7eb91a062cc` | zxcvbnm          |  
+| `b0baee9d279d34fa1dfd71aadb908c3f` | 11111            |  
+| `e10adc3949ba59abbe56e057f20f883e` | 123456           |  
+
+Websites like **CrackStation** use massive rainbow tables to crack hashes quickly by matching them against their database.  
+
+---
+
+### **Protecting Against Rainbow Tables**  
+
+To protect against rainbow tables, we use **salts**.  
+- A **salt** is a random value added to the password before hashing, ensuring that even identical passwords produce different hashes.  
+- **Salts are stored in the database alongside the hash** and don't need to be private.  
+
+#### **How Salting Works**  
+1. Generate a unique salt for each user (e.g., `Y4UV*^(=go_!`).  
+2. Concatenate the password and salt (e.g., `password123 + Y4UV*^(=go_!`).  
+3. Hash the combined string.  
+4. Store the resulting hash and the salt in the database.  
+
+**Secure Hashing Algorithms like** `Bcrypt`, `Scrypt`, and `Argon2` handle salting automatically.  
+
+---
+
+### **Example of Secure Password Storage**  
+
+Let’s store a password (`AL4RMc10k`) securely:  
+1. **Choose a secure hashing algorithm**: Use `Argon2`, `Bcrypt`, or `Scrypt`.  
+2. **Generate a salt**: E.g., `Y4UV*^(=go_!`.  
+3. **Combine password and salt**: `AL4RMc10kY4UV*^(=go_!`.  
+4. **Hash the combined string**.  
+5. **Store** the hash and salt in the database.  
+
+---
+
+### **Why Not Encrypt Passwords?**  
+
+Encrypting passwords instead of hashing seems straightforward, but there’s a catch:  
+- Encryption requires storing a **decryption key**.  
+- If the key is compromised, all passwords can be decrypted instantly.  
+
+This is why hashing is preferred for authentication systems—it’s a one-way process and doesn’t need a key to verify passwords.  
+
+--- 
+
+**Takeaway:** Use secure hashing algorithms with unique salts to ensure robust password protection. Avoid outdated methods like SHA-1 and MD5, and never store passwords in plaintext or rely on encryption for authentication.  
