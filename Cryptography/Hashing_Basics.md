@@ -438,3 +438,66 @@ print(f"HMAC: {h.hexdigest()}")
 - **Hashing** checks file integrity but does not verify the source.
 - **HMAC** ensures both **authenticity** and **integrity**, making it more robust for sensitive applications.
 - Hashing and HMAC are foundational tools in cybersecurity, widely used in secure communications, authentication systems, and data integrity checks.
+
+
+---
+---
+
+### **Distinguishing Hashing, Encoding, and Encryption**
+
+#### **Hashing**
+- **Definition**: A process that transforms input data into a fixed-size hash value (digest) using a hashing algorithm.
+- **Key Features**:
+  - **One-Way Function**: Hashing is irreversible; you cannot retrieve the original data from the hash.
+  - **Integrity Check**: Even the smallest change in the input results in a significantly different hash (known as the avalanche effect).
+- **Use Cases**:
+  - Password storage.
+  - File integrity verification.
+  - Digital signatures.
+
+#### **Encoding**
+- **Definition**: Converts data into a different format for compatibility or readability.
+- **Key Features**:
+  - **Reversible**: Encoding can be reversed with the correct tools or methods.
+  - **Purpose**: It ensures data can be properly processed by a specific system.
+- **Examples**:
+  - **Text Encodings**: ASCII, UTF-8, UTF-16, UTF-32 (used for representing characters).
+  - **Generic Encodings**:
+    - **Base64**: Often used to encode binary data for transmission in text-based systems.
+    - **Example**:
+      ```bash
+      # Encoding
+      echo -n "TryHackMe" | base64
+      VHJ5SGFja01l
+      
+      # Decoding
+      echo -n "VHJ5SGFja01l" | base64 -d
+      TryHackMe
+      ```
+- **Important Note**: Encoding does not secure data; it simply reformats it.
+
+#### **Encryption**
+- **Definition**: A process that transforms data into an unreadable format using an algorithm (cipher) and a secret key.
+- **Key Features**:
+  - **Reversible**: Requires the correct key and cipher to decrypt the data.
+  - **Purpose**: Protects data confidentiality.
+- **Types**:
+  - **Symmetric Encryption**: Same key is used for encryption and decryption (e.g., AES).
+  - **Asymmetric Encryption**: Uses a public-private key pair (e.g., RSA).
+
+#### **Comparison Table**
+
+| Feature                | Hashing                   | Encoding              | Encryption               |
+|------------------------|---------------------------|-----------------------|--------------------------|
+| **Purpose**            | Verify integrity          | Compatibility         | Confidentiality          |
+| **Reversibility**      | No                        | Yes                   | Yes                      |
+| **Key/Secret Needed**  | No                        | No                    | Yes                      |
+| **Examples**           | MD5, SHA256               | Base64, UTF-8         | AES, RSA                 |
+| **Use Cases**          | Passwords, file integrity | Data compatibility    | Secure communications    |
+
+---
+
+### **Key Insights**
+- **Hashing** ensures data integrity but does not provide confidentiality or compatibility.
+- **Encoding** makes data suitable for transmission or storage but offers no security.
+- **Encryption** protects data by making it unreadable to unauthorized parties.
