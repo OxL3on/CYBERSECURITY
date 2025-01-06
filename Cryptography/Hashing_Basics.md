@@ -147,3 +147,110 @@ This is why hashing is preferred for authentication systems—it’s a one-way p
 --- 
 
 **Takeaway:** Use secure hashing algorithms with unique salts to ensure robust password protection. Avoid outdated methods like SHA-1 and MD5, and never store passwords in plaintext or rely on encryption for authentication.  
+
+
+
+### Offensive Perspective: Recognizing and Cracking Hashes  
+
+From the offensive security perspective, understanding hash types and cracking them is critical for assessing vulnerabilities. Here’s a breakdown:  
+
+---
+
+### **Hash Recognition**  
+
+Recognizing a hash type can be challenging, as many hashing algorithms produce visually similar outputs. Automated tools like **hashID** or **Hashcat** can help but may misidentify certain hashes. Use context clues alongside these tools:  
+- **Database Source**: A hash from a web application is likely MD5.  
+- **Operating System**: A hash from Windows is probably NTLM.  
+
+---
+
+### **Linux Passwords**  
+
+Linux systems store password hashes in the **/etc/shadow** file, accessible only by root. Older systems stored them in the **/etc/passwd** file, readable by all users.  
+
+#### **Structure of the Hash in /etc/shadow**  
+
+Linux password hashes have a specific format:  
+```plaintext
+$prefix$options$salt$hash
+```  
+
+| **Field**     | **Description**                                 |  
+|---------------|-------------------------------------------------|  
+| `$prefix`     | Algorithm identifier (e.g., `$6$` for SHA-512). |  
+| `options`     | Parameters for the hashing algorithm.           |  
+| `salt`        | Random value added to the password.             |  
+| `hash`        | Final hashed password value.                    |  
+
+#### **Common Linux Prefixes**  
+| **Prefix**  | **Algorithm**                            |  
+|-------------|------------------------------------------|  
+| `$y$`       | **yescrypt** (default, highly secure).   |  
+| `$gy$`      | **gost-yescrypt**.                       |  
+| `$7$`       | **scrypt** (password-based key derivation). |  
+| `$2b$, $2y$`| **bcrypt** (based on Blowfish).          |  
+| `$6$`       | **SHA-512**.                             |  
+| `$1$`       | **MD5** (md5crypt).                      |  
+
+#### **Example**: Shadow File Entry  
+```plaintext
+strategos:$y$j9T$76UzfgEM5PnymhQ7TlJey1$/OOSg64dhfF.TigVPdzqiFang6uZA4QA1pzzegKdVm4:19965:0:99999:7:::
+```  
+
+| **Field** | **Value**                      | **Description**                              |  
+|-----------|--------------------------------|----------------------------------------------|  
+| Prefix    | `$y$`                          | Algorithm is yescrypt.                       |  
+| Options   | `j9T`                          | Parameters for yescrypt.                     |  
+| Salt      | `76UzfgEM5PnymhQ7TlJey1`       | Random salt used to ensure uniqueness.       |  
+| Hash      | `/OOSg64dhfF.TigVPdzqiFang6uZ` | Final hash value of the salted password.     |  
+
+---
+
+### **Windows Passwords**  
+
+Windows stores password hashes in the **SAM (Security Accounts Manager)** file, which requires special privileges to access.  
+
+#### **Hash Types**  
+1. **NT Hashes**: Derived using NTLM (based on MD4).  
+2. **LM Hashes**: Older, less secure hashes.  
+
+#### **Tools for Dumping Windows Hashes**  
+- **mimikatz**: Extracts hashes from the SAM file.  
+- **pwdump**: Dumps hashes from Windows systems.  
+
+#### **Important Note**  
+NTLM, MD4, and MD5 hashes look visually similar, so context is essential for determining the correct hash type.
+
+---
+
+### **Cracking Hashes**  
+
+Once the hash type is identified, the next step is to crack it.  
+
+#### **Hashcat**  
+A powerful tool for cracking hashes. Supports multiple hash types and offers:  
+- **Brute-force attacks**: Tries every possible combination.  
+- **Dictionary attacks**: Uses a wordlist (e.g., `rockyou.txt`).  
+
+#### **Rainbow Tables**  
+If the hash is unsalted, rainbow tables can quickly match it to a plaintext password.  
+
+#### **Salts Make Cracking Harder**  
+If a hash is salted, each password must be cracked individually, making rainbow tables ineffective.
+
+---
+
+### **Resources for Hash Identification and Cracking**  
+- **Hashcat Example Hashes**: A comprehensive reference for various hash formats.  
+- **CrackStation**: Online hash-cracking tool using rainbow tables.  
+- **Linux man pages**: Detailed explanations of hashing algorithms (`man 5 shadow`, `man 5 crypt`).  
+
+---
+
+### **Key Takeaways**  
+1. **Recognize the context**: The environment where the hash is found gives clues about its type.  
+2. **Use tools wisely**: Automate recognition and cracking, but validate with manual checks.  
+3. **Learn prefixes**: Familiarize yourself with Linux-style password prefixes for faster identification.  
+4. **Understand limitations**: Salting and strong algorithms significantly increase difficulty for attackers.  
+
+
