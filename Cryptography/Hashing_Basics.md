@@ -349,3 +349,92 @@ For hashes like NTLM or MD5:
 - **Start with Rockyou**: The `rockyou.txt` wordlist is comprehensive for testing common passwords.
 - **Identify Weak Points**: Look for unsalted hashes or systems using outdated hashing algorithms.
 - **Experiment with Tools**: Familiarize yourself with both Hashcat and John the Ripper for diverse cracking scenarios.
+
+---
+---
+
+### **Using Hashing for Data Integrity and Authentication**  
+
+#### **Integrity Checking**
+Hashing ensures data integrity by verifying that a file or message has not been altered during storage or transmission. This is particularly useful in the following scenarios:
+
+1. **File Downloads**:
+   - **Purpose**: Ensure the downloaded file matches the original.
+   - **Example**:
+     - The Fedora checksum file contains the SHA256 hash of the ISO files.
+     - After downloading the ISO, run the `sha256sum` command on the file:
+       ```bash
+       sha256sum Fedora-Workstation-Live-x86_64-40-1.14.iso
+       ```
+     - Compare the output with the hash in the checksum file. If they match, the file has not been tampered with.
+
+2. **Duplicate File Detection**:
+   - Files with identical hashes are duplicates. This is useful for:
+     - Deduplication in storage systems.
+     - Identifying redundant backups.
+
+---
+
+#### **HMAC (Keyed-Hash Message Authentication Code)**
+
+HMAC extends the concept of hashing to include **authenticity** alongside **integrity**. It combines a cryptographic hash function with a secret key to achieve the following:
+- **Authenticity**: Ensures that the sender of the message is verified.
+- **Integrity**: Confirms that the message has not been modified.
+
+##### **How HMAC Works**
+1. **Key Padding**:
+   - The secret key is padded to the hash function's block size.
+2. **Inner Hash**:
+   - The padded key is XORed with a constant (called `ipad`).
+   - This XORed key is concatenated with the message (`M`) and hashed.
+3. **Outer Hash**:
+   - The padded key is XORed with another constant (`opad`).
+   - This XORed key is concatenated with the result of the inner hash and hashed again.
+4. **Final Output**:
+   - The result is the fixed-length HMAC value.
+
+##### **Mathematical Representation**
+\[
+\text{HMAC}(K, M) = H \big( (K \oplus \text{opad}) || H((K \oplus \text{ipad}) || M) \big)
+\]
+- \( H \): Hash function (e.g., SHA256).
+- \( K \): Secret key.
+- \( M \): Message.
+- \( \oplus \): XOR operation.
+- \( \text{ipad} \): Inner padding (usually a block of zeros).
+- \( \text{opad} \): Outer padding (usually a block of ones).
+
+---
+
+#### **Applications of HMAC**
+1. **API Authentication**:
+   - Many APIs use HMAC to authenticate requests. The client generates an HMAC of the request data using a shared secret key, and the server validates it.
+2. **Securing Communication**:
+   - Ensures the authenticity and integrity of messages in protocols like TLS and IPSec.
+3. **Password Storage**:
+   - HMAC can strengthen hashed password storage by adding a key.
+
+---
+
+### **Example: Generating an HMAC with Python**
+Here’s how to generate an HMAC using the Python `hmac` library:
+
+```python
+import hmac
+import hashlib
+
+# Message and key
+message = b'This is a secure message.'
+key = b'supersecretkey'
+
+# Generate HMAC using SHA256
+h = hmac.new(key, message, hashlib.sha256)
+print(f"HMAC: {h.hexdigest()}")
+```
+
+---
+
+### **Key Points**
+- **Hashing** checks file integrity but does not verify the source.
+- **HMAC** ensures both **authenticity** and **integrity**, making it more robust for sensitive applications.
+- Hashing and HMAC are foundational tools in cybersecurity, widely used in secure communications, authentication systems, and data integrity checks.
