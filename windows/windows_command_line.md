@@ -219,3 +219,38 @@ Imagine your internet is slow:
 - Use `/F` cautiously as it forces termination and may cause system instability if critical processes are killed. 
 
 
+---
+---
+
+
+    chkdsk: checks the file system and disk volumes for errors and bad sectors.
+    driverquery: displays a list of installed device drivers.
+    sfc /scannow: scans system files for corruption and repairs them if possible.
+
+    Display text files: more file.txt
+    Pipe long output to view it page by page: some_command | more
+
+1. **Disk and System Commands:**
+   - `chkdsk` → Checks file systems and disk volumes for errors and bad sectors.
+   - `driverquery` → Lists installed device drivers.
+   - `sfc /scannow` → Scans and repairs corrupted system files.
+
+#### **Using the `more` Command**
+1. **View File Contents:**
+   - `more file.txt` → Displays the content of a text file page by page.
+
+2. **Pipe Long Output:**
+   - `some_command | more` → Breaks long command outputs into manageable pages.
+     - Example: `tasklist | more`
+
+#### **Help Pages**
+- Use `/?` with any command to display its help page.
+  - Example: `tasklist /?`
+
+### **Key Takeaways**
+- Know the essential commands: navigation, directory manipulation, file handling, and process management.
+- Leverage `/?` to explore and learn new commands.
+- Use `more` to handle long outputs effectively.
+- Explore commands like `chkdsk`, `driverquery`, and `sfc /scannow` as advanced tools when needed.
+
+
