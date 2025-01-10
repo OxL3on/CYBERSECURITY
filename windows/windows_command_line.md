@@ -172,6 +172,50 @@ Imagine your internet is slow:
 ---
 
 
+### Task and Process Management
 
+#### **Listing Running Processes**
+1. **View All Processes:**
+   - `tasklist` → Displays all running processes with details (Image Name, PID, Session, Memory Usage).
+
+2. **Filter Processes:**
+   - `tasklist /FI "imagename eq process_name"` → Filters by process name.
+     - Example: `tasklist /FI "imagename eq sshd.exe"`
+   - You can use multiple filters; refer to `tasklist /?` for options.
+
+####3 **Killing Processes**
+1. **Terminate a Process by PID:**
+   - `taskkill /PID target_pid`
+     - Example: `taskkill /PID 4567`
+
+2. **Terminate All Processes by Name:**
+   - `taskkill /IM process_name /F`
+     - Example: `taskkill /IM sshd.exe /F`
+   - `/F` forces the termination of the process.
+
+#### **Examples**
+- **List Processes:**  
+  ```bash
+  tasklist
+  ```
+
+- **Filter for a Specific Process:**  
+  ```bash
+  tasklist /FI "imagename eq notepad.exe"
+  ```
+
+- **Kill a Process by PID:**  
+  ```bash
+  taskkill /PID 1234
+  ```
+
+- **Force Kill by Name:**  
+  ```bash
+  taskkill /IM chrome.exe /F
+  ```
+
+#### **Extra**
+- Always check the process details with `tasklist` before terminating.
+- Use `/F` cautiously as it forces termination and may cause system instability if critical processes are killed. 
 
 
