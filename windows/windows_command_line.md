@@ -118,4 +118,60 @@ Imagine your internet is slow:
 ---
 
 
+### File and Disk Management
+
+#### **Working with Directories**
+1. **Current Directory:**
+   - `cd` → Displays the current drive and directory.
+
+2. **List Files/Directories:**
+   - `dir` → Lists contents of the current directory.
+   - `dir /a` → Includes hidden/system files.
+   - `dir /s` → Lists files in all subdirectories.
+
+3. **Directory Structure:**
+   - `tree` → Displays a visual representation of subdirectories.
+
+4. **Change Directory:**
+   - `cd target_directory` → Moves to the specified directory.
+   - `cd ..` → Moves up one level.
+   - `cd \` → Moves to the root directory.
+
+5. **Create/Delete Directories:**
+   - `mkdir directory_name` → Creates a new directory.
+   - `rmdir directory_name` → Deletes an empty directory.
+
+#### **Working with Files**
+1. **View File Contents:**
+   - `type file.txt` → Displays file content.
+   - `more file.txt` → Paginates file content (use `Spacebar` for the next page).
+
+2. **Copy Files:**
+   - `copy source destination` → Copies a file to a new location.
+   - Example: `copy test.txt test2.txt`
+
+3. **Move Files:**
+   - `move source destination` → Moves a file.
+   - Example: `move test2.txt ..` (Moves `test2.txt` to the parent directory).
+
+4. **Delete Files:**
+   - `del file_name` or `erase file_name` → Deletes a file.
+
+5. **Wildcard Character:**
+   - `copy *.ext destination` → Copies all files with the specified extension to the destination.
+   - Example: `copy *.md C:\Markdown`
+
+#### Example Workflow
+- View all directories: `dir`
+- Create a directory: `mkdir backup`
+- Copy a file: `copy test.txt backup\test.txt`
+- Move a file: `move backup\test.txt .`
+- Delete a file: `del test.txt`
+
+---
+---
+
+
+
+
 
