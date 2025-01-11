@@ -45,6 +45,65 @@ PowerShell is a **cross-platform task automation solution** created by Microsoft
 ---
 ---
 
+### **PowerShell basics**
+
+#### **What is PowerShell?**
+- **Definition**: PowerShell is a cross-platform task automation solution by Microsoft, combining a command-line shell, scripting language, and configuration management framework.
+- **Key Features**:
+  - Object-oriented: Handles structured data with properties and methods.
+  - Built on .NET Framework (later versions use .NET Core for cross-platform compatibility).
+  - Initially for Windows, now supports macOS and Linux.
+
+#### **History of PowerShell**
+- **Development Motivation**:
+  - Addressed limitations of `cmd.exe` and batch files for complex administrative tasks.
+  - Inspired by Unix’s text-file approach but used object-oriented design for Windows APIs.
+- **Key Milestones**:
+  - 2006: Initial release, exclusive to Windows.
+  - 2016: Launch of PowerShell Core, open-source and cross-platform.
+
+#### **Launching PowerShell**
+1. **On Windows**:
+   - **Start Menu**: Search "powershell".
+   - **Run Dialog**: `Win + R`, then type `powershell`.
+   - **File Explorer**: Type `powershell` in the address bar.
+   - **Task Manager**: File → Run new task → Type `powershell`.
+2. **From cmd.exe**: Simply type `powershell` and press Enter.
+
+#### **Understanding Cmdlets**
+- **Definition**: Cmdlets are the building blocks of PowerShell, following a `Verb-Noun` convention (e.g., `Get-Content`, `Set-Location`).
+- **Listing Cmdlets**:
+  - `Get-Command`: Lists all available cmdlets, functions, and aliases.
+  - Filters: Use parameters like `-CommandType` to refine results (e.g., functions only).
+- **Getting Help**:
+  - `Get-Help`: Provides details about cmdlets, including syntax and examples.
+  - Example: `Get-Help Get-Date`.
+
+#### **Aliases in PowerShell**
+- **Purpose**: Shortcuts for cmdlets to ease the transition for users of other CLI tools.
+- **Examples**:
+  - `dir` → `Get-ChildItem`
+  - `cd` → `Set-Location`
+  - `cat` → `Get-Content`
+
+#### **Extending PowerShell**
+- **Modules**:
+  - Collections of cmdlets that extend functionality.
+  - Search for modules: `Find-Module -Name "Pattern*"`.
+  - Install modules: `Install-Module -Name "ModuleName"`.
+
+#### **Practical Application in the Lab**
+1. **Start the Machine**: Use the provided AttackBox environment.
+2. **Connect via SSH**:
+   - Use `Remmina` and provide credentials:  
+     - Username: `captain`  
+     - Password: `JollyR0ger#`  
+     - IP: `MACHINE_IP`.
+3. **Launch PowerShell**:
+   - From Command Prompt, type `powershell`.
+
+---
+---
 
 
 
