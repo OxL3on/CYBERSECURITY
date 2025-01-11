@@ -47,21 +47,6 @@ PowerShell is a **cross-platform task automation solution** created by Microsoft
 
 ### **PowerShell basics**
 
-#### **What is PowerShell?**
-- **Definition**: PowerShell is a cross-platform task automation solution by Microsoft, combining a command-line shell, scripting language, and configuration management framework.
-- **Key Features**:
-  - Object-oriented: Handles structured data with properties and methods.
-  - Built on .NET Framework (later versions use .NET Core for cross-platform compatibility).
-  - Initially for Windows, now supports macOS and Linux.
-
-#### **History of PowerShell**
-- **Development Motivation**:
-  - Addressed limitations of `cmd.exe` and batch files for complex administrative tasks.
-  - Inspired by Unix’s text-file approach but used object-oriented design for Windows APIs.
-- **Key Milestones**:
-  - 2006: Initial release, exclusive to Windows.
-  - 2016: Launch of PowerShell Core, open-source and cross-platform.
-
 #### **Launching PowerShell**
 1. **On Windows**:
    - **Start Menu**: Search "powershell".
@@ -92,15 +77,6 @@ PowerShell is a **cross-platform task automation solution** created by Microsoft
   - Search for modules: `Find-Module -Name "Pattern*"`.
   - Install modules: `Install-Module -Name "ModuleName"`.
 
-#### **Practical Application in the Lab**
-1. **Start the Machine**: Use the provided AttackBox environment.
-2. **Connect via SSH**:
-   - Use `Remmina` and provide credentials:  
-     - Username: `captain`  
-     - Password: `JollyR0ger#`  
-     - IP: `MACHINE_IP`.
-3. **Launch PowerShell**:
-   - From Command Prompt, type `powershell`.
 
 ---
 ---
