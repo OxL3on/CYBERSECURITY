@@ -159,3 +159,88 @@ Get-Content -Path ".\captain-cabin\backup.txt"
 ---
 
 
+### **Piping Basics**
+Piping (`|`) in PowerShell passes objects (with properties and methods) between commands, enabling powerful workflows.
+
+Example:
+```powershell
+Get-ChildItem | Sort-Object Length
+```
+- `Get-ChildItem`: Retrieves directory contents as objects.
+- `Sort-Object Length`: Sorts the objects by their `Length` property.
+
+### **Filtering Cmdlets**
+
+#### **1. `Where-Object`**
+Filters objects based on conditions.
+```powershell
+# List only .txt files:
+Get-ChildItem | Where-Object -Property "Extension" -eq ".txt"
+
+# Files with size greater than 100 bytes:
+Get-ChildItem | Where-Object -Property "Length" -gt 100
+```
+
+**Comparison Operators**:
+- `-eq`: Equal to
+- `-ne`: Not equal to
+- `-gt`: Greater than
+- `-ge`: Greater than or equal to
+- `-lt`: Less than
+- `-le`: Less than or equal to
+- `-like`: Matches a pattern (wildcards allowed, e.g., `"*.txt"`)
+- `-notlike`: Does not match a pattern
+
+#### **2. `Select-Object`**
+Selects specific properties or limits the output.
+```powershell
+# Show only file names and sizes:
+Get-ChildItem | Select-Object Name, Length
+
+# Retrieve the top 2 largest files:
+Get-ChildItem | Sort-Object Length -Descending | Select-Object -First 2
+```
+
+#### **3. `Select-String`**
+Searches for text patterns in files (like `grep` or `findstr`).
+```powershell
+# Find occurrences of "hat" in a file:
+Select-String -Path ".\captain-hat.txt" -Pattern "hat"
+
+# Search with regex:
+Select-String -Path ".\log.txt" -Pattern "error\d+"
+```
+
+### **Building Pipelines**
+PowerShell supports complex pipelines by chaining cmdlets. Example:
+```powershell
+# Display the largest .txt file:
+Get-ChildItem | Where-Object -Property "Extension" -eq ".txt" | Sort-Object Length -Descending | Select-Object -First 1
+```
+
+### **Practical Examples**
+1. **List all files starting with "ship":**
+   ```powershell
+   Get-ChildItem | Where-Object -Property "Name" -like "ship*"
+   ```
+
+2. **Sort and filter by file size:**
+   ```powershell
+   Get-ChildItem | Where-Object -Property "Length" -ge 1000 | Sort-Object Length
+   ```
+
+3. **Extract lines with a specific keyword from all `.log` files:**
+   ```powershell
+   Get-ChildItem -Filter "*.log" | Select-String -Pattern "critical"
+   ```
+
+### **Key Takeaways**
+- Piping allows seamless chaining of cmdlets.
+- Object-based filtering provides flexibility beyond simple text processing.
+- Cmdlets like `Where-Object`, `Select-Object`, and `Select-String` enable advanced data analysis and file system management.
+- Regular expressions enhance text search capabilities in `Select-String`.
+
+---
+---
+
+
