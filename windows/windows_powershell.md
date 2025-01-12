@@ -244,3 +244,100 @@ Get-ChildItem | Where-Object -Property "Extension" -eq ".txt" | Sort-Object Leng
 ---
 
 
+### **1. System Information**
+
+#### **`Get-ComputerInfo`**
+- Provides a **comprehensive snapshot** of the system configuration.
+- Includes details like:
+  - Operating system version
+  - Hardware specifications
+  - BIOS information
+  - Installation date
+- **Usage:**
+  ```powershell
+  Get-ComputerInfo
+  ```
+  **Example Output:**
+  ```
+  WindowsProductName   : Windows Server 2022 Datacenter
+  WindowsEditionId     : ServerDatacenter
+  WindowsInstallDate   : 4/23/2024 6:36:29 PM
+  ```
+
+### **2. Local User Accounts**
+
+#### **`Get-LocalUser`**
+- Lists all local user accounts, showing:
+  - Usernames
+  - Account status (enabled/disabled)
+  - Descriptions
+- Useful for **managing user accounts** and **security configurations**.
+- **Usage:**
+  ```powershell
+  Get-LocalUser
+  ```
+  **Example Output:**
+  ```
+  Name               Enabled Description
+  ----               ------- -----------
+  Administrator      True    Built-in account for administering the computer/domain
+  captain            True    The beloved captain of this pirate ship.
+  Guest              False   Built-in account for guest access
+  ```
+
+### **3. Network Configuration**
+
+#### **`Get-NetIPConfiguration`**
+- Provides **detailed network interface information**, including:
+  - IP addresses
+  - DNS servers
+  - Gateway configurations
+- Similar to `ipconfig` but object-oriented.
+- **Usage:**
+  ```powershell
+  Get-NetIPConfiguration
+  ```
+  **Example Output:**
+  ```
+  InterfaceAlias       : Ethernet
+  IPv4Address          : 10.10.178.209
+  IPv4DefaultGateway   : 10.10.0.1
+  DNSServer            : 10.0.0.2
+  ```
+
+#### **`Get-NetIPAddress`**
+- Retrieves details for all **IP addresses** configured on the system, active or not.
+- Displays information such as:
+  - Address family (IPv4/IPv6)
+  - Type (Unicast/Multicast)
+  - Validity and preferred lifetimes
+- **Usage:**
+  ```powershell
+  Get-NetIPAddress
+  ```
+  **Example Output:**
+  ```
+  IPAddress         : 10.10.178.209
+  InterfaceAlias    : Ethernet
+  AddressFamily     : IPv4
+  AddressState      : Preferred
+  ```
+
+### **Practical Applications**
+1. **Monitor system health:**
+   - Use `Get-ComputerInfo` for a quick system summary.
+2. **Manage user accounts:**
+   - Check and enable/disable accounts with `Get-LocalUser`.
+3. **Diagnose network issues:**
+   - Use `Get-NetIPConfiguration` to confirm DNS and gateway settings.
+   - Leverage `Get-NetIPAddress` for detailed IP address analysis.
+
+### **Key Benefits**
+- **Automation:** Easily integrates into scripts for managing systems remotely.
+- **Efficiency:** Object-based output allows for detailed filtering and formatting.
+- **Flexibility:** Provides granular details for both system and network configurations.
+
+---
+---
+
+
