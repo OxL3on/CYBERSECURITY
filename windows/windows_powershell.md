@@ -77,9 +77,85 @@ PowerShell is a **cross-platform task automation solution** created by Microsoft
   - Search for modules: `Find-Module -Name "Pattern*"`.
   - Install modules: `Install-Module -Name "ModuleName"`.
 
-
 ---
 ---
 
+
+
+### **Navigating Directories**
+- **List contents of a directory:**  
+  `Get-ChildItem`  
+  Similar to `dir` (Windows) or `ls` (Unix). Defaults to the current working directory if no path is specified.
+
+- **Change the current directory:**  
+  `Set-Location -Path "path_to_directory"`  
+  Equivalent to `cd` in Command Prompt.
+
+### **Creating Items**
+- **Create a directory or file:**  
+  `New-Item -Path "path" -ItemType "Directory/File"`  
+  Combines functionality of `mkdir` and file creation commands:
+  ```powershell
+  # Create a directory:
+  New-Item -Path ".\captain-cabin" -ItemType "Directory"
+
+  # Create a file:
+  New-Item -Path ".\captain-cabin\captain-log.txt" -ItemType "File"
+  ```
+
+### **Deleting Items**
+- **Remove directories or files:**  
+  `Remove-Item -Path "path"`  
+  Replaces `rmdir` and `del`. Example:
+  ```powershell
+  Remove-Item -Path ".\captain-cabin\captain-log.txt"
+  ```
+  
+### **Copying and Moving Items**
+- **Copy files or directories:**  
+  `Copy-Item -Path "source" -Destination "destination"`
+  ```powershell
+  Copy-Item -Path ".\captain-hat.txt" -Destination ".\captain-hat-backup.txt"
+  ```
+
+- **Move files or directories:**  
+  `Move-Item -Path "source" -Destination "destination"`  
+  Equivalent to `move` in Command Prompt:
+  ```powershell
+  Move-Item -Path ".\captain-log.txt" -Destination ".\captain-archives\"
+  ```
+
+### **Reading File Contents**
+- **Display file contents:**  
+  `Get-Content -Path "file_path"`  
+  Similar to `type` (Windows) or `cat` (Unix):
+  ```powershell
+  Get-Content -Path ".\captain-cabin\captain-hat.txt"
+  ```
+
+### **Example Workflow**
+```powershell
+# Navigate to Documents folder:
+Set-Location -Path ".\Documents"
+
+# Create a new directory and a file inside it:
+New-Item -Path ".\captain-cabin" -ItemType "Directory"
+New-Item -Path ".\captain-cabin\captain-wardrobe.txt" -ItemType "File"
+
+# List the contents of captain-cabin:
+Get-ChildItem -Path ".\captain-cabin"
+
+# Copy the file:
+Copy-Item -Path ".\captain-cabin\captain-wardrobe.txt" -Destination ".\captain-cabin\backup.txt"
+
+# Remove the original file:
+Remove-Item -Path ".\captain-cabin\captain-wardrobe.txt"
+
+# View the contents of the backup file:
+Get-Content -Path ".\captain-cabin\backup.txt"
+```
+
+---
+---
 
 
