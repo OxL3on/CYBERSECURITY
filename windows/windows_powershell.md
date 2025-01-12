@@ -341,3 +341,109 @@ Get-ChildItem | Where-Object -Property "Extension" -eq ".txt" | Sort-Object Leng
 ---
 
 
+### **1. Running Processes**
+
+#### **`Get-Process`**
+- Displays details of all currently running processes, including:
+  - **Handles:** Resources used by the process.
+  - **Memory Usage:** Non-paged memory (`NPM(K)`), paged memory (`PM(K)`), and working set (`WS(K)`).
+  - **CPU Time:** Total processor time (`CPU(s)`).
+  - **Process ID (PID):** Unique identifier for the process.
+- **Use Cases:**
+  - Monitor resource consumption.
+  - Identify unusual or rogue processes.
+- **Usage:**
+  ```powershell
+  Get-Process
+  ```
+  **Example Output:**
+  ```
+  Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+  -------  ------    -----      -----     ------     --  -- -----------
+      309      13    18312       1256       0.52   1524   0 amazon-ssm-agent
+       78       6     4440        944       0.02    516   0 cmd
+  ```
+
+### **2. Services Management**
+
+#### **`Get-Service`**
+- Lists the status of all services on the system.
+- Key Fields:
+  - **Status:** Running, Stopped, or Paused.
+  - **Name:** Service name used in commands.
+  - **DisplayName:** Friendly name for the service.
+- **Use Cases:**
+  - Ensure critical services are running.
+  - Identify anomalous or unauthorized services.
+- **Usage:**
+  ```powershell
+  Get-Service
+  ```
+  **Example Output:**
+  ```
+  Status   Name               DisplayName
+  ------   ----               -----------
+  Running  AmazonSSMAgent     Amazon SSM Agent
+  Stopped  AppIDSvc           Application Identity
+  Running  BFE                Base Filtering Engine
+  ```
+
+### **3. Active Network Connections**
+
+#### **`Get-NetTCPConnection`**
+- Displays information about current TCP connections:
+  - **Local/Remote Addresses:** Source and destination.
+  - **Ports:** Local and remote ports.
+  - **State:** Connection state (e.g., `Listen`, `Established`, `TimeWait`).
+  - **Owning Process:** Process associated with the connection.
+- **Use Cases:**
+  - Detect suspicious connections or backdoors.
+  - Monitor server activity.
+- **Usage:**
+  ```powershell
+  Get-NetTCPConnection
+  ```
+  **Example Output:**
+  ```
+  LocalAddress        LocalPort RemoteAddress       RemotePort State       OwningProcess
+  ------------        --------- -------------       ---------- -----       -------------
+  10.10.178.209       22        10.14.87.60         53523      Established 1444
+  0.0.0.0             135       0.0.0.0             0          Listen      908
+  ```
+
+### **4. File Integrity Verification**
+
+#### **`Get-FileHash`**
+- Computes the hash of a file using algorithms like **SHA256**, **MD5**, etc.
+- **Use Cases:**
+  - Verify file integrity.
+  - Detect tampering during malware analysis.
+- **Usage:**
+  ```powershell
+  Get-FileHash -Path .\ship-flag.txt
+  ```
+  **Example Output:**
+  ```
+  Algorithm       Hash                      Path
+  ---------       ----                      ----
+  SHA256          54D2EC3C12BF3D[...]       C:\Users\captain\Documents\captain-cabin\ship-flag.txt
+  ```
+
+### **Practical Applications**
+1. **Resource Monitoring:**
+   - Use `Get-Process` to identify memory or CPU hogs.
+2. **Service Troubleshooting:**
+   - Check if essential services are stopped using `Get-Service`.
+3. **Incident Response:**
+   - Uncover unauthorized network activity with `Get-NetTCPConnection`.
+   - Validate critical files using `Get-FileHash`.
+
+### **Why These Cmdlets Matter**
+- **Real-Time Insights:** Dynamically monitor the system state.
+- **Proactive Troubleshooting:** Quickly identify and address issues.
+- **Forensics & Security:** Detect anomalies and confirm system integrity.
+
+---
+---
+
+
