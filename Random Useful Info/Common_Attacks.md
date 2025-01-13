@@ -245,9 +245,6 @@ Passwords are crucial for securing systems and accounts. However, even strong pa
 ---
 
 
-### **Overview**  
-This section highlights how to strengthen your password security using **Multi-Factor Authentication (MFA)** and **Password Managers**, two essential tools for robust authentication.
-
 ### **Multi-Factor Authentication (MFA)**  
 MFA requires two or more factors for authentication, enhancing security by combining:  
 
@@ -309,6 +306,59 @@ Password managers securely store and manage your passwords, enabling the use of 
 
 ---
 ---
+
+### **Overview**  
+Public WiFi offers convenience but also poses significant security risks. Understanding these dangers and taking proactive measures can protect you from attackers seeking to intercept or steal your data.
+
+### **The Problem with Public WiFi**  
+Public WiFi networks are inherently insecure and can be exploited in the following ways:  
+
+1. **Man-in-the-Middle (MITM) Attacks**  
+   - Attackers create fake WiFi networks to intercept user traffic.  
+   - Sensitive information like login credentials can be stolen if the website doesn't use encryption (e.g., HTTPS).  
+
+2. **Device Visibility**  
+   - Connecting to any network makes your device visible to others.  
+   - Malicious actors on the same network may attempt to access your device.  
+
+### **The Solutions**  
+
+#### **Avoid Untrusted Networks**  
+The safest approach is to use:  
+- A private network.  
+- A mobile hotspot when feasible.  
+
+#### **Use a Virtual Private Network (VPN)**  
+A VPN encrypts all data leaving and entering your device, rendering it unreadable to attackers.  
+
+- **Advantages of VPNs**  
+  - Encrypts traffic to protect sensitive information.  
+  - Ideal for use on untrusted public networks.  
+
+- **Choosing a VPN**  
+  - Avoid free VPNs as they may compromise your security by harvesting your data.  
+  - Recommended options include **ProtonVPN** and **Mullvad VPN**.  
+
+#### **Verify Website Security with HTTPS and TLS**  
+Modern websites use **Transport Layer Security (TLS)** to encrypt traffic.  
+
+1. **Padlock Symbol**  
+   - Indicates that the connection is encrypted.  
+   - Found next to the search bar in most browsers.  
+
+2. **Warnings to Look For**  
+   - **No Padlock:** Do not enter sensitive information; the connection is unencrypted.  
+   - **Altered Padlock (Cross/Exclamation Mark):** Indicates issues with the TLS certificate. Avoid using the site.  
+   - **Full-Page Certificate Errors:** Suggest potential security risks. Always go back or avoid the site.  
+
+#### **Additional Best Practices**  
+- Never share sensitive data over untrusted or unsecured networks.  
+- Keep your device's firewall and antivirus software enabled for added protection.  
+
+---
+---
+
+
 
 
 
