@@ -117,7 +117,55 @@ Phishing is a **social engineering attack** where attackers deceive victims into
 ---
 ---
 
+### **What is Malware?**  
+**Malware (Malicious Software)** is designed to perform harmful actions like stealing data, causing damage, or enabling remote control of a system through **Command and Control (C2)** servers.  
 
+### **Ransomware**  
+A **specialized type of malware** that encrypts a victim's data, holding it for ransom. Key characteristics:  
+- **Spread**: Exploits vulnerabilities in systems (e.g., Windows).  
+- **Goal**: Infect systems, encrypt data, and demand payment (often in cryptocurrency).  
+- **Outcome**: Decryption is promised upon payment, but it’s not guaranteed.  
+- Example: **Wannacry** ransomware displayed instructions and payment details post-infection.  
+
+### **Delivery Methods of Malware**  
+1. **Social Engineering/Phishing**:  
+   - Malicious files (e.g., Word/Excel files with macros, PDFs, or executable files).  
+   - Attackers trick victims into enabling macros or running malicious scripts.  
+
+2. **Exploitation of Vulnerabilities**:  
+   - Targeting public-facing systems (e.g., web servers) to gain access to corporate networks.  
+
+3. **Other Methods**:  
+   - Infected USB drives or media devices.  
+   - JavaScript files, PowerShell scripts, or batch scripts.  
+
+### **Staying Safe from Malware and Ransomware**  
+1. **Update and Patch Regularly**:  
+   - Install updates for operating systems and critical software promptly.  
+
+2. **Be Vigilant**:  
+   - Avoid clicking suspicious links or opening untrusted attachments.  
+   - Be cautious with unexpected downloads or files shared via email or messaging apps.  
+
+3. **USB and Media Awareness**:  
+   - Never plug unknown devices into critical systems.  
+
+4. **Back Up Data**:  
+   - Regularly back up important files to mitigate data loss in case of an attack.  
+
+5. **Use Antivirus Software**:  
+   - Ensure antivirus is updated and actively running on all devices.  
+
+### **What to Do if Infected by Ransomware**  
+- **Do Not Pay the Ransom**: Payment doesn't guarantee data recovery.  
+- **Contact Authorities**: Report the incident immediately.  
+- **Contain the Infection**:  
+  - Disable network connections to isolate the device.  
+  - Do not power off the infected device, as this may eliminate decryption opportunities.  
+
+
+---
+---
 
 
 
