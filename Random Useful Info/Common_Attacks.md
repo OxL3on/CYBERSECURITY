@@ -307,9 +307,6 @@ Password managers securely store and manage your passwords, enabling the use of 
 ---
 ---
 
-### **Overview**  
-Public WiFi offers convenience but also poses significant security risks. Understanding these dangers and taking proactive measures can protect you from attackers seeking to intercept or steal your data.
-
 ### **The Problem with Public WiFi**  
 Public WiFi networks are inherently insecure and can be exploited in the following ways:  
 
@@ -358,8 +355,44 @@ Modern websites use **Transport Layer Security (TLS)** to encrypt traffic.
 ---
 ---
 
+### **The Golden 3,2,1 Rule**  
+The **3,2,1 Rule** is the gold standard for creating reliable backups. Following this rule ensures that your data is secure, accessible, and recoverable:  
 
+1. **Keep Three Copies**  
+   - Maintain at least **three up-to-date copies** of your data, including the original.  
+   - Regularly update backups to reflect the latest data.  
 
+2. **Use Two Different Storage Mediums**  
+   - Store backups on at least **two types of storage**, such as:  
+     - A **cloud backup** (e.g., Google Drive, Dropbox).  
+     - An external USB device, hard drive, or network storage.  
+
+3. **Store One Copy Off-Site**  
+   - Keep at least **one backup off-site** to protect against physical damage (e.g., fire, theft, or natural disasters).  
+   - Cloud services are ideal for off-site storage for personal use.  
+
+### **Backup Frequency**  
+The frequency of backups depends on the sensitivity of your data and your risk tolerance.  
+
+- **High-Risk Scenarios**  
+  - Large businesses handling sensitive data may back up multiple times daily to minimize the risk of ransomware or data loss.  
+
+- **Personal Use**  
+  - Home users typically back up less frequently, such as **once or twice a week**.  
+
+Regardless of your situation, ensure backups are frequent enough to minimize data loss in case of an incident.
+
+### **Backup Solutions**  
+Backups can be managed manually or automated through specialized software, making the process efficient and less prone to errors.  
+
+- **Manual Backups**  
+  - Drag and drop folders into a storage medium (e.g., external drives or cloud storage).  
+
+- **Automated Solutions**  
+  - Use backup software to schedule regular, automated backups and streamline restoration.  
+
+---
+---
 
 
 
