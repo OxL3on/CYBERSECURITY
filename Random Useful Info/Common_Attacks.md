@@ -64,6 +64,61 @@ This form of hacking is often referred to as **"People Hacking"** because it inv
 ---
 
 
+### **What is Phishing?**
+Phishing is a **social engineering attack** where attackers deceive victims into visiting malicious websites via fraudulent messages (e.g., emails, SMS, calls). Victims often provide sensitive information (e.g., passwords, credit card details) or unintentionally install malware.  
+
+### **Types of Phishing**
+1. **General Phishing**  
+   - Large-scale attacks targeting broad groups (e.g., Amazon or PayPal users).  
+   - Often poorly crafted and easier to spot.
+
+2. **Spearphishing**  
+   - Targeted attacks on specific individuals or small groups (e.g., employees of a company).  
+   - Better crafted than general phishing.
+
+3. **Whaling**  
+   - Focused on high-value targets (e.g., executives).  
+   - Extremely well-crafted and harder to detect.
+
+### **How Phishing Works**
+1. Attackers send fraudulent messages.  
+2. Victims click on malicious links or attachments.  
+3. Sensitive information is entered on fake websites or malware is installed.  
+4. Attackers use stolen credentials for unauthorized access.
+
+### **Identifying Phishing Attacks**
+- **Generic greetings** like "Dear customer."  
+- **Poor grammar** or spelling errors.  
+- **Suspicious domain names**, e.g., replacing `amazon.co.uk` with `am4zon.co.uk`.  
+- **Masked URLs** (hover over links to verify destinations).  
+- **Fake email addresses**, often from generic providers like Gmail.
+
+### **Staying Safe from Phishing**
+1. **Email Vigilance**  
+   - Delete or report suspicious emails without opening them.  
+   - Avoid opening unexpected attachments or clicking embedded links.  
+
+2. **Verify Authenticity**  
+   - Manually type URLs into your browser instead of clicking links.  
+   - Confirm communications with trusted sources if unsure.  
+
+3. **System Protection**  
+   - Keep your device and antivirus software updated.  
+
+4. **Personal Information Security**  
+   - Minimize public exposure of email addresses or phone numbers.  
+   - Use burner email addresses for temporary purposes.
+
+### **If You Fall for a Phishing Attack**
+- Change affected passwords immediately.  
+- Report the incident to your IT/security team (if at work).  
+- Monitor accounts for unauthorized activity.
+
+---
+---
+
+
+
 
 
 ## Acknowledgment  
