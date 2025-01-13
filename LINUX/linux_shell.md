@@ -34,7 +34,7 @@
 ---
 
 
-### **Key Points to Remember: Linux Shell Basics**
+### **Types of linux shell**
 
 1. **Default Shell:**
    - Most Linux distributions use **Bash** (Bourne Again Shell) as the default shell.
