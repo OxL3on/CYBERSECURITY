@@ -34,3 +34,52 @@
 ---
 
 
+### **Key Points to Remember: Linux Shell Basics**
+
+1. **Default Shell:**
+   - Most Linux distributions use **Bash** (Bourne Again Shell) as the default shell.
+
+2. **Basic Commands:**
+   - **pwd:** Prints the current working directory.
+     ```bash
+     user@ubuntu:~$ pwd
+     ```
+     Output: `/home/user`
+
+   - **cd:** Changes the directory.
+     ```bash
+     user@ubuntu:~$ cd Desktop
+     ```
+
+   - **ls:** Lists the contents of a directory.
+     ```bash
+     user@ubuntu:~$ ls
+     ```
+     Output: `Desktop Documents Downloads Music Pictures Public Templates Videos`
+
+   - **cat:** Displays the contents of a file.
+     ```bash
+     user@ubuntu:~$ cat filename.txt
+     ```
+     Output: 
+     ```
+     this is a sample file
+     this is the second line of the file
+     ```
+
+3. **grep Command:**
+   - Searches for specific words or patterns in a file.
+     ```bash
+     user@ubuntu:~$ grep THM dictionary.txt
+     ```
+     Output: `The flag is THM`
+
+4. **Key Concept:**
+   - Shell commands are efficient for navigating and manipulating files/directories in Linux.  
+   - Practice these basic commands to build familiarity.
+  
+---
+---
+
+
+
