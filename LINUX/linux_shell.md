@@ -82,4 +82,50 @@
 ---
 
 
+### **Types of Linux Shells**
 
+#### **1. Checking and Switching Shells:**
+- **Check current shell:**
+  ```bash
+  echo $SHELL
+  ```
+- **List available shells:**
+  ```bash
+  cat /etc/shells
+  ```
+- **Switch to another shell:**
+  ```bash
+  shell_name  # e.g., zsh
+  ```
+- **Change default shell:**
+  ```bash
+  chsh -s /path/to/shell  # e.g., chsh -s /usr/bin/zsh
+  ```
+
+#### **2. Popular Linux Shells and Features:**
+
+| Feature              | Bash (Bourne Again Shell)           | Fish (Friendly Interactive Shell)         | Zsh (Z Shell)                            |
+|----------------------|------------------------------------|------------------------------------------|------------------------------------------|
+| **Scripting**         | Widely compatible with extensive docs | Limited scripting features                 | Advanced scripting with extra features   |
+| **Tab Completion**    | Basic                            | Advanced with suggestions                 | Extendable with plugins                 |
+| **Customization**     | Basic                            | Good customization through tools          | Advanced customization (e.g., oh-my-zsh)|
+| **User-Friendliness** | Less user-friendly but widely used | Most user-friendly                        | User-friendly with customization         |
+| **Syntax Highlighting** | Not available                   | Built-in                                 | Plugins required                         |
+
+
+#### **3. Shell Highlights:**
+- **Bash:**
+  - Default in most Linux distributions.
+  - Features tab completion and command history (`history` command).
+- **Fish:**
+  - Beginner-friendly with auto spell correction.
+  - Built-in syntax highlighting and cool themes.
+- **Zsh:**
+  - Modern shell combining features of previous shells.
+  - Supports plugins for extensive customization (e.g., `oh-my-zsh`).
+
+#### **4. Selecting a Shell:**
+- Choose based on your needs:
+  - **Bash:** Traditional, widely compatible scripting.
+  - **Fish:** For user-friendly and visually appealing features.
+  - **Zsh:** For advanced users who want customizations and scripting power.
