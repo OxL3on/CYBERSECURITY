@@ -129,3 +129,142 @@
   - **Bash:** Traditional, widely compatible scripting.
   - **Fish:** For user-friendly and visually appealing features.
   - **Zsh:** For advanced users who want customizations and scripting power.
+ 
+---
+---
+
+
+### **Shell Scripting Basics**
+
+#### **1. What is Shell Scripting?**
+- A shell script is a set of commands saved in a file with the `.sh` extension.
+- Scripts automate repetitive tasks by executing a sequence of commands in one go.
+
+#### **2. Steps to Create and Execute a Script:**
+1. **Create a script file:**
+   ```bash
+   nano script_name.sh
+   ```
+2. **Start with a shebang (`#!`):**
+   - Specifies the interpreter to execute the script.
+   ```bash
+   #!/bin/bash
+   ```
+3. **Write your script code.**
+
+4. **Give execution permission:**
+   ```bash
+   chmod +x script_name.sh
+   ```
+5. **Run the script:**
+   ```bash
+   ./script_name.sh
+   ```
+
+#### **3. Basic Constructs:**
+
+##### **a) Variables**
+- Store values to reuse in the script.
+- Example:
+  ```bash
+  #!/bin/bash
+  echo "Enter your name:"
+  read name
+  echo "Hello, $name!"
+  ```
+
+##### **b) Loops**
+- Repeat tasks automatically.
+- Example (For Loop):
+  ```bash
+  #!/bin/bash
+  for i in {1..5}
+  do
+      echo "Number: $i"
+  done
+  ```
+
+##### **c) Conditional Statements**
+- Perform tasks based on conditions.
+- Example:
+  ```bash
+  #!/bin/bash
+  echo "Enter your name:"
+  read name
+  if [ "$name" = "Admin" ]; then
+      echo "Welcome, Admin!"
+  else
+      echo "Access Denied!"
+  fi
+  ```
+
+##### **d) Comments**
+- Add explanations to your code.
+- Single-line comment:
+  ```bash
+  # This is a comment
+  ```
+- Multi-line comments:
+  ```bash
+  : '
+  This is a
+  multi-line comment.
+  '
+  ```
+
+#### **4. Practical Examples:**
+
+##### **Example 1: Greeting Script**
+```bash
+#!/bin/bash
+echo "What is your name?"
+read name
+echo "Welcome, $name!"
+```
+
+##### **Example 2: Loop Example**
+```bash
+#!/bin/bash
+for num in {1..5}
+do
+    echo "Current number: $num"
+done
+```
+
+##### **Example 3: Conditional Script**
+```bash
+#!/bin/bash
+echo "Enter your username:"
+read username
+if [ "$username" = "Admin" ]; then
+    echo "Hello, Admin! Access granted."
+else
+    echo "Access denied."
+fi
+```
+
+##### **Example 4: With Comments**
+```bash
+#!/bin/bash
+
+# Prompt the user for their name
+echo "Enter your name:"
+read name
+
+# Check if the name matches 'Admin'
+if [ "$name" = "Admin" ]; then
+    echo "Welcome, Admin!"
+else
+    echo "Access denied."
+fi
+```
+
+#### **5. Why Use Shell Scripts?**
+- **Efficiency:** Automate repetitive tasks.
+- **Convenience:** Run multiple commands with a single script.
+- **Flexibility:** Combine commands, variables, and logic for complex tasks.
+
+---
+---
+
+
