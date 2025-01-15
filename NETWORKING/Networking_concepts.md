@@ -255,3 +255,155 @@ TCP is like registered mail, where every step is acknowledged for reliability.
 
 
 
+### Encapsulation and the Life of a Packet
+
+#### **Encapsulation**
+Encapsulation is the process of adding headers (and sometimes trailers) at each layer of the OSI or TCP/IP model. This allows each layer to perform its specific function independently.  
+
+**Key Steps:**
+1. **Application Data:**  
+   - The user inputs data (e.g., an email or search query).  
+   - The application formats the data according to the application protocol.  
+   - Data is passed to the transport layer.  
+
+2. **Transport Protocol Segment or Datagram:**  
+   - Transport layer (e.g., TCP or UDP) adds its header:  
+     - **TCP Header:** Includes sequence numbers and acknowledgment for reliable delivery.  
+     - **UDP Header:** Lightweight with source and destination ports for quick delivery.  
+   - Creates a **TCP segment** or **UDP datagram** and sends it to the network layer.
+
+3. **Network Packet:**  
+   - Network layer (Internet layer) adds an **IP header**:
+     - Includes source and destination IP addresses.
+   - The resulting **IP packet** is sent to the link layer.  
+
+4. **Data Link Frame:**  
+   - Data link layer adds its own **header and trailer**:  
+     - Includes physical addressing (e.g., MAC addresses).  
+   - Creates an **Ethernet/WiFi frame** for physical transmission.  
+
+The encapsulated frame is transmitted over the network. The process is reversed at the receiving end to extract the application data.
+
+
+#### **Life of a Packet**
+**Example Scenario:** Searching for a room on TryHackMe.  
+
+1. **Application Layer:**  
+   - You enter a search query and press enter.  
+   - The browser creates an **HTTP request** using HTTPS and sends it to the transport layer.  
+
+2. **Transport Layer:**  
+   - **TCP connection:** Initiates a three-way handshake with the TryHackMe server.  
+   - Adds the TCP header to create segments.  
+   - Sends the segments to the Internet layer.
+
+3. **Internet Layer (Network Layer):**  
+   - Adds an **IP header**:  
+     - Source IP: Your device.  
+     - Destination IP: TryHackMe's server.  
+   - Creates IP packets and passes them to the link layer.
+
+4. **Data Link Layer:**  
+   - Adds a **link layer header and trailer** for Ethernet or WiFi:  
+     - Includes source and destination MAC addresses.  
+   - Sends the frame to the router.
+
+5. **Router Processing:**  
+   - The router removes the link layer header and trailer.  
+   - Inspects the destination IP address and forwards the packet along the appropriate path.  
+   - Each router repeats this process until the packet reaches the destination network.  
+
+6. **Destination Network:**  
+   - The final router delivers the frame to the TryHackMe server.  
+   - The server reverses the encapsulation process to extract the HTTP request.  
+
+7. **Server Response:**  
+   - The TryHackMe server processes the request, creates an HTTP response, and encapsulates it.  
+   - The response packet travels back to your device, following the same steps in reverse.  
+
+---
+---
+
+
+
+### Telnet
+
+#### **What is Telnet?**
+- **TELNET (Teletype Network):** A protocol for remote terminal connection that allows a user to interact with a remote system using text-based commands.  
+- Operates on **TCP** and enables communication with any server listening on a specific **TCP port**.
+
+#### **Key Features:**
+- Simple text-based protocol.
+- Initially used for remote administration but now considered insecure because data (including credentials) is transmitted in plain text.  
+- Modern use is limited to testing and troubleshooting network services.
+
+
+#### **Experimenting with Telnet**
+
+1. **Starting Telnet:**
+   - Command syntax:  
+     ```bash
+     telnet <MACHINE_IP> <PORT>
+     ```
+
+2. **Use Cases:**
+
+   **a. Echo Server (Port 7):**  
+   - The echo server repeats any text sent to it.  
+   - Example Interaction:  
+     ```bash
+     telnet MACHINE_IP 7
+     Trying MACHINE_IP...
+     Connected to MACHINE_IP.
+     Escape character is '^]'.
+     Hello
+     Hello
+     ```
+   - To close the connection, press `CTRL + ]` and type `quit`.
+
+   **b. Daytime Server (Port 13):**  
+   - The daytime server responds with the current date and time.  
+   - Example Interaction:  
+     ```bash
+     telnet MACHINE_IP 13
+     Trying MACHINE_IP...
+     Connected to MACHINE_IP.
+     Escape character is '^]'.
+     Thu Jan 14 08:45:00 PM UTC 2025
+     Connection closed by foreign host.
+     ```
+
+   **c. Web (HTTP) Server (Port 80):**  
+   - Telnet can communicate with an HTTP server by sending HTTP requests.  
+   - Example HTTP request to fetch the homepage:  
+     ```bash
+     telnet MACHINE_IP 80
+     Trying MACHINE_IP...
+     Connected to MACHINE_IP.
+     Escape character is '^]'.
+     GET / HTTP/1.1
+     Host: telnet.thm
+     
+     HTTP/1.1 200 OK
+     Content-Type: text/html
+     [...]
+     Connection closed by foreign host.
+     ```
+   - After typing the HTTP request, press **Enter twice** to send the request.
+
+
+#### **Notes on Security Risks:**
+- **Echo and Daytime Servers:**  
+  - Considered insecure and should not be enabled on production systems.  
+  - Can be exploited for reflection/amplification attacks.
+
+- **Telnet Protocol:**  
+  - Transmits data in plain text.  
+  - Replaced by secure protocols like **SSH** for remote administration.
+
+
+#### **Summary:**
+Telnet is a simple but powerful tool for testing and debugging network services. Its primary modern usage includes:
+- Verifying connectivity to specific ports.
+- Testing services like HTTP, SMTP, or custom TCP-based protocols.
+- **Recommendation:** Use **Telnet** for testing in controlled environments only, as it lacks encryption and is not suitable for secure communication.
