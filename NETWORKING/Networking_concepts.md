@@ -179,9 +179,79 @@ inet 192.168.66.89/24 brd 192.168.66.255
    - `10.0.0.0/8`
    - `172.16.0.0/12`
    - `192.168.0.0/16`
-2. Practice identifying network, broadcast, and usable addresses in given subnets.
 
 ---
 ---
+
+
+### UDP and TCP
+
+
+#### **Transport Protocols Overview**
+Transport protocols enable processes on networked devices to communicate. The two primary protocols are:
+- **UDP (User Datagram Protocol):** Connectionless and fast.
+- **TCP (Transmission Control Protocol):** Connection-oriented and reliable.
+
+
+#### **User Datagram Protocol (UDP)**
+- **Layer:** Operates at Layer 4 (Transport Layer).
+- **Connectionless:** No connection establishment is needed; data is sent directly to the target.
+- **No Delivery Guarantee:** There is no confirmation or acknowledgment for packet delivery.
+- **Use of Ports:**  
+  - Identifies processes using **port numbers** (range: 1–65535; port 0 is reserved).
+  - A port number is 16 bits (\(2^{16} - 1 = 65535\)).
+
+**Analogy:**  
+UDP is like standard mail service without delivery confirmation—cheaper and faster but unreliable.
+
+**Use Cases:**  
+- Streaming media
+- Online gaming
+- DNS lookups
+- VoIP
+
+#### **Transmission Control Protocol (TCP)**
+- **Layer:** Operates at Layer 4 (Transport Layer).
+- **Connection-Oriented:** Requires a connection to be established before data transfer.
+- **Reliable Delivery:**
+  - Sequence numbers ensure ordered data delivery.
+  - Acknowledgment numbers confirm received data.
+- **Three-Way Handshake:**  
+  Establishes a connection using three steps:
+  1. **SYN:** Client sends a packet with a **SYN** flag and its initial sequence number.
+  2. **SYN-ACK:** Server responds with a packet containing both **SYN** and **ACK** flags, adding its own sequence number.
+  3. **ACK:** Client sends a final acknowledgment (ACK) to confirm the handshake.
+
+**Analogy:**  
+TCP is like registered mail, where every step is acknowledged for reliability.
+
+**Use Cases:**  
+- Web browsing (HTTP/HTTPS)
+- File transfer (FTP)
+- Email (SMTP, IMAP, POP3)
+- Remote login (SSH)
+
+
+#### **Key Differences: UDP vs TCP**
+
+| Feature                | UDP                        | TCP                         |
+|------------------------|----------------------------|-----------------------------|
+| **Connection Type**    | Connectionless             | Connection-oriented         |
+| **Reliability**         | Unreliable                 | Reliable                    |
+| **Speed**              | Faster (no overhead)       | Slower (due to overhead)    |
+| **Delivery Guarantee** | No                        | Yes                         |
+| **Use Cases**          | Streaming, DNS, Gaming     | Web, Email, File Transfer   |
+
+
+#### **Ports in Both Protocols**
+- A **port number** identifies the process communicating on the network.
+- Ranges:
+  - **Well-Known Ports (1–1023):** Reserved for standard services (e.g., HTTP - 80, HTTPS - 443).
+  - **Registered Ports (1024–49151):** Assigned to user processes or applications.
+  - **Dynamic/Ephemeral Ports (49152–65535):** Used temporarily for client connections.
+
+---
+---
+
 
 
