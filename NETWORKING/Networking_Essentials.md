@@ -71,3 +71,72 @@ DHCP automates the process of assigning essential network settings, ensuring sea
 ---
 
 
+### Address Resolution Protocol (ARP)
+
+#### **What is ARP?**
+- **Address Resolution Protocol (ARP)** is used to map an IP address (Layer 3) to a MAC address (Layer 2).  
+- Essential for communication between devices on the same Ethernet or WiFi network.  
+
+
+#### **Why is ARP Needed?**
+- Devices on a network communicate using IP addresses.  
+- However, at the **data link layer**, communication relies on **MAC addresses**.  
+- ARP translates an IP address into its corresponding MAC address to create a data link frame.
+
+
+#### **MAC Address Overview**
+- A **MAC address** is a **48-bit hexadecimal number**.  
+  - Example: `7C:DF:A1:D3:8C:5C`.  
+- Encoded in the Ethernet frame header:  
+  - **Destination MAC address.**  
+  - **Source MAC address.**  
+  - **Type:** Identifies the protocol being used (e.g., IPv4).  
+
+
+#### **How ARP Works**
+1. **ARP Request:**  
+   - A device broadcasts a message asking, "Who has IP address X? Tell IP address Y."  
+   - Sent to the **broadcast MAC address**: `ff:ff:ff:ff:ff:ff`.  
+
+2. **ARP Reply:**  
+   - The target device responds with its MAC address: "IP address X is at MAC address Z."  
+   - Sent directly to the requester's MAC address.
+
+
+#### **Example ARP Packet Exchange**
+
+**Wireshark Output:**  
+```plaintext
+1 0.000000000 cc:5e:f8:02:21:a7 → ff:ff:ff:ff:ff:ff ARP 42 Who has 192.168.66.1? Tell 192.168.66.89
+2 0.003566632 44:df:65:d8:fe:6c → cc:5e:f8:02:21:a7 ARP 42 192.168.66.1 is at 44:df:65:d8:fe:6c
+```
+
+**tcpdump Output:**  
+```plaintext
+17:23:44.506615 ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 192.168.66.1 tell 192.168.66.89, length 28
+17:23:44.510182 ARP, Ethernet (len 6), IPv4 (len 4), Reply 192.168.66.1 is-at 44:df:65:d8:fe:6c, length 28
+```
+
+
+#### **Encapsulation of ARP**
+- **ARP packets are encapsulated directly within Ethernet frames**, not within IP or UDP packets.  
+- Example:  
+  - Ethernet header contains source and destination MAC addresses.  
+  - The payload is the ARP message.
+
+
+#### **Is ARP Layer 2 or Layer 3?**
+- **Layer 2 (Data Link Layer):** ARP operates with MAC addresses.  
+- **Layer 3 (Network Layer):** Supports IP communication.  
+- Considered a **bridge between Layer 2 and Layer 3**, facilitating translation from IP to MAC addressing.
+
+
+#### **Summary**
+- **ARP enables communication on local networks** by resolving IP addresses into MAC addresses.  
+- It uses **ARP Requests** (broadcast) and **ARP Replies** (unicast) to share MAC address information.  
+- ARP packets are directly encapsulated in Ethernet frames, reflecting its essential role in local network communication.
+
+---
+---
+
+
