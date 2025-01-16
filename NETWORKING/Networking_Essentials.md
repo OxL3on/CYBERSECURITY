@@ -227,3 +227,63 @@ traceroute example.com
 ---
 
 
+### Routing
+
+#### **What is Routing?**
+- Routing is the process of determining the **path** packets take from the source to the destination across networks.
+- **Routers** make decisions on where to send packets based on **routing tables** and **routing protocols**.
+
+
+#### **Why is Routing Necessary?**
+1. **Interconnectivity**: Enables communication between multiple networks.
+2. **Efficiency**: Determines the optimal path for data to travel.
+3. **Scalability**: Ensures data can traverse millions of routers and billions of devices, as seen in the Internet.
+
+
+#### **Key Routing Concepts**
+- **Routing Table**: A database maintained by routers to store the best paths to various destinations.
+- **Path Selection**: There may be multiple paths to the same destination; routers select the most efficient one based on metrics like **hops, bandwidth, and delay**.
+
+
+#### **Routing Protocols Overview**
+1. **OSPF (Open Shortest Path First)**  
+   - **Type**: Link-state protocol.  
+   - **Function**: Creates a complete map of the network by sharing link-state updates among routers.  
+   - **Strength**: Determines the shortest path based on cost metrics (bandwidth, delay).  
+
+2. **EIGRP (Enhanced Interior Gateway Routing Protocol)**  
+   - **Type**: Hybrid protocol (combines link-state and distance-vector features).  
+   - **Function**: Shares routing updates and calculates the most efficient path based on multiple metrics.  
+   - **Proprietary**: Cisco-specific protocol.  
+
+3. **BGP (Border Gateway Protocol)**  
+   - **Type**: Path-vector protocol.  
+   - **Function**: Connects **autonomous systems (AS)**, enabling communication between networks managed by different organizations (e.g., ISPs).  
+   - **Key Role**: The backbone of the Internet; ensures global data routing.  
+
+4. **RIP (Routing Information Protocol)**  
+   - **Type**: Distance-vector protocol.  
+   - **Function**: Shares routing information using hop count as the primary metric.  
+   - **Limitations**: Simple but suitable for small networks due to its scalability issues and slow convergence.  
+
+
+#### **Routing in Practice**
+- Example: A mobile user accessing a web server.
+  - The user's packets traverse several routers.
+  - Each router determines the next hop using its routing table and protocol.  
+
+**Scenarios**:
+1. **Small Network**: RIP could suffice due to simplicity.  
+2. **Large Corporate Network**: OSPF or EIGRP ensures efficient routing with more control.  
+3. **Global Internet Routing**: BGP handles routing between ISPs and different organizations.
+
+
+#### **Summary**
+- Routing enables efficient data delivery across interconnected networks.
+- Routing protocols like OSPF, EIGRP, BGP, and RIP differ in complexity, scalability, and use cases.
+- The choice of protocol depends on the network size, requirements, and specific scenarios.
+
+---
+---
+
+
