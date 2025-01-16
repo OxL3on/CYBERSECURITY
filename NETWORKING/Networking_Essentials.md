@@ -287,3 +287,82 @@ traceroute example.com
 ---
 
 
+### Network Address Translation (NAT)
+
+
+#### **Why was NAT Introduced?**
+- IPv4 can support a maximum of **4.29 billion addresses**, which is insufficient given the exponential growth of Internet-connected devices.
+- NAT was introduced as a solution to **address depletion** by allowing multiple devices to share a single **public IP address**.
+
+
+#### **What is NAT?**
+- NAT is a technique used to **map private IP addresses** (used within an internal network) to a **public IP address** (used to access the Internet) and vice versa.
+- It allows devices in a private network to access the Internet using fewer public IP addresses.
+
+
+#### **How NAT Works**
+1. Devices in a private network use **private IP addresses** (e.g., 192.168.0.0/24 or 10.0.0.0/8). These IP addresses are **non-routable** on the Internet.
+2. When a device initiates communication with an external network:
+   - The router supporting NAT assigns the connection a **public IP address** and a unique **port number**.
+   - The router **rewrites the source IP and port** in the outgoing packet header to the public IP and assigned port.
+3. The router maintains a **translation table** to map:
+   - Internal IP and port ⇔ External IP and port.
+4. For incoming traffic:
+   - The router uses the translation table to forward the packet to the correct internal IP and port.
+
+
+#### **Example Scenario**
+- Private Network: 
+  - Device: **192.168.0.129**
+  - Source Port: **15401**
+- Public Network: 
+  - Router Public IP: **212.3.4.5**
+  - Assigned Port: **19273**
+
+**Translation Table**:  
+| Internal IP   | Internal Port | External IP  | External Port |  
+|---------------|---------------|--------------|---------------|  
+| 192.168.0.129 | 15401         | 212.3.4.5    | 19273         |  
+
+When the device connects to a web server:
+1. Outgoing request: **192.168.0.129:15401 → 212.3.4.5:19273**  
+2. Web server response: **Sent to 212.3.4.5:19273 → Translated to 192.168.0.129:15401**
+
+
+#### **Advantages of NAT**
+1. **IP Address Conservation**: Reduces the need for multiple public IPs.
+2. **Security**: Private IPs are hidden, making devices in the internal network less accessible to external attackers.
+3. **Flexibility**: Allows the use of private IPs without requiring unique global addresses.
+
+
+#### **Limitations of NAT**
+1. **Performance Overhead**: The translation process adds a slight delay.
+2. **End-to-End Connectivity**: NAT can break some applications or protocols (e.g., peer-to-peer) that require direct access to private IPs.
+3. **Dependence on the Translation Table**: If the table is too large, it may strain router resources.
+
+
+#### **Types of NAT**
+1. **Static NAT**:  
+   - One-to-one mapping between private and public IPs.  
+   - Example: Internal IP **192.168.0.10** always maps to external IP **203.0.113.10**.
+
+2. **Dynamic NAT**:  
+   - Maps private IPs to a pool of public IPs.  
+   - Example: Any private IP can use one of several public IPs as long as it's available.
+
+3. **PAT (Port Address Translation)**:  
+   - Also called **NAT Overloading**.  
+   - Multiple private IPs share a single public IP, differentiated by port numbers.
+
+
+#### **Real-World Usage**
+- **Home Networks**:  
+  A home router allows multiple devices (laptops, phones, etc.) to share one public IP assigned by the ISP.
+- **Corporate Networks**:  
+  Organizations with thousands of devices can operate using only a few public IP addresses.
+
+
+#### **Summary**
+- NAT addresses IPv4 exhaustion by enabling multiple devices to share a single public IP.
+- It works by translating private IPs to public IPs using a translation table.
+- While it provides IP conservation and added security, NAT can introduce minor challenges in certain scenarios.
