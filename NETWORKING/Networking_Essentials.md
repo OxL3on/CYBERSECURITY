@@ -140,3 +140,90 @@ DHCP automates the process of assigning essential network settings, ensuring sea
 ---
 
 
+### Internet Control Message Protocol (ICMP)
+
+
+#### **What is ICMP?**
+- **ICMP (Internet Control Message Protocol)** is used for **network diagnostics** and **error reporting**.
+- Operates at the **network layer (Layer 3)** and is integral to IP.
+
+
+#### **Key Uses of ICMP**
+1. **Ping**: Tests connectivity and measures the **Round-Trip Time (RTT)**.  
+   - ICMP Type 8: **Echo Request**.  
+   - ICMP Type 0: **Echo Reply**.
+
+2. **Traceroute**: Discovers the route packets take to reach a target system.  
+   - ICMP Type 11: **Time Exceeded** (used to identify hops).  
+
+
+#### **Ping: Testing Connectivity**
+- Sends an **ICMP Echo Request** to the target system.  
+- Target replies with an **ICMP Echo Reply**.  
+- Measures metrics like:  
+  - RTT (Round-Trip Time).  
+  - Packet loss.  
+
+**Example Ping Command:**  
+```bash
+ping 192.168.11.1 -c 4
+```
+
+**Output Explanation:**  
+- Shows RTT for each packet.  
+- Summarizes stats: min, avg, max, and standard deviation (mdev).  
+
+**Sample Output:**  
+```plaintext
+4 packets transmitted, 4 received, 0% packet loss
+rtt min/avg/max/mdev = 3.805/10.596/23.366/7.956 ms
+```
+
+#### **Traceroute: Mapping Packet Paths**
+- Explores each **router (hop)** along the path to a destination.  
+- Uses the **Time-to-Live (TTL)** field in IP packets:  
+  - Routers decrement TTL by 1.  
+  - If TTL = 0, the router sends an **ICMP Time Exceeded** message to the source.  
+
+**Example Traceroute Command:**  
+```bash
+traceroute example.com
+```
+
+**Output Explanation:**  
+- Each hop displays the router's IP or hostname and RTT.  
+- `* * *`: A router didn’t respond or blocked the ICMP message.  
+
+**Sample Output:**  
+```plaintext
+ 1  _gateway (192.168.66.1)  4.414 ms
+ 2  192.168.11.1 (192.168.11.1)  5.849 ms
+ 3  100.104.0.1 (100.104.0.1)  11.130 ms
+ 4  10.149.1.45 (10.149.1.45)  6.156 ms
+ 5  * * *
+ 6  * * *
+```
+
+#### **Why ICMP Might Fail**
+1. **Target System Issues**: Device is offline or unreachable.  
+2. **Firewall Blocking**: ICMP packets blocked by firewalls.  
+3. **Intermediate Routers**: Dropping packets or not sending ICMP messages.
+
+
+#### **ICMP Types Used in Ping and Traceroute**
+| **ICMP Type**       | **Description**                          |
+|----------------------|------------------------------------------|
+| **Type 0**           | Echo Reply (used in `ping`).            |
+| **Type 8**           | Echo Request (used in `ping`).          |
+| **Type 11**          | Time Exceeded (used in `traceroute`).   |
+
+
+#### **Summary**
+- **Ping** and **Traceroute** are essential tools for diagnosing and troubleshooting networks using ICMP.  
+- Ping tests connectivity and measures RTT, while traceroute maps the route packets take.  
+- ICMP relies on **Echo Request/Reply** and **Time Exceeded** messages to provide critical insights into network behavior.
+
+---
+---
+
+
