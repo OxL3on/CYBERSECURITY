@@ -137,3 +137,139 @@ Imagine analyzing an HTTP request in Wireshark:
 ---
 
 
+### Wireshark Packet Navigation
+
+### **1. Packet Numbers**
+- **Unique Numbering**: Each packet in a capture file is assigned a unique number, making it easy to locate specific events in large datasets.
+- **Usage**: Use the **"Go" menu** or toolbar for quick navigation to a packet by number.
+
+
+### **2. Finding Packets**
+- **Search by Content**: Use the "Edit → Find Packet" menu to search packets by:
+  - **Display Filter**: Apply predefined Wireshark filters.
+  - **Hex**: Look for specific hexadecimal data.
+  - **String**: Search for plain text (case-insensitive by default).
+  - **Regex**: Use regular expressions for advanced matching.
+- **Search Fields**: Ensure you search within the correct pane:
+  - **Packet List**: Overview of packets.
+  - **Packet Details**: Layer-specific breakdown.
+  - **Packet Bytes**: Raw data in hex or ASCII format.
+
+
+### **3. Marking and Commenting Packets**
+- **Mark Packets**:
+  - Use **"Edit → Mark Packet"** or right-click to flag packets of interest.
+  - Marked packets appear in **black**.
+  - Marks reset after closing the file.
+- **Add Comments**:
+  - Add notes to packets for collaborative or future analysis.
+  - Comments are saved in the capture file and persist across sessions.
+
+
+### **4. Exporting Packets and Objects**
+- **Export Packets**: Share specific packets without including irrelevant data. Use the "File → Export Packet Dissections" menu.
+- **Export Objects**: Extract files transferred over specific protocols like HTTP, SMB, or TFTP for further investigation.
+
+
+### **5. Time Display Formats**
+- Default format: "Seconds Since Beginning of Capture."
+- Preferred format: UTC Time for better readability.
+- Change via "View → Time Display Format."
+
+
+### **6. Expert Info**
+- **Purpose**: Highlights potential anomalies or errors.
+- **Severity Levels**:
+  - **Blue (Chat)**: Normal workflow information.
+  - **Cyan (Note)**: Notable events like application errors.
+  - **Yellow (Warn)**: Warnings, e.g., unusual codes.
+  - **Red (Error)**: Critical issues like malformed packets.
+- **Viewing**:
+  - Status bar (lower-left corner).
+  - "Analyze → Expert Information."
+
+
+### **Examples for Better Understanding**
+1. **Finding Intrusions**:
+   - Search for "login failed" in string searches to identify brute force attempts.
+2. **Marking Suspicious Packets**:
+   - Flag packets with unusual protocols like `SMB` on an untrusted network.
+3. **Exporting Malware**:
+   - Extract a `.exe` file transferred over HTTP for malware analysis.
+
+---
+---
+
+
+### **Wireshark Packet Filtering**
+
+Wireshark provides two types of filtering mechanisms to refine captured data: **Capture Filters** and **Display Filters**. While capture filters determine what packets are saved during a live capture, display filters refine which packets are visible in the interface post-capture.
+
+
+### **1. Display Filters**
+- Used for investigating packets within a capture file.
+- Filters can be applied by:
+  - **Writing queries**: Directly entering filter expressions.
+  - **Using the GUI**: Right-click on a field or value and select options like "Apply as Filter."
+
+#### **Apply as Filter**
+- The simplest way to filter traffic.
+- Right-click on a field in the **Packet Details Pane** or use "Analyse → Apply as Filter."
+- Wireshark generates and applies the filter automatically, showing only relevant packets in the **Packet List Pane.**
+- The total number of packets (captured vs. displayed) is shown in the **status bar.**
+
+
+### **2. Conversation Filters**
+- Filters entire conversations (e.g., streams of packets between two IPs or ports).
+- Ideal for analyzing interactions, not just single packets.
+- Access via:
+  - **Right-click menu** → "Conversation Filter."
+  - **Analyse → Conversation Filter** menu.
+- Hides unrelated packets, focusing on those linked to the chosen conversation.
+
+
+### **3. Colourise Conversation**
+- Highlights linked packets without hiding unrelated ones.
+- Works with "Colouring Rules" to visually differentiate packets.
+- Useful for quick identification of related traffic.
+- Reset via "View → Colourise Conversation → Reset Colourisation."
+
+
+### **4. Prepare as Filter**
+- Generates a display filter query without applying it immediately.
+- Query is editable in the **Display Filter Bar.**
+- Allows combining filters using **logical operators** like "AND" and "OR."
+- Useful for building complex filters.
+
+
+### **5. Apply as Column**
+- Adds specific fields/values as columns in the **Packet List Pane.**
+- Helps track the occurrence of a value (e.g., IP address, port) across all packets.
+- Columns can be enabled/disabled by clicking the column header.
+
+
+### **6. Follow Stream**
+- Reconstructs and displays raw application-level traffic for:
+  - **TCP/UDP**: View continuous data streams.
+  - **HTTP**: Rebuild request/response structures.
+- Highlights:
+  - **Blue**: Data from the server.
+  - **Red**: Data from the client.
+- Useful for:
+  - Viewing unencrypted protocols.
+  - Extracting data like usernames, passwords, or transmitted files.
+- Access via:
+  - **Right-click menu** → "Follow [Protocol] Stream."
+  - **Analyse → Follow Stream.**
+- To reset and view all packets, use the **"X button"** in the display filter bar.
+
+
+### **Tips for Using Filters Effectively**
+1. **Master Query Syntax**:
+   - Example: `ip.src == 192.168.1.1` (Filter packets from source IP `192.168.1.1`).
+   - Example: `tcp.port == 80` (Filter packets on TCP port 80).
+2. **Combine Filters**:
+   - Use `and`, `or`, and `not` for advanced filtering.
+   - Example: `(ip.src == 192.168.1.1) and (tcp.port == 80)`.
+3. **Right-Click for Efficiency**:
+   - The right-click menu often provides shortcuts to create and apply filters without manually writing queries.
