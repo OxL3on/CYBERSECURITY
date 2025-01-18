@@ -81,3 +81,59 @@ Wireshark's interface consists of the following sections:
 ---
 
 
+### **Wireshark: Packet Dissection**
+
+#### **What is Packet Dissection?**
+Packet dissection (or protocol dissection) is the process of breaking down a packet to analyze its details, using the OSI model's layers as a framework. Wireshark supports many protocols for this and even allows custom dissection scripts.
+
+
+### **Using Packet Dissection in Wireshark**
+- **How it works:**  
+  - Click on a packet in the **Packet List Pane** to see its details in the **Packet Details Pane**.  
+  - The highlighted section in the **Packet Details Pane** corresponds to the data shown in the **Packet Bytes Pane**.
+  - Double-clicking opens the details in a new window.
+
+
+### **Breaking Down a Packet (Based on OSI Layers)**  
+Wireshark divides packets into distinct layers, showing details from Physical to Application layers.
+
+1. **Frame (Layer 1)**:  
+   - Physical layer information about the packet or frame.  
+
+2. **Source [MAC] (Layer 2)**:  
+   - Source and destination MAC addresses from the Data Link layer.  
+
+3. **Source [IP] (Layer 3)**:  
+   - Source and destination IPv4 addresses from the Network layer.
+
+4. **Protocol (Layer 4)**:  
+   - Protocol details (e.g., TCP/UDP) and source/destination ports from the Transport layer.
+
+5. **Protocol Errors**:  
+   - Extra details about TCP segments needing reassembly.
+
+6. **Application Protocol (Layer 5)**:  
+   - Information about the specific protocol used (e.g., HTTP, FTP, or SMB) from the Application layer.
+
+7. **Application Data**:  
+   - Protocol-specific data being carried by the application.
+
+
+### **Example: Dissecting an HTTP Packet**
+Imagine analyzing an HTTP request in Wireshark:  
+- Layer 1 shows the packet frame.  
+- Layer 2 displays MAC addresses for the devices involved.  
+- Layer 3 lists the source and destination IPs.  
+- Layer 4 reveals that the packet uses TCP, with specific port numbers.  
+- Layer 5 provides the HTTP request details.  
+- Application Data (part of Layer 5) shows the actual content of the HTTP request.
+
+
+### **Why is this Useful?**
+- Each layer gives critical information for troubleshooting and investigating network behavior.
+- By following the OSI layers, you can isolate and analyze specific issues, such as protocol errors or unusual traffic.
+
+---
+---
+
+
