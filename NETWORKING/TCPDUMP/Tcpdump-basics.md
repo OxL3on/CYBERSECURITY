@@ -116,7 +116,6 @@ Tcpdump is a powerful command-line tool for capturing and analyzing network traf
 #### **Why Filtering is Essential**
 Capturing network traffic without filters can be overwhelming, akin to trying to listen to everyone at a social gathering simultaneously. Filtering expressions in **tcpdump** allow us to focus on specific packets, making analysis more manageable and insightful.
 
----
 
 ### **Basic Filtering Techniques**
 
