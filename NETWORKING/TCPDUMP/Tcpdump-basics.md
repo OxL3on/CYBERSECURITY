@@ -318,3 +318,46 @@ You can filter packets based on TCP flags using `tcp[tcpflags]`. Common flags in
 ---
 
 
+### Displaying packets with **Tcpdump**
+
+
+| **Command**        | **Explanation**                                          |
+|---------------------|----------------------------------------------------------|
+| `tcpdump -q`       | Quick output with brief packet information.              |
+| `tcpdump -e`       | Includes link-level headers, showing MAC addresses.      |
+| `tcpdump -A`       | Displays packet data in ASCII format.                    |
+| `tcpdump -xx`      | Displays packet data in hexadecimal (hex) format.        |
+| `tcpdump -X`       | Displays packet headers and data in both hex and ASCII.  |
+
+### Examples:
+
+1. **Quick Output:**
+   ```bash
+   tcpdump -r TwoPackets.pcap -q
+   ```
+   Outputs concise details (e.g., timestamps, source/destination IPs, ports).
+
+2. **With MAC Addresses:**
+   ```bash
+   tcpdump -r TwoPackets.pcap -e
+   ```
+   Useful for analyzing Ethernet-level traffic.
+
+3. **ASCII Representation:**
+   ```bash
+   tcpdump -r TwoPackets.pcap -A
+   ```
+   Converts readable content into ASCII text.
+
+4. **Hexadecimal Format:**
+   ```bash
+   tcpdump -r TwoPackets.pcap -xx
+   ```
+   Displays raw packet data byte-by-byte in hexadecimal.
+
+5. **Hex + ASCII:**
+   ```bash
+   tcpdump -r TwoPackets.pcap -X
+   ```
+   Combines hexadecimal and ASCII views for complete packet analysis.
+
