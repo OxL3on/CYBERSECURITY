@@ -236,3 +236,85 @@ Capturing network traffic without filters can be overwhelming, akin to trying to
 ---
 
 
+### Advanced Filtering with **Tcpdump**
+
+
+#### **Filtering by Packet Length**
+- **`greater LENGTH`**: Filters packets with lengths **≥ LENGTH**.
+- **`less LENGTH`**: Filters packets with lengths **≤ LENGTH**.
+
+Example:
+```bash
+tcpdump greater 100
+```
+Captures packets with lengths **≥ 100 bytes**.
+
+
+#### **Binary Operations**
+Tcpdump uses binary operations to filter packets based on header content:
+1. **`&` (AND)**: Both bits must be 1 for the result to be 1.
+2. **`|` (OR)**: At least one bit must be 1 for the result to be 1.
+3. **`!` (NOT)**: Inverts a bit (1 becomes 0, and 0 becomes 1).
+
+
+#### **Filtering by Header Bytes**
+You can filter based on protocol header bytes using:
+```plaintext
+proto[expr:size]
+```
+- **`proto`**: Protocol (e.g., `arp`, `tcp`, `ip`).
+- **`expr`**: Byte offset (0 = first byte).
+- **`size`**: Number of bytes (optional, default = 1).
+
+**Examples:**
+1. **`ether[0] & 1 != 0`**  
+   Captures packets sent to multicast Ethernet addresses.
+   
+2. **`ip[0] & 0xf != 5`**  
+   Captures IP packets with options.
+
+
+#### **Filtering by TCP Flags**
+You can filter packets based on TCP flags using `tcp[tcpflags]`. Common flags include:
+- **`tcp-syn`**: Synchronize
+- **`tcp-ack`**: Acknowledge
+- **`tcp-fin`**: Finish
+- **`tcp-rst`**: Reset
+- **`tcp-push`**: Push
+
+**Examples:**
+1. **`tcp[tcpflags] == tcp-syn`**  
+   Captures packets where **only SYN is set**.
+   
+2. **`tcp[tcpflags] & tcp-syn != 0`**  
+   Captures packets with **SYN set**, regardless of other flags.
+   
+3. **`tcp[tcpflags] & (tcp-syn|tcp-ack) != 0`**  
+   Captures packets with **SYN or ACK set**.
+
+
+### **Practical Examples**
+1. **Capture all TCP packets with the SYN flag:**
+   ```bash
+   tcpdump "tcp[tcpflags] == tcp-syn"
+   ```
+
+2. **Capture packets longer than 500 bytes:**
+   ```bash
+   tcpdump greater 500
+   ```
+
+3. **Capture packets with either SYN or ACK flags set:**
+   ```bash
+   tcpdump "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0"
+   ```
+
+4. **Capture multicast Ethernet packets:**
+   ```bash
+   tcpdump "ether[0] & 1 != 0"
+   ```
+
+---
+---
+
+
