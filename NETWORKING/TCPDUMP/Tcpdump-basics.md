@@ -111,3 +111,129 @@ Tcpdump is a powerful command-line tool for capturing and analyzing network traf
 ---
 
 
+### **Filtering Expressions in Tcpdump**
+
+#### **Why Filtering is Essential**
+Capturing network traffic without filters can be overwhelming, akin to trying to listen to everyone at a social gathering simultaneously. Filtering expressions in **tcpdump** allow us to focus on specific packets, making analysis more manageable and insightful.
+
+---
+
+### **Basic Filtering Techniques**
+
+#### 1. **Filter by Host**
+- **Command**: `tcpdump host [IP/HOSTNAME]`
+- Captures packets exchanged with a specific host.
+- **Example**:  
+  ```bash
+  sudo tcpdump host example.com -w http.pcap
+  ```
+  Saves all packets involving `example.com` to `http.pcap`.
+
+- Use `src host` to filter packets from a specific source or `dst host` for a specific destination.  
+  **Example**:  
+  ```bash
+  tcpdump src host 192.168.1.1
+  tcpdump dst host 192.168.1.1
+  ```
+
+#### 2. **Filter by Port**
+- **Command**: `tcpdump port [PORT_NUMBER]`
+- Captures traffic on a specific port.  
+  **Example**:  
+  ```bash
+  sudo tcpdump port 53
+  ```
+  Captures all DNS traffic (default port 53).  
+
+- Use `src port` or `dst port` to filter source/destination ports.  
+  **Example**:  
+  ```bash
+  tcpdump src port 443
+  tcpdump dst port 80
+  ```
+
+#### 3. **Filter by Protocol**
+- **Command**: `tcpdump [PROTOCOL]`
+- Captures packets of a specific protocol (e.g., `ip`, `ip6`, `udp`, `tcp`, `icmp`).  
+  **Example**:  
+  ```bash
+  sudo tcpdump icmp
+  ```
+  Captures only ICMP packets (e.g., ping traffic).
+
+
+### **Logical Operators for Advanced Filters**
+- **and**: Combines conditions that must all be true.  
+  **Example**:  
+  ```bash
+  tcpdump host 1.1.1.1 and tcp
+  ```
+  Captures TCP traffic with `1.1.1.1`.
+
+- **or**: Captures packets if at least one condition is true.  
+  **Example**:  
+  ```bash
+  tcpdump udp or icmp
+  ```
+  Captures UDP or ICMP traffic.
+
+- **not**: Excludes packets matching a condition.  
+  **Example**:  
+  ```bash
+  tcpdump not tcp
+  ```
+  Captures all traffic except TCP.
+
+
+### **Practical Examples**
+1. **SSH Traffic on All Interfaces**:  
+   ```bash
+   tcpdump -i any tcp port 22
+   ```
+   Captures SSH traffic (`port 22`) across all interfaces.
+
+2. **WiFi NTP Traffic**:  
+   ```bash
+   tcpdump -i wlo1 udp port 123
+   ```
+   Filters NTP traffic (`udp port 123`) on a WiFi interface.
+
+3. **HTTPS Traffic for a Host**:  
+   ```bash
+   tcpdump -i eth0 host example.com and tcp port 443 -w https.pcap
+   ```
+   Captures HTTPS (`tcp port 443`) traffic for `example.com` on the Ethernet interface.
+
+
+### **Reading Captured Packets**
+- **Command**: `tcpdump -r [FILE]`
+- Reads packets from a capture file for offline analysis.  
+  **Example**:  
+  ```bash
+  tcpdump -r traffic.pcap -c 5 -n
+  ```
+  Displays the first five packets from `traffic.pcap` without resolving IP addresses.
+
+- **Counting Packets**: Use `wc` to count lines.  
+  **Example**:  
+  ```bash
+  tcpdump -r traffic.pcap src host 192.168.124.1 -n | wc
+  ```
+  Displays the count of packets with source IP `192.168.124.1`.
+
+
+### **Summary of Commands**
+| Command                                   | Explanation                                         |
+|-------------------------------------------|-----------------------------------------------------|
+| `tcpdump host IP`                         | Filters packets by a specific host.                |
+| `tcpdump src host IP`                     | Filters packets from a specific source host.       |
+| `tcpdump dst host IP`                     | Filters packets to a specific destination host.    |
+| `tcpdump port PORT_NUMBER`                | Filters packets by port number.                   |
+| `tcpdump src port PORT_NUMBER`            | Filters packets from a specific source port.       |
+| `tcpdump dst port PORT_NUMBER`            | Filters packets to a specific destination port.    |
+| `tcpdump PROTOCOL`                        | Filters packets by protocol (e.g., tcp, udp, icmp).| 
+
+---
+---
+
+
