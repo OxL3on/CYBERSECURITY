@@ -11,14 +11,7 @@
 4. **[os](https://docs.python.org/3/library/os.html)**
    - Official Python documentation for `os`, which provides various system-related functionalities, including `os.urandom()` for secure random number generation.
 
-5. **[rsa](https://pypi.org/project/rsa/)**
-   - Documentation for the `rsa` library available on PyPI, focused on RSA encryption, decryption, and key generation.
+5. **[Passlib](https://passlib.readthedocs.io/en/stable/)**
 
-6. **[pycryptodome](https://www.pycryptodome.org/src/docs)**
-   - Official documentation for `pycryptodome`, a self-contained cryptographic library with encryption algorithms, hashing, and more.
+6. **[hashID](https://pypi.org/project/hashID/)**
 
-7. **[ecdsa](https://ecdsa.readthedocs.io/en/latest/)**
-   - Documentation for `ecdsa`, which provides functionality for Elliptic Curve Digital Signature Algorithm (ECDSA) and elliptic curve cryptography.
-
-8. **[serialization](https://cryptography.io/en/latest/hazmat/primitives/serialization/)**
-   - Documentation for the `serialization` module in the `cryptography` library, used for serializing and deserializing cryptographic keys.
