@@ -126,3 +126,80 @@ show payloads
 ---
 
 
+### **Meterpreter Commands Overview**
+Meterpreter commands are tools for interacting with the target system. They are grouped into categories and can be accessed using the `help` command.
+
+#### **Core Commands**
+- `background`: Backgrounds the session.
+- `exit`: Terminates the session.
+- `guid`: Displays the session GUID.
+- `help`: Lists all available commands.
+- `info`: Displays module information.
+- `irb`: Opens an interactive Ruby shell.
+- `load`: Loads Meterpreter extensions.
+- `migrate`: Migrates Meterpreter to another process.
+- `run`: Executes scripts or modules.
+- `sessions`: Switch between active sessions.
+
+#### **File System Commands**
+- `cd`: Change directory.
+- `ls`: List files in the current directory.
+- `pwd`: Show the current working directory.
+- `edit`: Edit a file.
+- `cat`: Display file contents.
+- `rm`: Delete a file.
+- `search`: Search for files.
+- `upload`: Upload files/directories.
+- `download`: Download files/directories.
+
+#### **Networking Commands**
+- `arp`: Show ARP cache.
+- `ifconfig`: Display network interfaces.
+- `netstat`: Display network connections.
+- `portfwd`: Forward a local port to a remote service.
+- `route`: View/modify routing tables.
+
+#### **System Commands**
+- `clearev`: Clear event logs.
+- `execute`: Run a command.
+- `getpid`: Show current process ID.
+- `getuid`: Show current user.
+- `kill`: Terminate a process.
+- `pkill`: Terminate processes by name.
+- `ps`: List running processes.
+- `reboot`: Reboot the target system.
+- `shell`: Open a system shell.
+- `shutdown`: Shut down the target system.
+- `sysinfo`: Display system information.
+
+#### **Other Commands**
+- **Idle and Keystrokes:**
+  - `idletime`: Check user idle time.
+  - `keyscan_start`: Start keystroke capture.
+  - `keyscan_dump`: Display captured keystrokes.
+  - `keyscan_stop`: Stop keystroke capture.
+  
+- **Desktop Interaction:**
+  - `screenshare`: Watch the desktop in real-time.
+  - `screenshot`: Capture a screenshot.
+  
+- **Audio and Video:**
+  - `record_mic`: Record microphone audio.
+  - `webcam_list`: List webcams.
+  - `webcam_snap`: Capture webcam snapshots.
+  - `webcam_stream`: Stream webcam video.
+
+- **Privilege Escalation:**
+  - `getsystem`: Attempt privilege escalation.
+  - `hashdump`: Dump the SAM database.
+
+
+### **Notes**
+- **Command Availability:** Some commands might not work if the target lacks required components (e.g., no webcam or desktop environment).
+- **Help Menu Variations:** Commands differ based on Meterpreter versions and payloads. Always check using the `help` command.
+- **Practical Use:** Commands like `migrate`, `getsystem`, and `hashdump` are frequently used during post-exploitation.
+
+---
+---
+
+
