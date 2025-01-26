@@ -102,3 +102,100 @@ Below are common sensitive files across Linux and Windows systems:
 ---
 
 
+### Local File Inclusion (LFI)
+
+#### **What is Local File Inclusion?**
+Local File Inclusion (LFI) is a vulnerability that allows attackers to include files on a web server through user-supplied input. This vulnerability often occurs due to insecure use of PHP functions like `include`, `require`, `include_once`, and `require_once`. While PHP is commonly targeted, LFI vulnerabilities can also be found in other programming languages such as ASP, JSP, and Node.js.
+
+
+#### **How Does LFI Work?**
+Attackers exploit LFI vulnerabilities by injecting file paths into parameters passed to inclusion functions. This can allow them to:
+1. Read sensitive files (e.g., `/etc/passwd`).
+2. Execute malicious files if combined with other vulnerabilities like file upload.
+
+
+
+### **Examples**
+
+#### **Scenario 1: Basic LFI**
+The following PHP code dynamically includes a file based on the `lang` parameter:
+
+```php
+<?php 
+	include($_GET["lang"]);
+?>
+```
+
+**How It Works:**  
+- The parameter `lang` specifies the file to include.  
+- Example:  
+  ```
+  http://webapp.thm/index.php?lang=EN.php
+  ```
+  Includes the `EN.php` file.
+
+**Exploit:**  
+If no input validation is implemented, an attacker can read sensitive files. For example:
+```
+http://webapp.thm/index.php?lang=/etc/passwd
+```
+
+
+#### **Scenario 2: Directory-Specific Inclusion**
+The developer attempts to restrict file inclusion to a specific directory (`languages`) as follows:
+
+```php
+<?php 
+	include("languages/" . $_GET['lang']);
+?>
+```
+
+**How It Works:**  
+- The `lang` parameter only includes files within the `languages/` directory.  
+- Example:  
+  ```
+  http://webapp.thm/index.php?lang=EN.php
+  ```
+  Includes `languages/EN.php`.
+
+**Exploit:**  
+If the application doesn't validate input properly, an attacker can traverse directories and access files outside the `languages` directory:
+```
+http://webapp.thm/index.php?lang=../../../../etc/passwd
+```
+
+
+### **Steps to Exploit LFI**
+1. **Analyze the parameter:** Identify the parameter being used for file inclusion (e.g., `lang`).
+2. **Test payloads:** Inject common payloads such as `../` to traverse directories.
+3. **Include sensitive files:** Use paths like `/etc/passwd` (Linux) or `C:\boot.ini` (Windows) to confirm the vulnerability.
+4. **Locate the directory restriction:** If the inclusion function restricts the directory, use traversal payloads to escape it.
+
+
+### **Practical Tasks**
+
+#### **Task 1: Basic LFI**
+Use the first code example and try to read the `/etc/passwd` file by manipulating the `lang` parameter:
+```
+http://webapp.thm/index.php?lang=/etc/passwd
+```
+
+#### **Task 2: Directory-Specific LFI**
+Use the second code example, which specifies the `languages` directory. Try to determine the directory restriction and read the `/etc/passwd` file using traversal payloads:
+```
+http://webapp.thm/index.php?lang=../../../../etc/passwd
+```
+
+### **Key Takeaways**
+1. LFI vulnerabilities are caused by **lack of input validation**.
+2. Attacks often involve **path traversal** to access sensitive files.
+3. Developers should:
+   - Validate user input with allowlists.
+   - Use secure coding practices, such as absolute paths or constants.
+   - Avoid dynamic inclusion of files unless absolutely necessary.
+  
+---
+---
+
+
+
