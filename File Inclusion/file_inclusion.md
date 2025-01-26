@@ -30,3 +30,75 @@ For example, an attacker could retrieve system files like `/etc/passwd` (on Linu
 ---
 
 
+### Path Traversal:
+
+#### **What is Path Traversal?**  
+Path Traversal (or Directory Traversal) is a web vulnerability that allows attackers to access files and directories outside the intended root directory of a web application. This vulnerability occurs due to **poor input validation** and can lead to unauthorized access to sensitive files.
+
+
+#### **How Does Path Traversal Work?**  
+When web applications handle file requests dynamically (e.g., using functions like PHP's `file_get_contents()`), attackers can manipulate URL parameters to traverse directories. The typical payload involves using `../` to move up one directory at a time.
+
+**Example Attack on Linux:**  
+Target URL:  
+```
+http://webapp.thm/get.php?file=userCV.pdf
+```
+
+Malicious payload:  
+```
+http://webapp.thm/get.php?file=../../../../etc/passwd
+```
+
+Here:  
+- `../../../../` moves up directories until reaching the root `/`.
+- `/etc/passwd` is a sensitive file that contains user account information.
+
+---
+
+#### **Path Traversal on Windows**  
+On Windows systems, attackers use Windows-style paths like:  
+```
+http://webapp.thm/get.php?file=../../../../boot.ini
+```
+or  
+```
+http://webapp.thm/get.php?file=../../../../windows/win.ini
+```
+
+
+#### **Key Files to Target During Testing**  
+Below are common sensitive files across Linux and Windows systems:
+
+| **Location**                  | **Description**                                                                 |
+|-------------------------------|---------------------------------------------------------------------------------|
+| `/etc/issue`                  | System identification message before the login prompt.                          |
+| `/etc/profile`                | System-wide default variables and configurations.                              |
+| `/proc/version`               | Version of the Linux kernel.                                                   |
+| `/etc/passwd`                 | User account details.                                                          |
+| `/etc/shadow`                 | Encrypted passwords (requires root privileges).                                |
+| `/root/.bash_history`         | Command history for the root user.                                             |
+| `/var/log/dmesg`              | System messages logged during startup.                                         |
+| `/var/mail/root`              | Emails for the root user.                                                      |
+| `/root/.ssh/id_rsa`           | Private SSH keys for the root user.                                            |
+| `/var/log/apache2/access.log` | Logs of accessed requests for the Apache server.                               |
+| `C:\boot.ini`                 | Boot options for systems with BIOS firmware.                                   |
+
+
+#### **Mitigation and Prevention**  
+1. **Input Validation:**  
+   - Sanitize user inputs.
+   - Only allow predefined, safe file paths.
+
+2. **Restrict Access:**  
+   - Use a secure base directory and limit file access within it.  
+   - Disable unnecessary features like directory indexing.  
+
+3. **Code Practices:**  
+   - Avoid concatenating user input into file paths.
+   - Implement allowlists for permitted file names or extensions.  
+
+---
+---
+
+
