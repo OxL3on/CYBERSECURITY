@@ -276,4 +276,99 @@ Imagine Gobuster as a **treasure map explorer**:
 ---
 
 
+### **Gobuster: Vhost Enumeration**
+
+
+#### **What is Vhost Enumeration?**
+- **Vhost (Virtual Host) Enumeration** is the process of discovering virtual hosts running on the same server.
+- Virtual hosts allow multiple websites to share the same IP address but appear as separate domains or subdomains.
+
+
+#### **Why Use Gobuster's `vhost` Mode?**
+- To find hidden or misconfigured virtual hosts that might expose:
+  - Internal tools (`admin.example.com`)
+  - Testing environments (`dev.example.com`)
+  - Backup servers (`backup.example.com`)
+- Helps identify potential attack surfaces during penetration testing.
+
+#### **Basic Command Structure**
+```bash
+gobuster vhost -u "http://example.thm" -w /path/to/wordlist [flags]
+```
+- `vhost`: Enables virtual host enumeration mode.
+- `-u`: Specifies the base URL (e.g., `http://example.thm`).
+- `-w`: Path to the wordlist file containing subdomain guesses.
+- `[flags]`: Additional options to customize the scan.
+
+
+#### **Key Flags for `vhost` Mode**
+| Short Flag | Long Flag          | Description                                                                 |
+|------------|--------------------|-----------------------------------------------------------------------------|
+| `-u`       | `--url`            | Specifies the target URL (e.g., `http://example.thm`).                     |
+| `--append-domain` |             | Appends the base domain to each word in the wordlist (e.g., `blog.example.com`). |
+| `--domain` |                    | Sets the top-level and second-level domain (e.g., `example.thm`).          |
+| `--exclude-length` |           | Filters out responses based on their body size to reduce false positives.  |
+| `-r`       | `--follow-redirect`| Follows HTTP redirects (useful if subdomains redirect).                    |
+
+
+#### **Example 1: Basic Vhost Enumeration**
+Command:
+```bash
+gobuster vhost -u "http://10.10.226.147" --domain example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain
+```
+- Scans for virtual hosts on `10.10.226.147`.
+- Uses the `subdomains-top1million-5000.txt` wordlist.
+- Appends `example.thm` to each word in the wordlist (e.g., `www.example.thm`, `shop.example.thm`).
+
+Sample Output:
+```
+Found: blog.example.thm Status: 200 [Size: 1493]
+Found: shop.example.thm Status: 200 [Size: 2983]
+Found: www.example.thm Status: 200 [Size: 84352]
+```
+
+#### **Example 2: Exclude False Positives**
+Command:
+```bash
+gobuster vhost -u "http://10.10.226.147" --domain example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain --exclude-length 250-320
+```
+- Adds `--exclude-length 250-320` to filter out responses with body sizes between 250 and 320 bytes (common for false positives).
+
+Sample Output:
+```
+Found: blog.example.thm Status: 200 [Size: 1493]
+Found: shop.example.thm Status: 200 [Size: 2983]
+```
+
+#### **How It Works**
+1. Gobuster sends HTTP requests with different `Host` headers.
+   - Example Request:
+     ```
+     GET / HTTP/1.1
+     Host: www.example.thm
+     User-Agent: gobuster/3.6
+     ```
+2. The server responds based on the `Host` header.
+3. Gobuster checks the response status code and body size to determine valid virtual hosts.
+
+
+#### **Tips for Success**
+1. **Use a Comprehensive Wordlist**: Use large wordlists like `subdomains-top1million-5000.txt`.
+2. **Filter False Positives**: Use `--exclude-length` to remove common false positives.
+3. **Append Domain**: Always use `--append-domain` to ensure proper hostname formatting.
+4. **Follow Redirects**: Use `--follow-redirect` if subdomains may redirect.
+
+
+#### **-----**
+Imagine Gobuster as a **detective searching for secret identities**:
+- The server (`10.10.226.147`) is hosting multiple websites, each with its own identity (virtual host).
+- Gobuster uses a **list of names (wordlist)** to guess each website’s identity by changing the `Host` header in its requests.
+- When it finds a match (e.g., `blog.example.thm`), it reports it back.
+
+
+#### **Key Takeaways**
+1. **Wordlists Matter**: Use high-quality wordlists like `subdomains-top1million-5000.txt`.
+2. **Filter Responses**: Use `--exclude-length` to reduce false positives.
+3. **Append Domain**: Always use `--append-domain` for proper hostname formatting.
+4. **Understand the Difference**: Vhosts are IP-based, while subdomains are DNS-based.
 
