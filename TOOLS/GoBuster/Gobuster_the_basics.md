@@ -155,7 +155,7 @@ gobuster dir -u "http://www.example.thm" -w /usr/share/wordlists/dirbuster/direc
    gobuster dir -u "http://www.example.thm" -w /path/to/wordlist -o results.txt
    ```
 
-#### **Story to Remember**
+#### **-----**
 Imagine Gobuster as a **detective searching for secret rooms** in a mansion:
 - The mansion is the **website**, and each room is a **directory** or **file**.
 - The detective uses a **map (wordlist)** to try every door (URL).
