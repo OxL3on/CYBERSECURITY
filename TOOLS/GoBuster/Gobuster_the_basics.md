@@ -173,3 +173,107 @@ Imagine Gobuster as a **detective searching for secret rooms** in a mansion:
 ---
 
 
+### **Gobuster: Subdomain Enumeration**
+
+
+#### **What is Subdomain Enumeration?**
+- **Subdomain Enumeration** is the process of discovering subdomains (e.g., `www`, `shop`, `api`) of a target domain.
+- Subdomains often host different services or applications, which may have unique vulnerabilities not present in the main domain.
+
+
+#### **Why Use Gobuster's `dns` Mode?**
+- To find hidden subdomains that might expose:
+  - Admin panels (`admin.example.com`)
+  - Testing environments (`dev.example.com`)
+  - Backup servers (`backup.example.com`)
+- Helps identify potential attack surfaces during penetration testing.
+
+
+#### **Basic Command Structure**
+```bash
+gobuster dns -d example.thm -w /path/to/wordlist [flags]
+```
+- `dns`: Enables DNS subdomain enumeration mode.
+- `-d`: Specifies the target domain (e.g., `example.thm`).
+- `-w`: Path to the wordlist file containing subdomain guesses.
+- `[flags]`: Additional options to customize the scan.
+
+
+#### **Key Flags for `dns` Mode**
+| Flag       | Long Flag          | Description                                                                 |
+|------------|--------------------|-----------------------------------------------------------------------------|
+| `-c`       | `--show-cname`     | Shows CNAME records (aliases) for subdomains. Cannot be used with `-i`.    |
+| `-i`       | `--show-ips`       | Displays IP addresses that subdomains resolve to.                          |
+| `-r`       | `--resolver`       | Specifies a custom DNS server to use for resolving queries.                |
+
+
+#### **Example 1: Basic Subdomain Enumeration**
+Command:
+```bash
+gobuster dns -d example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+```
+- Scans for subdomains of `example.thm`.
+- Uses the `subdomains-top1million-5000.txt` wordlist.
+
+How it works:
+- Gobuster takes each word from the wordlist (e.g., `www`, `shop`) and appends it to the domain (e.g., `www.example.thm`).
+- It performs a DNS query to check if the subdomain exists.
+
+Sample Output:
+```
+Found: www.example.thm
+Found: shop.example.thm
+Found: academy.example.thm
+Found: primary.example.thm
+```
+
+#### **Example 2: Show Resolved IPs**
+Command:
+```bash
+gobuster dns -d example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -i
+```
+- Adds the `-i` flag to display the IP addresses of resolved subdomains.
+
+Sample Output:
+```
+Found: www.example.thm [192.168.1.10]
+Found: shop.example.thm [192.168.1.11]
+Found: academy.example.thm [192.168.1.12]
+```
+
+#### **Example 3: Use a Custom DNS Resolver**
+Command:
+```bash
+gobuster dns -d example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -r 8.8.8.8
+```
+- Adds the `-r` flag to use Google's DNS server (`8.8.8.8`) for resolving queries.
+
+
+#### **Tips for Success**
+1. **Use a Comprehensive Wordlist**: Use large wordlists like `subdomains-top1million-5000.txt` for thorough scanning.
+2. **Check Resolved IPs**: Use `-i` to identify where subdomains are hosted.
+3. **Custom DNS Servers**: Use `-r` if the default DNS resolver is slow or unreliable.
+4. **Save Results**: Redirect output to a file for later analysis:
+   ```bash
+   gobuster dns -d example.thm -w /path/to/wordlist > results.txt
+   ```
+
+#### **-----**
+Imagine Gobuster as a **treasure map explorer**:
+- The main domain (`example.thm`) is the starting point.
+- Each subdomain (`www`, `shop`, `academy`) is a hidden island.
+- Gobuster uses a **map (wordlist)** to search for islands by checking their coordinates (DNS queries).
+- When it finds an island, it marks it down (`Found: shop.example.thm`).
+
+
+#### **Key Takeaways**
+1. **Wordlists Matter**: Use high-quality wordlists like `subdomains-top1million-5000.txt`.
+2. **Show IPs**: Use `-i` to see where subdomains are hosted.
+3. **Custom Resolvers**: Use `-r` for faster or more reliable DNS queries.
+4. **CNAME Records**: Use `-c` to discover aliases for subdomains.
+
+---
+---
+
+
+
