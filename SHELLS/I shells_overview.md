@@ -402,3 +402,79 @@ Imagine shell payloads as **different types of keys**:
 
 
 
+### **Web Shells**
+
+
+#### **What is a Web Shell?**
+- A **web shell** is a malicious script uploaded to a compromised web server that allows attackers to execute commands and manage files through the web server itself.
+- It acts as a backdoor, enabling remote access to the server and its resources.
+
+
+#### **Why Are Web Shells Popular?**
+- **Stealthy**: Can be hidden within legitimate files or directories, making detection difficult.
+- **Versatile**: Supports multiple programming languages (e.g., PHP, ASP, JSP, CGI).
+- **Powerful**: Allows attackers to perform tasks like file manipulation, command execution, and privilege escalation.
+
+#### **How Web Shells Work**
+1. **Upload the Web Shell**:
+   - Attackers exploit vulnerabilities like:
+     - **Unrestricted File Upload**: Uploading malicious files.
+     - **File Inclusion**: Including malicious scripts.
+     - **Command Injection**: Injecting commands into vulnerable inputs.
+   - The web shell is saved on the server (e.g., `shell.php`).
+
+2. **Access the Web Shell**:
+   - The attacker accesses the web shell via a URL (e.g., `http://victim.com/uploads/shell.php`).
+   - Commands are passed as parameters in the request.
+
+3. **Execute Commands**:
+   - Example PHP Web Shell Code:
+     ```php
+     <?php
+     if (isset($_GET['cmd'])) {
+         system($_GET['cmd']);
+     }
+     ?>
+     ```
+   - To execute a command (e.g., `whoami`), the attacker sends:
+     ```
+     http://victim.com/uploads/shell.php?cmd=whoami
+     ```
+   - The result of the command is displayed in the browser.
+
+#### **Example Web Shells**
+| Name          | Description                                                                 | Features                                                                 |
+|---------------|-----------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| **p0wny-shell** | A minimalistic single-file PHP web shell.                                   | - Command execution<br>- GUI similar to a terminal                      |
+| **b374k shell** | A feature-rich PHP web shell with advanced functionality.                   | - File management<br>- Command execution<br>- Obfuscation               |
+| **c99 shell**   | A robust PHP web shell with extensive capabilities.                         | - File manipulation<br>- Command execution<br>- Built-in tools          |
+
+
+#### **Key Points**
+| Component          | Description                                                                 |
+|--------------------|-----------------------------------------------------------------------------|
+| **Upload Methods** | Exploits like Unrestricted File Upload, File Inclusion, or Command Injection. |
+| **Execution**      | Commands are passed via HTTP requests (e.g., GET/POST parameters).          |
+| **Languages**      | Written in supported web server languages (PHP, ASP, JSP, CGI).             |
+| **Detection**      | Web shells can be hidden and obfuscated to avoid detection by security tools.|
+
+
+#### **-----**
+Imagine a **web shell** as a **hidden control panel**:
+- An attacker sneaks the control panel into a building (server) by exploiting weak security (vulnerabilities).
+- Once inside, the attacker uses the control panel to issue commands (e.g., unlock doors, access files).
+- The control panel is disguised to blend in with the environment, making it hard for security guards (admins) to notice.
+
+
+#### **Key Takeaways**
+1. **Web Shells Are Stealthy**: They hide within legitimate files and directories.
+2. **Use Vulnerabilities Wisely**: Exploit weaknesses like file upload flaws to deploy web shells.
+3. **Language Matters**: Use a language supported by the target server (e.g., PHP, ASP).
+4. **Advanced Shells Add Functionality**: Tools like `b374k` and `c99` provide file management and obfuscation.
+5. **Detect and Remove**: Regularly scan servers for suspicious files and restrict permissions to prevent uploads.
+
+---
+---
+
+
+
