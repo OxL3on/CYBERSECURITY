@@ -122,3 +122,42 @@ Think of registers as tiny "buckets" inside the CPU:
 
 
 
+### Memory Overview 
+
+#### **Memory Layout**:
+- Programs see an **abstracted view** of memory, divided into four main sections: **Code**, **Data**, **Heap**, and **Stack**.
+- The order of sections can vary, but their roles remain the same.
+
+
+#### **Sections in Memory**:
+
+1. **Code**:
+   - Contains the program's executable instructions.
+   - Also called the **text section** in a Portable Executable (PE) file.
+   - Has **execute permissions**—CPU can run instructions here.
+
+2. **Data**:
+   - Stores initialized, constant data like **global variables**.
+   - Data here doesn’t change during execution.
+
+3. **Heap**:
+   - Used for **dynamic memory allocation**.
+   - Variables are created and destroyed at runtime.
+   - Example: Allocating memory for objects in programming languages like C or C++.
+
+4. **Stack**:
+   - Stores **local variables**, function arguments, and **return addresses**.
+   - Critical for **control flow**—often targeted by malware (e.g., buffer overflows).
+
+**Remembering Tip**:
+Think of memory as a house:
+- **Code**: The living room where all the action happens (instructions executed).
+- **Data**: The pantry with pre-stocked items (constants/global variables).
+- **Heap**: The garage where you store things temporarily (dynamic memory).
+- **Stack**: The hallway where you keep track of your steps (local variables, return addresses).
+
+---
+---
+
+
+
