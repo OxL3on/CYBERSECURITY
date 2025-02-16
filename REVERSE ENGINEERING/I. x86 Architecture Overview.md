@@ -1,6 +1,6 @@
 # x86 Architecture Overview
 
-### CPU Architecture Overview
+### CPU Architecture 
 
 1. **Von Neumann Architecture**:
    - CPU interacts with **Memory** and **I/O devices**.
@@ -37,6 +37,47 @@ Think of the CPU as a chef:
 - **I/O**: Tools and senses.
 
 ---
+---
+
+
+
+### Registers Overview
+
+1. **Registers**:
+   - Small, fast storage inside the CPU.
+   - Limited size, so used efficiently.
+   - Types: **Instruction Pointer**, **General-Purpose**, **Status Flag**, **Segment Registers**.
+
+2. **Instruction Pointer (IP)**:
+   - Holds the address of the next instruction to execute.
+     - *32-bit*: EIP, *64-bit*: RIP.
+   - Also called **Program Counter**.
+
+3. **General-Purpose Registers**:
+   - Used for general execution tasks.
+   - Key registers:
+     - **EAX/RAX**: Accumulator (arithmetic results).
+     - **EBX/RBX**: Base (stores base address).
+     - **ECX/RCX**: Counter (used in loops).
+     - **EDX/RDX**: Data (multiplication/division).
+     - **ESP/RSP**: Stack Pointer (points to top of stack).
+     - **EBP/RBP**: Base Pointer (access stack parameters).
+     - **ESI/RSI**: Source Index (string operations).
+     - **EDI/RDI**: Destination Index (string operations).
+     - **R8-R15**: New 64-bit registers (not in 32-bit systems).
+
+4. **Addressing Modes**:
+   - Registers can be accessed in different sizes:
+     - Full size (e.g., RAX), lower 32-bit (e.g., EAX), 16-bit (e.g., AX), or 8-bit (e.g., AL/AH).
+
+**Remembering Tip**:
+Think of registers as tiny "buckets" inside the CPU:
+- **IP/EIP/RIP**: Points to the next step in your recipe.
+- **EAX/RAX**: Holds math results (like a calculator).
+- **ESP/RSP**: Tracks the stack (like a pile of plates).
+- **R8-R15**: Extra buckets added in 64-bit systems.
+
+--- 
 ---
 
 
