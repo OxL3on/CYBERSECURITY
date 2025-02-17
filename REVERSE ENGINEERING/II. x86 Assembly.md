@@ -309,3 +309,61 @@ Think of branching like decision-making in real life:
 ---
 
 
+### **Stack and Function Calls**
+
+
+#### **1. The Stack**
+- A **Last In, First Out (LIFO)** memory structure.
+- Used for storing local variables, function arguments, return addresses, and saving register states.
+
+**Key Registers**:
+- **ESP/RSP**: Points to the **top of the stack**.
+- **EBP/RBP**: Acts as a **base pointer** for referencing stack data.
+
+
+#### **2. PUSH Instruction**
+- Syntax: `push source`
+- Pushes the `source` operand onto the stack.
+  - Stores the value at the memory location pointed to by **ESP**.
+  - Decrements **ESP** to adjust the stack pointer.
+
+**Special Instructions**:
+- `pusha`: Pushes all **16-bit general-purpose registers** (AX, BX, CX, DX, SI, DI, SP, BP).
+- `pushad`: Pushes all **32-bit general-purpose registers** (EAX, EBX, ECX, EDX, ESI, EDI, ESP, EBP).
+
+**Use Case**:
+- Often used to save the state of registers, especially in low-level code like shellcode.
+
+
+#### **3. POP Instruction**
+- Syntax: `pop destination`
+- Pops the value from the top of the stack into the `destination` operand.
+  - Increments **ESP** to adjust the stack pointer.
+
+**Special Instructions**:
+- `popa`: Pops values back into **16-bit general-purpose registers** in this order: DI, SI, BP, BX, DX, CX, AX.
+- `popad`: Pops values back into **32-bit general-purpose registers** in this order: EDI, ESI, EBP, EBX, EDX, ECX, EAX.
+
+
+#### **4. CALL Instruction**
+- Syntax: `call location`
+- Used to call a function.
+  - Pushes the **return address** (next instruction) onto the stack.
+  - Jumps to the specified `location` (function address).
+
+**Function Prologue and Epilogue**:
+- **Prologue**: Prepares the stack by saving the old base pointer (**EBP**) and adjusting **ESP**.
+- **Epilogue**: Restores the stack by popping the old base pointer and returning to the caller.
+
+
+#### **Why Are These Important?**
+- **PUSH/POP**: Manage data on the stack (e.g., saving/restoring registers or passing arguments).
+- **CALL**: Enables modular programming by calling reusable functions.
+
+
+### **Remembering Tips**
+Think of the stack like a stack of plates:
+- **PUSH**: Add a plate to the top.
+- **POP**: Remove the top plate.
+- **CALL**: Write down where you left off (return address), then go do something else (jump to the function).
+
