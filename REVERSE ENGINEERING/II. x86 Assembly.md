@@ -248,3 +248,64 @@ Think of these instructions as tools in a toolbox:
 
 
 
+### **Conditionals and Branching**
+
+
+#### **1. Conditional Instructions**
+- Used to compare values or check conditions.
+
+**TEST Instruction**:
+- Syntax: `test destination, source`
+- Performs a bitwise AND but doesn’t store the result.
+- Sets **ZF = 1** if the result is zero.
+- Common use: Check if a value is **NULL** by testing it against itself (e.g., `test eax, eax`).
+
+**CMP Instruction**:
+- Syntax: `cmp destination, source`
+- Compares two values (like subtraction without modifying operands).
+- Sets flags based on the comparison:
+  - **ZF = 1**: Both operands are equal.
+  - **CF = 1**: Source > Destination.
+  - **ZF = 0 & CF = 0**: Destination > Source.
+
+
+#### **2. Branching Instructions**
+- Change the flow of execution by modifying the **Instruction Pointer (IP)**.
+
+**JMP Instruction**:
+- Syntax: `jmp location`
+- Jumps to a specific memory address unconditionally.
+- Example: `jmp 0x401000` → Execution moves to address `0x401000`.
+
+**Conditional Jumps**:
+- Jump only if a specific condition is met (based on flags).
+- Common conditional jumps:
+
+| **Instruction** | **Explanation**                                   |
+|------------------|---------------------------------------------------|
+| `jz`            | Jump if **ZF = 1** (result is zero).             |
+| `jnz`           | Jump if **ZF = 0** (result is not zero).         |
+| `je`            | Jump if equal (used after `CMP`).               |
+| `jne`           | Jump if not equal (used after `CMP`).           |
+| `jg`            | Jump if greater (signed comparison).            |
+| `jl`            | Jump if less (signed comparison).               |
+| `ja`            | Jump if above (unsigned comparison).            |
+| `jb`            | Jump if below (unsigned comparison).            |
+
+
+#### **3. Why Are These Important?**
+- **Conditionals**: Help the CPU decide what to do next (e.g., "Is this value zero?").
+- **Branching**: Changes the program’s flow (e.g., loops, function calls, or skipping code).
+
+
+### **Remembering Tips**
+Think of branching like decision-making in real life:
+- **TEST/CMP**: Asking questions like "Are these equal?" or "Is this zero?"
+- **JMP**: Taking a direct shortcut to a new location.
+- **Conditional Jumps**: Deciding which path to take based on the answer:
+  - "If yes, go left; if no, go right."
+
+---
+---
+
+
