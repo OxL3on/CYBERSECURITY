@@ -135,3 +135,50 @@ The SOC team is like a sports team—each role has a specific job, but everyone 
 
 
 
+### Process in a SOC
+
+**Main Topic:**  
+The **SOC process** revolves around key activities like **Alert Triage**, **Reporting**, and **Incident Response/Forensics** to handle security threats effectively.
+
+
+### **Key Points:**
+
+1. **Alert Triage:**  
+   - The first step in responding to alerts.  
+   - Focuses on analyzing and prioritizing alerts based on severity.  
+   - Answers the **5 Ws**:  
+     - **What?** What happened? (e.g., Malware detected)  
+     - **When?** When did it happen? (e.g., June 5, 2024, at 13:20)  
+     - **Where?** Where was it detected? (e.g., Host: GEORGE PC)  
+     - **Who?** Who is involved? (e.g., User: George)  
+     - **Why?** Why did it happen? (e.g., Downloaded pirated software)  
+
+2. **Reporting:**  
+   - Harmful alerts are escalated as tickets to higher-level analysts.  
+   - Reports include:  
+     - All **5 Ws** answered.  
+     - Detailed analysis with evidence (e.g., screenshots).  
+
+3. **Incident Response and Forensics:**  
+   - For critical alerts, high-level teams initiate **incident response**.  
+   - **Forensics** involves analyzing system/network artifacts to find the root cause of an incident.  
+
+
+**-----**  
+Imagine a SOC team as detectives solving a crime:  
+- **Alert Triage:** They get a call about a break-in (alert). First, they ask the **5 Ws**—What happened? When? Where? Who’s involved? Why did it happen?  
+- **Reporting:** They document their findings and send the case file to senior detectives (higher-level analysts).  
+- **Incident Response/Forensics:** If it’s a major crime, they dig deeper—collecting fingerprints, reviewing CCTV footage (forensics), and stopping further damage (incident response).  
+
+
+**Remembering Tip:**  
+Think of SOC processes like solving a mystery:  
+- **Triage = Ask the 5 Ws.**  
+- **Report = Share your findings.**  
+- **Respond/Forensics = Dig deeper for the truth.**  
+
+---
+---
+
+
+
