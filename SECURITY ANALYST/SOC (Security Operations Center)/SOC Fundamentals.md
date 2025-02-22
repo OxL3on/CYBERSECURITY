@@ -80,3 +80,58 @@ SOC = Detect + Respond, powered by **People, Process, and Technology**. These th
 ---
 
 
+### People in a SOC
+
+**Main Topic:**  
+The **SOC team** is made up of skilled individuals who play different roles to detect and respond to security threats effectively.
+
+
+### **Key Points:**
+
+1. **Why People Matter:**  
+   - Even with advanced automation, humans are essential to filter out noise (false alarms) and focus on real threats.  
+   - Example: A fire alarm going off due to cooking smoke vs. an actual fire—humans decide what’s truly harmful.  
+
+2. **SOC Team Hierarchy and Roles:**  
+   - **SOC Analyst (Level 1):**  
+     - First responders to alerts.  
+     - Perform basic checks to determine if a detection is harmful.  
+     - Report findings through proper channels.  
+
+   - **SOC Analyst (Level 2):**  
+     - Investigate deeper into alerts flagged by Level 1.  
+     - Correlate data from multiple sources for better analysis.  
+
+   - **SOC Analyst (Level 3):**  
+     - Experienced pros who proactively hunt for threats.  
+     - Handle critical incidents, including containment, eradication, and recovery.  
+
+   - **Security Engineer:**  
+     - Deploy and configure security tools to ensure they work smoothly.  
+
+   - **Detection Engineer:**  
+     - Create rules/logic for security tools to detect harmful activities.  
+
+   - **SOC Manager:**  
+     - Oversees the SOC team and processes.  
+     - Reports to the CISO (Chief Information Security Officer) on the organization’s security status.  
+
+
+**-----**  
+Think of the SOC team as a hospital emergency room:  
+- **Level 1 Analysts** are like nurses triaging patients (basic checks).  
+- **Level 2 Analysts** are doctors diagnosing complex cases.  
+- **Level 3 Analysts** are specialists handling life-threatening conditions.  
+- **Security Engineers** are the technicians maintaining medical equipment.  
+- **Detection Engineers** write the protocols for identifying illnesses.  
+- **SOC Manager** is the head doctor ensuring everything runs smoothly.  
+
+
+**Remembering Tip:**  
+The SOC team is like a sports team—each role has a specific job, but everyone works together to win (protect the organization).  
+
+---
+---
+
+
+
