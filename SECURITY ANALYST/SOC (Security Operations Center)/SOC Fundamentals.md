@@ -182,3 +182,49 @@ Think of SOC processes like solving a mystery:
 
 
 
+### Technology in a SOC
+
+**Main Topic:**  
+**Technology** refers to the security tools used in a SOC to detect and respond to threats efficiently, reducing manual effort.
+
+
+### **Key Points:**
+
+1. **Why Technology is Important:**  
+   - Centralizes data from all devices and applications in the network.  
+   - Automates detection and response, saving time and resources.  
+
+2. **Key Security Solutions:**  
+   - **SIEM (Security Information and Event Management):**  
+     - Collects logs from devices (log sources) and uses rules to detect suspicious activity.  
+     - Provides advanced features like user behavior analytics and threat intelligence using machine learning.  
+     - **Focus:** Detection only.  
+
+   - **EDR (Endpoint Detection and Response):**  
+     - Monitors endpoints (e.g., computers, servers) in real-time and provides historical data.  
+     - Allows detailed investigation and quick automated responses with a few clicks.  
+
+   - **Firewall:**  
+     - Acts as a barrier between internal and external networks (e.g., the Internet).  
+     - Filters unauthorized traffic and blocks suspicious activity before it enters the network.  
+
+3. **Other Tools:**  
+   - Includes Antivirus, EPP, IDS/IPS, XDR, SOAR, etc.  
+   - The choice of tools depends on the organization’s threat surface and resources.  
+
+
+**Story/Example:**  
+Think of a SOC’s technology as a home security system:  
+- **SIEM** is like the central control panel that collects alerts from all sensors (cameras, door alarms) and tells you if something’s wrong.  
+- **EDR** is like a smart camera that watches every room in detail and can lock doors automatically if it detects an intruder.  
+- **Firewall** is like a fence around your house that keeps unwanted visitors out.  
+
+
+**Remembering Tip:**  
+SOC Technology = Tools that **detect**, **analyze**, and **respond** to threats automatically. Think of them as your digital "security guards"!  
+
+---
+---
+
+
+
