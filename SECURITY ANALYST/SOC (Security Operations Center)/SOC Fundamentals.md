@@ -222,9 +222,3 @@ Think of a SOC’s technology as a home security system:
 
 **Remembering Tip:**  
 SOC Technology = Tools that **detect**, **analyze**, and **respond** to threats automatically. Think of them as your digital "security guards"!  
-
----
----
-
-
-
