@@ -29,3 +29,54 @@ Think of SOC as the "always-on" protector for your digital assets. If there’s 
 ---
 
 
+### Purpose and Components of SOC
+
+**Main Topic:**  
+The SOC team focuses on **Detecting** and **Responding** to security incidents using the three pillars: **People, Process, and Technology**.
+
+
+### **Key Points:**
+
+#### **1. Detection**
+- **Detect Vulnerabilities:**  
+  - Weaknesses in software (e.g., unpatched Windows computers) that attackers can exploit.  
+  - Example: A SOC discovers a vulnerability in a server’s operating system.  
+
+- **Detect Unauthorized Activity:**  
+  - Spotting when someone uses stolen credentials (e.g., an employee’s username/password).  
+  - Clues like unusual login locations help detect this.  
+
+- **Detect Policy Violations:**  
+  - Identifying actions against company rules, like downloading pirated files or sending sensitive data insecurely.  
+
+- **Detect Intrusions:**  
+  - Stopping unauthorized access, such as hackers exploiting web apps or infecting systems via malicious sites.  
+
+
+#### **2. Response**
+- Once an incident is detected, the SOC team responds by:  
+  - Minimizing damage.  
+  - Finding the root cause of the issue.  
+  - Supporting the incident response team to fix the problem.  
+
+
+#### **3. The Three Pillars of SOC**
+- **People:** Skilled professionals who monitor and respond to threats.  
+- **Process:** Proper procedures to handle incidents effectively.  
+- **Technology:** Advanced tools to detect and respond to security issues.  
+
+**-----**  
+Think of a SOC like a fire station:  
+- **People** are the firefighters.  
+- **Process** is the plan for putting out fires.  
+- **Technology** is the fire truck and equipment.  
+Without all three working together, the fire can’t be controlled quickly or efficiently.
+
+
+**Remembering Tip:**  
+SOC = Detect + Respond, powered by **People, Process, and Technology**. These three pillars make the SOC strong and effective!  
+
+---
+---
+
+
