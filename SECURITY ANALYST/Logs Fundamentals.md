@@ -113,3 +113,119 @@ Think of logs as **folders in a filing cabinet**:
 ---
 
 
+### Windows Event Logs Analysis
+
+**Main Topic:**  
+Windows Event Logs record system, application, and security activities. **Event Viewer** is a built-in tool to view and analyze these logs using **Event IDs** for specific activities.
+
+
+### **Key Points:**
+
+1. **Types of Windows Logs:**  
+   - **Application Logs:** Track app-related activities (e.g., errors, warnings).  
+   - **System Logs:** Record OS operations (e.g., startup/shutdown, driver issues).  
+   - **Security Logs:** Log security events (e.g., logins, account changes).  
+
+2. **Key Fields in Event Logs:**  
+   - **Description:** Details about the activity.  
+   - **Log Name:** The category of the log (e.g., Security, System).  
+   - **Logged:** Timestamp of the event.  
+   - **Event ID:** Unique identifier for specific activities.  
+
+3. **Important Event IDs:**  
+   - **4624:** Successful login.  
+   - **4625:** Failed login attempt.  
+   - **4634:** Successful logout.  
+   - **4720:** User account created.  
+   - **4724:** Password reset attempt.  
+   - **4722:** Account enabled.  
+   - **4725:** Account disabled.  
+   - **4726:** Account deleted.  
+
+4. **Using Event Viewer:**  
+   - Open via **Start > Event Viewer**.  
+   - Navigate to **Windows Logs** to see categories (e.g., Security, System).  
+   - Use **Filter Current Log** to search by specific **Event IDs**.  
+
+
+**-----**  
+Imagine you’re a detective solving a mystery:  
+- **Event Logs = Clues** left behind by activities on the system.  
+- **Event IDs = Labels** that tell you what each clue means.  
+  - Example: Searching for **Event ID 4624** helps you find all successful logins.  
+- **Event Viewer = Your magnifying glass** to filter and analyze clues quickly.  
+
+In cyber security:  
+- Use **Event Viewer** to investigate suspicious activities.  
+- Example: If you suspect unauthorized access, check **Event ID 4625** (failed logins).  
+
+
+**Remembering Tip:**  
+Think of **Event IDs** as **codes for clues**:  
+- **4624 = Someone logged in.**  
+- **4625 = Someone tried and failed to log in.**  
+Use **Event Viewer** to filter logs like searching for keywords in a book!  
+
+---
+---
+
+
+
+### Web Server Access Logs Analysis
+
+**Main Topic:**  
+Web server access logs record all requests made to a website, including details like IP addresses, timestamps, request types, and status codes. Tools like `cat`, `grep`, and `less` help analyze these logs manually in Linux.
+
+
+### **Key Points:**
+
+1. **What’s in a Web Server Log?**  
+   - **IP Address:** Who made the request (e.g., `172.16.0.1`).  
+   - **Timestamp:** When the request was made (e.g., `[06/Jun/2024:13:58:44]`).  
+   - **Request Details:**  
+     - **HTTP Method:** What action was requested (e.g., `GET`, `POST`).  
+     - **URL:** The resource accessed (e.g., `/products`).  
+   - **Status Code:** Server’s response (e.g., `200` = Success, `404` = Not Found).  
+   - **User-Agent:** Info about the user’s device and browser.  
+
+2. **Log Rotation:**  
+   - Logs are split into separate files for specific timeframes to avoid clutter.  
+   - Use `cat` to combine multiple log files if needed:  
+     ```bash
+     cat access1.log access2.log > combined_access.log
+     ```
+
+3. **Command Line Tools for Log Analysis:**  
+   - **`cat`:** Display log file contents.  
+     ```bash
+     cat access.log
+     ```  
+   - **`grep`:** Search for specific patterns (e.g., an IP address):  
+     ```bash
+     grep "192.168.1.1" access.log
+     ```  
+   - **`less`:** View logs page by page for easier manual analysis:  
+     ```bash
+     less access.log
+     ```  
+     - Use `/pattern` to search within `less`.  
+     - Navigate with `n` (next) and `N` (previous).  
+
+
+**-----**  
+Imagine you’re a store owner reviewing security footage:  
+- **Logs = Security camera footage** of every visitor.  
+- **IP Address = Visitor’s face** (who they are).  
+- **Timestamp = Time of visit** (when they came).  
+- **Request = What they did** (e.g., browsed products, tried to enter restricted areas).  
+- **Status Code = Outcome** (e.g., success, failure).  
+
+In cyber security:  
+- Use `grep` to find suspicious IPs (e.g., repeated failed login attempts).  
+- Use `less` to review logs page by page and spot unusual patterns.  
+
+
+**Remembering Tip:**  
+Think of logs as a **guestbook** at a party:  
+- Each entry tells you who came, when, and what they did.  
+Use tools like `cat`, `grep`, and `less` to skim through or search for specific guests!  
