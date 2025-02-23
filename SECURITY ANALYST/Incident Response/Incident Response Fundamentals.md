@@ -99,3 +99,168 @@ Think of incidents like a hospital triage system:
 ---
 
 
+### Types of Incidents
+
+**Main Topic:**  
+Cyber security incidents come in different types, each with unique risks and impacts. Examples include **Malware Infections**, **Security Breaches**, **Data Leaks**, **Insider Attacks**, and **Denial of Service (DoS) Attacks**.
+
+
+### **Key Points:**
+
+1. **Malware Infections:**  
+   - Malicious software (e.g., viruses, ransomware) that damages systems or steals data.  
+   - Often spread through files like documents or executables.  
+
+2. **Security Breaches:**  
+   - Unauthorized access to confidential data.  
+   - Example: Hackers stealing sensitive business information.  
+
+3. **Data Leaks:**  
+   - Confidential data exposed accidentally or intentionally.  
+   - Can be caused by human error, misconfigurations, or attackers.  
+
+4. **Insider Attacks:**  
+   - Attacks from within the organization (e.g., disgruntled employees).  
+   - Dangerous because insiders have greater access to resources.  
+
+5. **Denial of Service (DoS) Attacks:**  
+   - Overloading a system/network with fake requests, making it unavailable.  
+   - Disrupts services for legitimate users.  
+
+
+**-----**  
+Imagine a company as a castle:  
+- **Malware Infections:** A sneaky rat carrying poison enters the castle through a gift box.  
+- **Security Breaches:** A spy sneaks into the treasure room and steals gold coins.  
+- **Data Leaks:** A careless guard accidentally leaves the castle’s secret plans outside the gates.  
+- **Insider Attacks:** A trusted knight betrays the king and burns the castle from within.  
+- **DoS Attacks:** The enemy floods the castle gates with fake visitors, blocking real ones from entering.  
+
+Each threat affects the castle differently, just like cyber incidents impact organizations uniquely.
+
+**Remembering Tip:**  
+Think of incidents like different ways a house can be attacked:  
+- **Malware = Poisoned gifts.**  
+- **Security Breach = Burglar breaking in.**  
+- **Data Leak = Leaving your door open.**  
+- **Insider Attack = A family member causing trouble.**  
+- **DoS = Too many guests crashing your party.**  
+
+---
+---
+
+
+
+### Incident Response Process
+
+**Main Topic:**  
+The **Incident Response Process** provides a structured approach to handle cyber incidents effectively. Two widely used frameworks are **SANS (PICERL)** and **NIST**, which guide organizations through preparation, detection, containment, eradication, recovery, and learning.
+
+
+### **Key Points:**
+
+1. **SANS Framework (PICERL):**  
+   - A 6-phase process to manage incidents effectively.  
+   - Easy to remember as **PICERL**:  
+     - **Preparation:** Build resources (e.g., teams, tools, training).  
+       - Example: Train employees on phishing emails.  
+     - **Identification:** Detect abnormal behavior or threats.  
+       - Example: Spot unusual data transfers from a compromised host.  
+     - **Containment:** Limit the attack’s impact.  
+       - Example: Isolate the infected machine from the network.  
+     - **Eradication:** Remove the threat completely.  
+       - Example: Run a deep malware scan to clean the system.  
+     - **Recovery:** Restore systems and test them for normal use.  
+       - Example: Rebuild the host and restore data from backups.  
+     - **Lessons Learned:** Analyze gaps and improve future responses.  
+       - Example: Conduct a post-incident review meeting.  
+
+2. **NIST Framework:**  
+   - Similar to SANS but simplified into **4 phases**:  
+     - **Preparation**  
+     - **Detection & Analysis**  
+     - **Containment, Eradication, & Recovery**  
+     - **Post-Incident Activity**  
+
+3. **Incident Response Plan:**  
+   - A formal document approved by senior management.  
+   - Includes:  
+     - Roles and responsibilities of the team.  
+     - Communication plan with stakeholders (e.g., law enforcement).  
+     - Escalation paths for critical incidents.  
+
+
+**-----**  
+Imagine your house catches fire:  
+- **Preparation:** Install smoke detectors and practice fire drills.  
+- **Identification:** The smoke detector goes off, alerting you to the fire.  
+- **Containment:** Close doors to stop the fire from spreading.  
+- **Eradication:** Firefighters extinguish the flames.  
+- **Recovery:** Repair the damage and replace lost items.  
+- **Lessons Learned:** Review what went wrong (e.g., faulty wiring) and improve safety measures.  
+
+In cyber security:  
+- **Preparation = Fire drills.**  
+- **Identification = Smoke alarm.**  
+- **Containment = Closing doors.**  
+- **Eradication = Putting out the fire.**  
+- **Recovery = Fixing the house.**  
+- **Lessons Learned = Preventing future fires.**
+
+**Remembering Tip:**  
+Think of the SANS framework as **PICERL**:  
+- **P**repare, **I**dentify, **C**ontain, **E**radicate, **R**ecover, **L**earn.  
+It’s like a recipe for handling cyber incidents step by step!  
+
+---
+---
+
+
+
+### Incident Response Techniques
+
+**Main Topic:**  
+**Incident Response Techniques** involve using security tools like **SIEM**, **AV**, and **EDR** for detection and response, along with **Playbooks** and **Runbooks** to guide actions during incidents.
+
+
+### **Key Points:**
+
+1. **Security Solutions for Detection and Response:**  
+   - **SIEM:** Collects and correlates logs from all systems to identify incidents.  
+   - **AV (Antivirus):** Detects and removes known malware through regular scans.  
+   - **EDR (Endpoint Detection and Response):** Protects systems against advanced threats and can contain/eradicate threats.  
+
+2. **Playbooks:**  
+   - Step-by-step guidelines for handling specific types of incidents.  
+   - Example: **Phishing Email Playbook:**  
+     1. Notify stakeholders about the phishing email.  
+     2. Analyze the email header and body for malicious content.  
+     3. Check for attachments and analyze them.  
+     4. Identify if anyone opened the attachment.  
+     5. Isolate infected systems from the network.  
+     6. Block the sender’s email address.  
+
+3. **Runbooks:**  
+   - Detailed, step-by-step instructions tailored to specific resources or tools available.  
+   - Focus on executing specific tasks during an incident.  
+
+
+**-----**  
+Imagine you’re a chef responding to a kitchen fire:  
+- **SIEM = Smoke detector** that alerts you to the fire.  
+- **AV = Fire extinguisher** that handles small fires.  
+- **EDR = Advanced fire suppression system** that contains and stops the fire.  
+- **Playbook = Recipe** for handling the fire (e.g., turn off gas, use extinguisher, call firefighters).  
+- **Runbook = Specific steps** based on your kitchen setup (e.g., which valve to turn off first).  
+
+In cyber security:  
+- Use **tools** to detect threats.  
+- Follow **playbooks** for general guidance.  
+- Use **runbooks** for detailed, tool-specific actions.  
+
+
+**Remembering Tip:**  
+Think of it as a **firefighting plan**:  
+- **Tools (SIEM, AV, EDR)** detect and stop the fire.  
+- **Playbooks** give you the overall strategy.  
+- **Runbooks** provide the exact steps for your tools.  
