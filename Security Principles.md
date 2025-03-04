@@ -118,3 +118,29 @@ In the following questions, refer to the ISO/IEC 19249 five design principles ab
 ---
 
 
+
+### Trust but Verify vs. Zero Trust
+
+
+**Main Idea:** Two ways to handle trust in security—check it or ditch it.
+
+**Trust but Verify:**  
+- Trust first, but double-check (e.g., let a user in, then log their clicks).  
+- Needs tools like proxies or IDS to watch stuff automatically.  
+- Example: Boss trusts you but peeks at your web history.
+
+**Zero Trust:**  
+- No trust ever—everything’s a suspect until proven safe (e.g., no free pass for company laptops).  
+- Always authenticate and limit access, even inside the network.  
+- Microsegmentation: Tiny network zones, each locked tight.  
+- Example: Every door needs a key, even in your own house.
+
+**Why It Matters:**  
+- Trust but Verify is lighter but misses sneaky insiders.  
+- Zero Trust locks down more but can slow things if overdone.
+
+**Remembering Tip:** Think of Trust but Verify as a “friendly handshake with a spy cam,” and Zero Trust as “no hugs, just ID checks”!
+
+---
+
+
