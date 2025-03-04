@@ -26,3 +26,24 @@
 ---
 
 
+### DAD Triad
+
+**Main Idea:** DAD (Disclosure, Alteration, Destruction) is the flip side of CIA—ways security gets attacked.
+
+**DAD Explained:**  
+- **Disclosure:** Secrets leak out (breaks confidentiality, e.g., medical records go public).  
+- **Alteration:** Data gets messed up (breaks integrity, e.g., patient records changed = wrong treatment).  
+- **Destruction/Denial:** System’s knocked out (breaks availability, e.g., hospital database down = chaos).  
+
+**Example:**  
+- Hospital hack: Records stolen (disclosure), treatments altered (alteration), system crashed (denial)—big trouble!
+
+**Why It Matters:**  
+- Stopping DAD keeps CIA strong.  
+- Too much focus on one (like locking down confidentiality) can weaken another (like availability)—balance is key.
+
+**Remembering Tip:** Think of DAD as the “bad guy trio”—spilling secrets, twisting truth, and smashing access!
+
+---
+
+
