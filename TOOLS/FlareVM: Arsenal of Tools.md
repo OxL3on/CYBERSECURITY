@@ -48,3 +48,51 @@
 ---
 
 
+### FlareVM Investigation Tools
+
+**Main Idea:** FlareVM has key tools to kick off malware investigations.
+
+**Top Tools:**  
+- **Procmon:** Tracks system activity (e.g., lsass.exe reading files—watch for odd stuff).  
+- **Process Explorer:** Shows process family trees (e.g., CFF Explorer’s parent).  
+- **HxD:** Hex editor for file peeking (e.g., `4D 5A` = executable start).  
+- **Wireshark:** Sniffs network traffic (e.g., TLSv1.2 packets).  
+- **CFF Explorer:** Checks file details (e.g., cryptominer.bin’s hashes).  
+- **PEStudio:** Static file analysis (e.g., PsExec.exe’s entropy hints at danger).  
+- **FLOSS:** Pulls hidden strings (e.g., 189 static strings from cobaltstrike.exe).
+
+**Example:**  
+- Run `floss cobaltstrike.exe`—grabs strings like URLs or keys, but no decoded ones means sneaky hiding.
+
+**Why They Rock:** Spot malware tricks fast—some watch live, others dig static.
+
+**Remembering Tip:** Think of these tools as “cyber magnifying glasses”—each zooms in on a different clue (processes, files, networks)!
+
+---
+
+
+### Analyzing Malware with FlareVM
+
+**Main Idea:** Dive into suspicious files using FlareVM tools to spot their tricks.
+
+**PEStudio on `windows.exe`:**  
+- Open `C:\Users\Administrator\Desktop\Sample\windows.exe` in PEStudio.  
+- Key Finds:  
+  - Hashes: MD5 `9FDD4767DE5AEC8E577C1916ECC3E1D6`—check VirusTotal.  
+  - Fake REGEDIT label, Russian text in metadata—suspicious!  
+  - No rich header = packed/obfuscated.  
+  - APIs: `set_UseShellExecute` (spawns stuff), `RijndaelManaged` (AES encryption—maybe ransomware).
+
+**FLOSS on `windows.exe`:**  
+- Run: `FLOSS.exe .\windows.exe > windows.txt` in PowerShell.  
+- Check `windows.txt`—same APIs as PEStudio, no decoded strings (hidden tricks).
+
+**Process Explorer & Procmon on `cobaltstrike.exe`:**  
+- Run `cobaltstrike.exe`, open Process Explorer.  
+  - See it under Explorer.exe (PID 4756), check TCP/IP tab—network connections!  
+- Rerun, use Procmon: Filter for “cobalt” (Ctrl+L).  
+  - Confirms connection to IP `47.120.46.210`—possible C2 server.
+
+**Why It’s Cool:** Static (PEStudio, FLOSS) gives clues, dynamic (Procmon, Process Explorer) catches action.
+
+**Remembering Tip:** Think of these tools as “malware detectives”—PEStudio and FLOSS read the file’s diary, Process Explorer and Procmon spy on its phone calls!
