@@ -182,11 +182,6 @@
 ---
 
 
-Here’s a short, simple note for your GitHub based on the "OSINT - GitHub" script. I’ve kept it easy with a quick example and a tip!
-
----
-
-
 ### GitHub OSINT
 
 **Main Idea:** GitHub’s public repos can leak target info like code or secrets.
