@@ -29,16 +29,16 @@
    - Run: `enum4linux -a MACHINE_IP`—gets users, shares, passwords, all the basics.
   
 
-TAG            FUNCTION
+| TAG  | FUNCTION |
+|------|----------|
+| -U   | get userlist |
+| -M   | get machine list |
+| -N   | get namelist dump (different from -U and -M) |
+| -S   | get sharelist |
+| -P   | get password policy information |
+| -G   | get group and member list |
+| -a   | all of the above (full basic enumeration) |
 
--U             get userlist
--M             get machine list
--N             get namelist dump (different from -U and-M)
--S             get sharelist
--P             get password policy information
--G             get group and member list
-
--a             all of the above (full basic enumeration)
 
 
 **Example:** Scan a server, find a share with “secret_plans.txt”—bingo!
