@@ -27,6 +27,19 @@
 1. **Port Scan:** Use Nmap to spot open ports and services on the target.  
 2. **Enum4Linux:** Tool to grab SMB info fast (on AttackBox or GitHub).  
    - Run: `enum4linux -a MACHINE_IP`—gets users, shares, passwords, all the basics.
+  
+
+TAG            FUNCTION
+
+-U             get userlist
+-M             get machine list
+-N             get namelist dump (different from -U and-M)
+-S             get sharelist
+-P             get password policy information
+-G             get group and member list
+
+-a             all of the above (full basic enumeration)
+
 
 **Example:** Scan a server, find a share with “secret_plans.txt”—bingo!
 
