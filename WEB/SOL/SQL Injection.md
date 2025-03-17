@@ -75,3 +75,30 @@
 ---
 
 
+**SQL Injection**
+
+1. **What’s SQL Injection?**
+   - It’s when sneaky user input messes with an SQL query to trick a database.
+   - Tip: Think of it as slipping a fake note to the librarian.
+
+2. **How It Looks**
+   - Example: A blog URL like `https://website.thm/blog?id=1` grabs article ID 1.
+   - Normal query: `SELECT * from blog where id=1 and private=0 LIMIT 1;` (only public articles).
+
+3. **The Trick**
+   - Change the URL to `https://website.thm/blog?id=2;--` to see private article ID 2.
+   - New query: `SELECT * from blog where id=2;-- and private=0 LIMIT 1;` 
+   - `--` makes the rest a comment, skipping the private check.
+   - Tip: It’s like crossing out the “no entry” sign.
+
+4. **Result**
+   - Shows article 2, even if it’s private—bam, you’ve hacked it!
+   - Tip: Small tweak, big access.
+
+5. **Types**
+   - This is “In-Band” SQL Injection (one of three: In-Band, Blind, Out-of-Band).
+   - Tip: In-Band is like shouting your trick right at the database.
+
+---
+
+
