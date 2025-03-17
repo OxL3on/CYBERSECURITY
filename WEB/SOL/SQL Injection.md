@@ -34,3 +34,44 @@
 ---
 
 
+**SQL**
+
+1. **What’s SQL?**
+   - SQL (Structured Query Language) is a tool to talk to databases—like asking questions or giving orders.
+   - Tip: Think of it as a librarian who fetches or changes info.
+
+2. **SELECT**
+   - Grabs data from a table. Example: `select * from users;` gets everything.
+   - Tip: `*` is like saying “give me all the toys in the box.”
+
+3. **WHERE**
+   - Picks specific data. Example: `select * from users where username='admin';` finds just admin.
+   - Tip: It’s like saying “only grab the red toys.”
+
+4. **LIMIT**
+   - Controls how many rows you get. Example: `select * from users LIMIT 1;` gives one row.
+   - Tip: Think of it as “just one slice of pizza.”
+
+5. **LIKE**
+   - Finds matches with patterns. Example: `select * from users where username like 'a%';` gets usernames starting with ‘a’.
+   - Tip: `%` is a wildcard—like “anything goes here.”
+
+6. **UNION**
+   - Combines results from two tables. Example: Mixes customers and suppliers into one list.
+   - Tip: It’s like merging two toy piles into one.
+
+7. **INSERT**
+   - Adds new data. Example: `insert into users (username, password) values ('bob', 'password123');`
+   - Tip: Think of dropping a new toy into the box.
+
+8. **UPDATE**
+   - Changes data. Example: `update users SET password='pass123' where username='admin';`
+   - Tip: It’s like fixing a toy’s name tag.
+
+9. **DELETE**
+   - Removes data. Example: `delete from users where username='martin';`
+   - Tip: Imagine tossing a toy out of the box.
+
+---
+
+
