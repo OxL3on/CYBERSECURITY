@@ -25,3 +25,34 @@
 ---
 
 
+**Whois**
+
+1. **What’s Whois?**
+   - A tool to get info about a domain name (e.g., who owns it, when it was made).
+   - Tip: Like a phonebook for websites.
+
+2. **Key Info You Get**
+   - Registrar: Who sold the domain (e.g., Namecheap).
+   - Contact: Owner’s name, address, phone (if not hidden).
+   - Dates: Created, updated, expires (e.g., tryhackme.com: 2018-2027).
+   - Name Server: Which server handles the domain’s DNS.
+   - Tip: It’s a treasure map of domain details.
+
+3. **How to Use It**
+   - On Linux (e.g., Kali), type: `whois tryhackme.com` in terminal.
+   - Online services work too, but terminal’s faster.
+   - Tip: Just ask, and it spills the beans.
+
+4. **Example Output**
+   - `whois tryhackme.com` shows Namecheap as registrar, creation date (2018), and more.
+   - Privacy services might hide owner info.
+   - Tip: Like peeking at a website’s birth certificate.
+
+5. **Why It Matters**
+   - Helps find attack points (e.g., email or DNS servers) for testing.
+   - Tip: Spies use it to plan; defenders use it to hide.
+
+---
+---
+
+
