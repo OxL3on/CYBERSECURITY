@@ -39,14 +39,12 @@
    - Tip: It’s a treasure map of domain details.
 
 3. **How to Use It**
-   - On Linux (e.g., Kali), type: `whois tryhackme.com` in terminal.
+   - On Linux (e.g., Kali), type: `whois domain` in terminal.
    - Online services work too, but terminal’s faster.
-   - Tip: Just ask, and it spills the beans.
 
 4. **Example Output**
    - `whois tryhackme.com` shows Namecheap as registrar, creation date (2018), and more.
    - Privacy services might hide owner info.
-   - Tip: Like peeking at a website’s birth certificate.
 
 5. **Why It Matters**
    - Helps find attack points (e.g., email or DNS servers) for testing.
