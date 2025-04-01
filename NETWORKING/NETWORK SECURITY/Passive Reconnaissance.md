@@ -111,4 +111,22 @@
 ---
 
 
+### **Shodan.io**
 
+1. **What’s Shodan.io?**
+   - It’s a search engine for internet-connected devices (not websites), like cameras, servers, and IoT gadgets.
+   - Tip: Think of it as Google for devices, not pages.
+
+2. **What It Finds**
+   - Vulnerable servers, open ports, unprotected cameras, industrial systems, exposed databases (e.g., MongoDB), and weak IoT devices.
+   - Tip: It spots stuff hackers could exploit, like unlocked doors.
+
+3. **How to Use It**
+   - Search with keywords and filters (e.g., “default password” for devices with weak logins, “port:22 country:US” for U.S. SSH services).
+   - Free users get limited results; paid plans offer more, like API access.
+   - Tip: It’s a spyglass for spotting risks—use responsibly.
+
+4. **Why It Matters**
+   - Helps cybersecurity pros, pentesters, and companies find and fix exposed devices.
+   - Also used by researchers to track trends or threats (e.g., ransomware).
+   - Tip: It’s a defense tool, not a hack tool—use it to protect, not attack.
