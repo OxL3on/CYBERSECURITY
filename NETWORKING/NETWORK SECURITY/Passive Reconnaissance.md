@@ -85,6 +85,30 @@
 ---
 ---
 
+### **DNSDumpster**
+
+1. **What’s DNSDumpster?**
+   - It’s an online tool to find subdomains and DNS info for a domain (e.g., tryhackme.com).
+   - Tip: Like a detective finding hidden doors on a website.
+
+2. **Why Use It?**
+   - Normal tools (nslookup, dig) can’t find subdomains easily.
+   - Subdomains (e.g., blog.tryhackme.com) might have old, vulnerable stuff.
+   - Tip: It’s faster than searching engines or brute-forcing.
+
+3. **What It Does**
+   - Finds subdomains (e.g., blog.tryhackme.com for tryhackme.com).
+   - Shows DNS servers, IP addresses, MX records (mail servers), and TXT records.
+   - Even geolocates IPs and draws a graph of connections.
+   - Tip: One search gives you a treasure map of the domain.
+
+4. **Output**
+   - Easy tables and graphs to see how DNS and mail servers link.
+   - Beta feature: Export and tweak the graph.
+   - Tip: It’s like getting a clear picture instead of puzzle pieces.
+
+---
+---
 
 
 
