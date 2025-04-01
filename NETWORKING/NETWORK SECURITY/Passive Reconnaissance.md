@@ -1,7 +1,7 @@
 # Passive Reconnaissance
 
 
-**Passive vs. Active Recon**
+### **Passive vs. Active Recon**
 
 1. **What’s Recon?**
    - It’s gathering info about a target before attacking or defending.
@@ -52,5 +52,39 @@
 
 ---
 ---
+
+
+### **nslookup and dig**
+
+1. **What Are nslookup and dig?**
+   - Tools to find a domain’s IP addresses and other info (like email servers).
+   - Tip: They’re like detectives for domain details.
+
+2. **Using nslookup**
+   - Command: `nslookup [OPTIONS] DOMAIN_NAME [SERVER]`
+   - Options: `-type=A` for IPv4, `-type=AAAA` for IPv6, `-type=MX` for mail servers, etc.
+   - Example: `nslookup -type=A tryhackme.com 1.1.1.1` shows IPv4 addresses.
+   - Tip: Pick a DNS server (e.g., 1.1.1.1, 8.8.8.8) to ask.
+
+3. **Key Query Types**
+   - A: IPv4 addresses (e.g., tryhackme.com has 172.67.69.208).
+   - AAAA: IPv6 addresses.
+   - MX: Mail servers (e.g., tryhackme.com uses Google’s mail servers).
+   - Tip: MX shows where emails go—like finding the mailbox.
+
+4. **Using dig**
+   - More advanced than nslookup, shows extra details like TTL.
+   - Command: `dig [SERVER] DOMAIN_NAME TYPE`
+   - Example: `dig tryhackme.com MX` or `dig @1.1.1.1 tryhackme.com MX`.
+   - Tip: dig digs deeper, nslookup is quicker.
+
+5. **Why It Matters**
+   - Helps find IPs or servers to test for weaknesses.
+   - Tip: It’s like mapping the target’s digital neighborhood.
+
+---
+---
+
+
 
 
