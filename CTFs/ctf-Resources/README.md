@@ -1,31 +1,18 @@
-# Awesome CTF resources [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
-A list of [Capture The Flag](https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security) (CTF) frameworks, libraries, resources and software for started/experienced CTF players 🚩 
 
-Any contribution is welcome, send me a PR! ❤️
+   - [Platforms](#platforms)
+   - [Forensics](#forensics)
+   - [Steganography](#steganography)
+   - [Web](#web)
 
-*-The software and resources collected do not belong to me and have been compiled for educational purposes only-*
 
-<p align="center">
-<img src="https://i.imgur.com/d4aShjQ.jpg" width="600" height="300" >
-</p>
-
-## Contents
-
- - [Create](#0x00-create)
-    - [Platforms](#platforms)
-    - [Forensics](#forensics)
-    - [Steganography](#steganography)
-    - [Web](#web)
-
- - [Solve](#0x01-solve)
-    - [Cryptography](#cryptography)
-    - [Exploiting / Pwn](#exploiting--pwn)
-    - [Forensics](#forensics-1)
-    - [Misc](#misc)
-    - [Reversing](#reversing)
-    - [Steganography](#steganography-1)
-    - [Web](#web-1)
+   - [Cryptography](#cryptography)
+   - [Exploiting / Pwn](#exploiting--pwn)
+   - [Forensics](#forensics-1)
+   - [Misc](#misc)
+   - [Reversing](#reversing)
+   - [Steganography](#steganography-1)
+   - [Web](#web-1)
 
  - [Resources](#0x02-resources)
     - [Online Platforms](#online-platforms)
@@ -35,10 +22,6 @@ Any contribution is welcome, send me a PR! ❤️
 
  - [Bibliography](#0x03-bibliography)
 
-
-# 0x00. Create
-
-*Tools used for creating CTF challenges*
 
 ## Platforms
 
@@ -203,7 +186,6 @@ Check [solve section for steganography](#steganography-1).
  - [CWE_checker](https://github.com/fkie-cad/cwe_checker) - Finds vulnerable patterns in binary executables.
  - [Demovfuscator](https://github.com/kirschju/demovfuscator) - A work-in-progress deobfuscator for movfuscated binaries.
  - [Disassembler.io](https://onlinedisassembler.com/static/home/index.html) - Disassemble On Demand. 
-A lightweight, online service for when you don’t have the time, resources, or requirements to use a heavier-weight alternative.
  - [dnSpy](https://github.com/dnSpy/dnSpy) - .NET debugger and assembly editor.
  - [EasyPythonDecompiler](https://sourceforge.net/projects/easypythondecompiler/) - A small .exe GUI application that will "decompile" Python bytecode, often seen in .pyc extension.
  - [Frida](https://github.com/frida/) - Dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers.
@@ -374,3 +356,11 @@ A lightweight, online service for when you don’t have the time, resources, or 
  - [apsdehal_awesome-ctf](https://github.com/apsdehal/awesome-ctf)
  - [vavkamil_awesome-bugbounty-tools](https://github.com/vavkamil/awesome-bugbounty-tools)
  - [zardus_ctf-tools](https://github.com/zardus/ctf-tools)
+
+
+
+
+
+# Acknowledgement
+
+A significant portion of the content in this repository is adapted from the excellent work by [devploit](https://github.com/devploit). Huge thanks to them for their valuable contributions to the community.
