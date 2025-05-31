@@ -91,6 +91,7 @@ Check [solve section for steganography](#steganography-1).
  - [yagu](https://sourceforge.net/projects/yafu/) - Automated integer factorization.
  - [Crackstation](https://crackstation.net/) - Hash cracker (database).
  - [Online Encyclopedia of Integer Sequences](https://oeis.org/) - OEIS: The On-Line Encyclopedia of Integer Sequences
+ - [RSA Calculator](https://www.cs.drexel.edu/~popyack/IntroCS/HW/RSAWorksheet.html)
 
 
 
