@@ -18,9 +18,7 @@
     - [Online Platforms](#online-platforms)
     - [Collaborative Tools](#collaborative-tools)
     - [Writeups Repositories](#writeups-repositories)
-    - [Courses](#courses)
 
- - [Bibliography](#0x03-bibliography)
 
 
 ## Platforms
