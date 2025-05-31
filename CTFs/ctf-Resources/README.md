@@ -94,6 +94,17 @@ Check [solve section for steganography](#steganography-1).
  - [Crackstation](https://crackstation.net/) - Hash cracker (database).
  - [Online Encyclopedia of Integer Sequences](https://oeis.org/) - OEIS: The On-Line Encyclopedia of Integer Sequences
 
+
+
+## Cryptography Identifier
+
+- [dcode](https://www.dcode.fr/cipher-identifier) – Detects ciphers and provides decoding tools for various encryption methods.
+- [Enigmator](https://merri.cx/enigmator/cryptanalysis/crypto_identifier.html) – Identifies classical ciphers based on input patterns.
+- [Cachesleuth](https://www.cachesleuth.com/) – Helps identify geocaching and puzzle ciphers using pattern recognition.
+- [Cryptii](https://cryptii.com/) – A modular tool to identify and convert between different ciphers and formats.
+- [Boxentriq Cipher Identifier](https://www.boxentriq.com/code-breaking/cipher-identifier) – Recognizes common classical and substitution ciphers.
+
+
 ## Exploiting / Pwn
 
 *Tools used for solving Pwn challenges*
@@ -345,22 +356,9 @@ Check [solve section for steganography](#steganography-1).
  - [CTFtime](https://ctftime.org/writeups) - CTFtime Writeups Collection.
  - [Github.com/CTFs](https://github.com/ctfs) - Collection of CTF Writeups.
 
-## Courses
-
- - [Roppers Bootcamp](https://www.roppers.org/courses/ctf) - CTF Bootcamp.
-
-# 0x03. Bibliography
-
-*The resources presented here have been gathered from numerous sources. However, the most important are:*
-
- - [apsdehal_awesome-ctf](https://github.com/apsdehal/awesome-ctf)
- - [vavkamil_awesome-bugbounty-tools](https://github.com/vavkamil/awesome-bugbounty-tools)
- - [zardus_ctf-tools](https://github.com/zardus/ctf-tools)
-
-
 
 
 
 # Acknowledgement
 
-A significant portion of the content in this repository is adapted from the excellent work by [devploit](https://github.com/devploit). Huge thanks to them for their valuable contributions to the community.
+A significant portion of the content in this repository is adapted from the excellent work by [devploit](https://github.com/devploit), [apsdehal_awesome-ctf](https://github.com/apsdehal/awesome-ctf), [vavkamil_awesome-bugbounty-tools](https://github.com/vavkamil/awesome-bugbounty-tools), [zardus_ctf-tools](https://github.com/zardus/ctf-tools). Huge thanks to them for their valuable contributions to the community.
