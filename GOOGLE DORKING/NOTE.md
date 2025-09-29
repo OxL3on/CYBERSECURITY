@@ -2,14 +2,14 @@
 **Description**: Search for a value that is contained somewhere in the URL.  
 **Example**:  
 ```bash
-"preventing ransomware inurl:fbi"
+preventing ransomware inurl:fbi
 ```
 
 ### `site:`
 **Description**: Search only within the specified website's domain.  
 **Example**:  
 ```bash
-"windows xp end of life site:microsoft.com"
+windows xp end of life site:microsoft.com
 ```
 
 ### `filetype:`
