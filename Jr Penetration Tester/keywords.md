@@ -14,3 +14,9 @@
 # Penetration Testing Frameworks
 [LINK](https://tryhackme.com/room/penetrationtestingframeworks)
 
+###  OSSTMM 
+Open Source Security Testing Methodology Manual
+
+### OWASP WSTG
+Open Web Application Security Project - Web Security Testing Guide (WSTG)
+
