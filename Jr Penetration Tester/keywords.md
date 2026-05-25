@@ -50,3 +50,7 @@ Payment Card Industry Data Security Standard
 [LINK](https://tryhackme.com/room/contentdiscoveryx)
 
 **Virtual Hosts Discovery with gobuster**
+
+
+# Modern Web Stacks
+[LINK](https://tryhackme.com/room/modernwebstacks)
