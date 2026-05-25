@@ -44,3 +44,9 @@ OWASP Mobile Application Security Testing Guide
 Payment Card Industry Data Security Standard
 
 ### CBEST Framework
+
+
+# Content Discovery
+[LINK](https://tryhackme.com/room/contentdiscoveryx)
+
+**Virtual Hosts Discovery with gobuster**
