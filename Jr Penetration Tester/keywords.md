@@ -20,3 +20,27 @@ Open Source Security Testing Methodology Manual
 ### OWASP WSTG
 Open Web Application Security Project - Web Security Testing Guide (WSTG)
 
+### NIST SP 800-115
+National Institute of Standards and Technology 
+
+### PTES
+Penetration Testing Execution Standard
+
+### ISSAF
+Information Systems Security Assessment Framework
+
+### MITRE ATT&CK
+
+### WASC Threat Classification
+Web Application Security Consortium
+
+### CSA Cloud Controls Matrix(CCM)
+Cloud Security Alliance (CSA) 
+
+### MASTG
+OWASP Mobile Application Security Testing Guide
+
+### PCI DSS Penetration Testing Guidelines
+Payment Card Industry Data Security Standard
+
+### CBEST Framework
