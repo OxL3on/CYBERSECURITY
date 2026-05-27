@@ -221,4 +221,31 @@ nikto -h TARGET -Tuning 123
 
 
 
-![Banner](https://tryhackme-images.s3.amazonaws.com/user-uploads/645b19f5d5848d004ab9c9e2/room-content/645b19f5d5848d004ab9c9e2-1777026589964.svg)
+# Basic Vulnerability Identification Techniques
+[LINK](https://tryhackme.com/room/basicvulnerabilityidentificationtechniques)
+
+#### Service Enumeration and Banner Grabbing
+
+Service enumeration is the process of discovering which services are listening on a target's open ports and gathering enough detail about each to support further testing
+
+Banner grabbing is the process of connecting to a service and reading its initial response
+
+#### Matching Services to Known Exploits
+
+searchsploit
+
+Github
+
+#### Identifying System and Network Vulnerabilities
+
+Default and Weak Creds : hydra
+
+SMB Misconfigurations : 
+
+```
+smbclient -L //10.48.173.5 -N
+nmap --script smb2-security-mode -p 445 10.48.173.5
+```
+
+FTP Misconfigurations
+
