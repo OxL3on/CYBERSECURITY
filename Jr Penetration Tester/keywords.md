@@ -205,3 +205,16 @@ nikto -h TARGET -Tuning 123
 
 
 
+# Understanding Vulnerability Databases
+[LINK](https://tryhackme.com/room/understandingvulnerabilitydatabases)
+
+#### Common Vulnerabilities and Exposures (CVE)
+
+#### Common Vulnerability Scoring System (CVSS)
+
+#### Common Platform Enumeration (CPE)
+
+#### Common Weakness Enumeration (CWE)
+
+#### CVE Numbering Authorities (CNAs)
+
