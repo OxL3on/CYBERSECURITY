@@ -249,3 +249,11 @@ nmap --script smb2-security-mode -p 445 10.48.173.5
 
 FTP Misconfigurations
 
+
+# Phishing Basics
+[LINK](https://tryhackme.com/room/phishingbasics)
+
+Smishing, Vishing
+Phishing, Spear phishing, Whaling
+
+Tools : GoPhish, EvilNginx, SET
