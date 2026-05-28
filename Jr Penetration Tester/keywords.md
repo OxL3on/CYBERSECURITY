@@ -293,3 +293,9 @@ Zigbee, Z-Wave, LoRa, Cellular, Infrared
 | Z-Wave | A wireless protocol for home automation that uses a standardised frequency band and the S2 security framework for encrypted device communication. |
 | LoRaWAN | Long Range Wide Area Network. A low-power wireless technology designed for transmitting small amounts of data over distances of several kilometres in IoT deployments. |
 | Infrared | A wireless communication method that uses light signals for short-range, line-of-sight data transmission between a transmitter and receiver, commonly used in remote controls. |
+
+
+# MetaSploit
+
+## MetaSploit: Scanning and Exploitation
+Scanning with MetaSploit, The Metasploit Database, Vulnerability Scanning
