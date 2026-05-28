@@ -257,3 +257,11 @@ Smishing, Vishing
 Phishing, Spear phishing, Whaling
 
 Tools : GoPhish, EvilNginx, SET
+
+
+
+# Wireless Security
+[LINK](https://tryhackme.com/room/wirelesssecurity)
+
+#### Identifiers in Wi-Fi Networks
+SSID (Service Set Identifier), BSSID (Basic Service Set Identifier)
