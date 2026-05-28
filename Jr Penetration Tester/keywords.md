@@ -298,4 +298,6 @@ Zigbee, Z-Wave, LoRa, Cellular, Infrared
 # MetaSploit
 
 ## MetaSploit: Scanning and Exploitation
+[LINK](https://tryhackme.com/room/metasploitscanningandexploitation)
+
 Scanning with MetaSploit, The Metasploit Database, Vulnerability Scanning
