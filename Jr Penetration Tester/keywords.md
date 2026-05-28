@@ -265,3 +265,6 @@ Tools : GoPhish, EvilNginx, SET
 
 #### Identifiers in Wi-Fi Networks
 SSID (Service Set Identifier), BSSID (Basic Service Set Identifier)
+
+#### Common WIFI attacks:
+Password attacks, Rogue Access Points, Evil Twin Attacks, Deauthentication Attacks, Traffic Interception
