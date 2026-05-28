@@ -268,3 +268,9 @@ SSID (Service Set Identifier), BSSID (Basic Service Set Identifier)
 
 #### Common WIFI attacks:
 Password attacks, Rogue Access Points, Evil Twin Attacks, Deauthentication Attacks, Traffic Interception
+
+#### Common RFID and NFC Security Risks
+Eavesdropping, Cloning, Relay Attacks, Unauthorised Scanning (Skimming), Lost or Stolen Cards
+
+#### Other Wireless Technologies
+Zigbee, Z-Wave, LoRa, Cellular, Infrared
