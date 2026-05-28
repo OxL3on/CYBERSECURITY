@@ -274,3 +274,22 @@ Eavesdropping, Cloning, Relay Attacks, Unauthorised Scanning (Skimming), Lost or
 
 #### Other Wireless Technologies
 Zigbee, Z-Wave, LoRa, Cellular, Infrared
+
+| Term | Definition |
+|------|-------------|
+| SSID | Service Set Identifier. The human-readable name of a Wi-Fi network. |
+| BSSID | Basic Service Set Identifier. The MAC address of a wireless access point. |
+| WEP | Wired Equivalent Privacy. The original Wi-Fi security protocol, now deprecated due to fundamental weaknesses in its RC4-based encryption that allow the network key to be recovered within minutes. |
+| WPA | Wi-Fi Protected Access. An intermediate security protocol introduced as a replacement for WEP, using TKIP for encryption. Superseded by WPA2 and WPA3. |
+| WPA2 | Wi-Fi Protected Access 2. A security protocol that uses encryption to protect Wi-Fi traffic. |
+| WPA3 | Wi-Fi Protected Access 3. The successor to WPA2, introducing Simultaneous Authentication of Equals (SAE) to resist offline dictionary attacks. |
+| MITM | Man-in-the-Middle. An attack in which an adversary secretly intercepts and potentially alters communication between two parties who believe they are communicating directly with each other. |
+| SAE | Simultaneous Authentication of Equals. The key exchange mechanism used in WPA3 that replaces the four-way handshake with a more resistant authentication process. |
+| BLE | Bluetooth Low Energy. A power-efficient variant of Bluetooth designed for devices that transmit small amounts of data intermittently. |
+| SSP | Secure Simple Pairing. A Bluetooth pairing mechanism introduced in version 2.1 that uses Elliptic Curve Diffie-Hellman to protect against passive eavesdropping. |
+| RFID | Radio-Frequency Identification. A technology that uses electromagnetic fields to identify and track tags attached to objects. |
+| NFC | Near-Field Communication. A short-range wireless standard operating at 13.56 MHz that supports bidirectional communication between devices within approximately 5 cm. |
+| Zigbee | A low-power, short-range mesh networking protocol used in smart home devices such as lights and sensors. |
+| Z-Wave | A wireless protocol for home automation that uses a standardised frequency band and the S2 security framework for encrypted device communication. |
+| LoRaWAN | Long Range Wide Area Network. A low-power wireless technology designed for transmitting small amounts of data over distances of several kilometres in IoT deployments. |
+| Infrared | A wireless communication method that uses light signals for short-range, line-of-sight data transmission between a transmitter and receiver, commonly used in remote controls. |
