@@ -301,3 +301,48 @@ Zigbee, Z-Wave, LoRa, Cellular, Infrared
 [LINK](https://tryhackme.com/room/metasploitscanningandexploitation)
 
 Scanning with MetaSploit, The Metasploit Database, Vulnerability Scanning
+
+
+# Writing Pentest Reports
+[LINK](https://tryhackme.com/room/writingpentestreports)
+
+## The Core Idea
+Your report is the **only lasting output** of a pentest. Systems change, teams change — the report stays forever.
+
+
+#### Know Your 3 Audiences
+
+| Audience | What they care about | % of report |
+|---|---|---|
+| **Technical** (devs/IT) | How to fix it | 70–90% |
+| **Security team** | Risk prioritization, attack chains | 10–20% |
+| **Business/Executives** | Real-world business impact | 5–10% |
+
+
+#### Report Structure 
+
+**1. Summary** — Written last. Covers: what was tested, what was found, business impact, what to do next. Split into *Executive Summary* (business-friendly) + *Findings & Recommendations* (security team) when needed.
+
+**2. Vulnerability Write-Ups** — The biggest section. Each finding needs:
+- Title + Risk Rating
+- Summary + Background (explain it simply)
+- Technical evidence (requests, screenshots, payloads)
+- Contextual impact (specific to *this* system, not generic)
+- Remediation that fixes the **root cause**, not just mitigates it
+- References
+
+**3. Appendices** — Audit trail for security stakeholders:
+- Assessment scope (what % was actually covered)
+- Artifacts left behind during testing (webshells, test files — crucial for cleanup)
+
+
+#### Writing Rules That Matter
+- Past tense, no first person ("I/we")
+- No slang ("we pwned it" → never)
+- Blur sensitive data in screenshots
+- Same terminology throughout — no inconsistency
+- QA: re-read with fresh eyes, get a peer review
+
+
+#### The One Line to Remember
+> *"If it's not in the report, it didn't happen."*
