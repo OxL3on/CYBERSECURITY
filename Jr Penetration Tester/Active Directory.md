@@ -207,3 +207,27 @@ Challenge-response — hash never sent directly, but:
 
 <br>
 
+# Intro to AD Authentication
+[LINK](https://tryhackme.com/room/introtoactivedirectoryauthentication)
+
+
+**Authentication vs Authorisation**
+- **AuthN** = prove identity ("who are you?")
+- **AuthZ** = determine access ("what can you do?") → checked via group memberships + ACLs
+
+- 
+**Authentication Material**
+| Type | Offensive Use |
+|---|---|
+| Password | Brute force, spraying |
+| Hash | Pass-the-Hash, cracking |
+| Certificate | Pass-the-Certificate, ADCS attacks (ESC1-8) |
+| Ticket (TGT/TGS) | Pass-the-Ticket, Golden/Silver Ticket |
+
+
+**Two Core Protocols (everything else builds on these)**
+- **NetNTLM** → challenge-response → relay/capture attacks
+- **Kerberos** → ticket-based → roasting/forging attacks
+
+<br>
+
